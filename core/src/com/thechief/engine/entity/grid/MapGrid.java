@@ -71,25 +71,17 @@ public class MapGrid {
 		FileHandle handle = Gdx.files.internal(path);
 		String text = handle.readString();
 		String letters[] = text.split("");
-		for (int i = 0; i < letters.length; i++) {
-			System.out.println(letters[i]);
-		}
 		
-		//parseFile(letters);
+		parseFile(letters);
 	}
 
 	private void parseFile(String[] letters) {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				char c = letters[x + y * width].charAt(0);
-				
-				if (c == '#') {
-					tiles[x + y * width] = new WallTile(new Vector2(x, y), this);
-				} else if (c == '@') {
-					em.addEntity(new Player(new Vector2(x, y), this));
-				} else {
-					tiles[x + y * width] = new BlankTile(new Vector2(x, y), this);
-				}
+//				if (letters[x + y * width] == "#")
+//					tiles[x + y * width] = new WallTile(new Vector2(x, y), this);
+//				if (letters[x + y * width] == "@")
+//					em.addEntity(new Player(new Vector2(x, y), this));
 			}
 		}
 	}
