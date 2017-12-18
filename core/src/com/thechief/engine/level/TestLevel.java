@@ -10,15 +10,25 @@ import com.thechief.engine.screen.GameScreen;
 
 public class TestLevel extends Level {
 
-	private Player player;
 	private MapGrid grid;
 	
 	private ShapeRenderer sr;
+	private String data;
+	private Player player;
 	
 	@Override
 	public void create() {
-		grid = new MapGrid("level.txt", Main.WIDTH / GameScreen.CELL_SIZE, Main.HEIGHT / GameScreen.CELL_SIZE, em);
-		player = new Player(new Vector2(0, 0), grid);
+		data =  "............" + 
+				"............" + 
+				"..####......" + 
+				"..#...#....." + 
+				"..####......" + 
+				"..#........." + 
+				"..#.....@..." + 
+				"..#........." ;
+		
+		grid = new MapGrid(data, Main.WIDTH / GameScreen.CELL_SIZE, Main.HEIGHT / GameScreen.CELL_SIZE, em);
+		player = new Player(new Vector2(1, 1), grid);
 		em.addEntity(player);
 		sr = new ShapeRenderer();
 	}

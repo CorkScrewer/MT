@@ -38,4 +38,8 @@ public abstract class Tile extends Entity {
 		return collidable;
 	}
 	
+	public TileType getType() {
+		return type;
+	}
+	
 }

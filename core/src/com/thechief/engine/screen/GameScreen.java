@@ -13,7 +13,7 @@ public class GameScreen extends Screen {
 	@Override
 	public void create() {
 		camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		LevelManager.setCurrentLevel(new TestLevel());
 	}
