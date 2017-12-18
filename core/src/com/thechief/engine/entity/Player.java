@@ -17,13 +17,6 @@ public class Player extends Entity {
 	public Player(Vector2 pos, MapGrid grid) {
 		super(TextureManager.PLAYER, pos);
 		this.grid = grid;
-
-		for (int y = 0; y < grid.getHeight(); y++) {
-			for (int x = 0; x < grid.getWidth(); x++) {
-				System.out.print((grid.shouldCollide(x, y)) ? "#" : ".");
-			}
-			System.out.print("\n");
-		}
 	}
 
 	@Override

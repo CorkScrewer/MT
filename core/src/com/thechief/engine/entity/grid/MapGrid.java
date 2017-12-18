@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.EntityManager;
+import com.thechief.engine.entity.Player;
+import com.thechief.engine.entity.enemy.BasicEnemy;
 import com.thechief.engine.entity.tile.BlankTile;
 import com.thechief.engine.entity.tile.Tile;
 import com.thechief.engine.entity.tile.WallTile;
@@ -34,13 +36,18 @@ public class MapGrid {
 
 	private void parse(String d) {
 		char[] data = d.toCharArray();
-		
+
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				if (data[x + y * width] == '#') {
 					tiles[x + y * width] = new WallTile(new Vector2(x, y), this);
+				} else if (data[x + y * width] == '/') {
+					em.addEntity(new BasicEnemy(new Vector2(x, y), this));
+					
+				} else if (data[x + y * width] == '@') {
+					em.addEntity(new Player(new Vector2(x, y), this));
 				}
-			}	
+			}
 		}
 	}
 
@@ -49,7 +56,7 @@ public class MapGrid {
 			t.update();
 			t.render(sb);
 		}
-		
+
 		sb.end();
 
 		sr.begin(ShapeType.Line);
@@ -76,6 +83,14 @@ public class MapGrid {
 
 	public boolean shouldCollide(int x, int y) {
 		return tiles[x + y * width].isCollidable();
+	}
+	
+	public Tile getTile(int x, int y) {
+		return tiles[x + y * width];
+	}
+
+	public EntityManager getEntityManager() {
+		return em;
 	}
 
 }

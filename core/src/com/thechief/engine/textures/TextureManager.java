@@ -7,6 +7,8 @@ public class TextureManager {
 
 	public static final Texture COOL_DUDE = new Texture(Gdx.files.internal("cooldude.png"));
 	public static final Texture PLAYER = new Texture(Gdx.files.internal("player.png"));
+	public static final Texture ENEMY = new Texture(Gdx.files.internal("enemy.png"));
 	public static final Texture WALL = new Texture(Gdx.files.internal("wall.png"));
+	public static final Texture BLANK = new Texture(Gdx.files.internal("blank.png"));
 	
 }

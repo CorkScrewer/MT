@@ -32,10 +32,10 @@ public class Main extends ApplicationAdapter {
 		sb.begin();
 		
 		ScreenManager.renderCurrentScreen(sb);
-
 		// NOT SB.ENDING() BECAUSE IN MAPGRID, IT WILL END ITSELF FOR THE MAP GRID TO DRAW (MAP GRID USES SHAPE RENDERER)
-		
+
 		ScreenManager.updateCurrentScreen();
+		
 		fps.log();
 	}
 	
