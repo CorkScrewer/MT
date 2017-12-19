@@ -15,9 +15,9 @@ public abstract class Tile extends Entity {
 
 	protected boolean collidable = false;
 
-	public float h = 0, g = 0, f = 0;
+	public float h, g, f;
 	public Array<Tile> neighbours = new Array<Tile>();
-	public Tile previous;
+	public Tile previous; // array for the multiple astar objects
 	
 	public Tile(TileType type, boolean collidable, int width, int height, Vector2 gridPos, MapGrid grid) {
 		super(TextureManager.COOL_DUDE, gridPos);
