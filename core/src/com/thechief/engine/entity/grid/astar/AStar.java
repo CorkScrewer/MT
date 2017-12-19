@@ -1,5 +1,6 @@
 package com.thechief.engine.entity.grid.astar;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.Tile;
@@ -14,8 +15,8 @@ public class AStar {
 		closed.clear();
 
 		open.add(start);
-		start.g = 0;
-		start.f = heuristic(start, end);
+		start.g[0] = 0;
+		start.f[0] = heuristic(start, end);
 
 		for (int y = 0; y < grid.getHeight(); y++) {
 			for (int x = 0; x < grid.getWidth(); x++) {
@@ -26,7 +27,7 @@ public class AStar {
 		while (open.size > 0) {
 			int winner = 0;
 			for (int i = 0; i < open.size; i++) {
-				if (open.get(i).f < open.get(i).f) {
+				if (open.get(i).f[0] < open.get(i).f[0]) {
 					winner = i;
 				}
 			}
@@ -36,9 +37,9 @@ public class AStar {
 				Array<Tile> path = new Array<Tile>();
 				Tile temp = current;
 				path.add(temp);
-				while (temp.previous != null) {
-					path.add(temp.previous);
-					temp = temp.previous;
+				while (temp.previous[0] != null) {
+					path.add(temp.previous[0]);
+					temp = temp.previous[0];
 				}
 				return path;
 			}
@@ -48,25 +49,25 @@ public class AStar {
 
 			for (Tile n : current.neighbours) {
 				if (!closed.contains(n, false) && !n.isCollidable()) {
-					float tempG = current.g + heuristic(current, n);
+					float tempG = current.g[0] + heuristic(current, n);
 
 					boolean newPath = false;
 					if (open.contains(n, false)) {
-						if (tempG < n.g) {
-							n.g = tempG;
+						if (tempG < n.g[0]) {
+							n.g[0] = tempG;
 							newPath = true;
 						} else {
 							continue;
 						}
 					} else {
-						n.g = tempG;
+						n.g[0] = tempG;
 						newPath = true;
 						open.add(n);
 					}
 					if (newPath) {
-						n.h = heuristic(n, end);
-						n.f = n.g + n.h;
-						n.previous = current;
+						n.h[0] = heuristic(n, end);
+						n.f[0] = n.g[0] + n.h[0];
+						n.previous[0] = current;
 					}
 				} 
 			}
@@ -76,7 +77,7 @@ public class AStar {
 	}
 
 	private float heuristic(Tile a, Tile b) {
-		return Math.abs(a.getPosition().x - b.getPosition().x) + Math.abs(a.getPosition().y - b.getPosition().y);
+		return Vector2.dst(a.getPosition().x, a.getPosition().y, b.getPosition().x, b.getPosition().y);
 	}
 
 }

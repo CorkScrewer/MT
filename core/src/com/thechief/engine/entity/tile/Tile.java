@@ -15,10 +15,10 @@ public abstract class Tile extends Entity {
 
 	protected boolean collidable = false;
 
-	public float h, g, f;
+	public float[] h, g, f;
 	public Array<Tile> neighbours = new Array<Tile>();
-	public Tile previous; // array for the multiple astar objects
-	
+	public Tile[] previous; // array for the multiple astar objects
+
 	public Tile(TileType type, boolean collidable, int width, int height, Vector2 gridPos, MapGrid grid) {
 		super(TextureManager.COOL_DUDE, gridPos);
 		this.type = type;
@@ -26,6 +26,24 @@ public abstract class Tile extends Entity {
 		this.grid = grid;
 		this.width = width;
 		this.height = height;
+
+		h = new float[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A* OBJECT
+		for (int i = 0; i < h.length; i++) {
+			h[i] = 0f;
+		}
+		g = new float[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A* OBJECT
+		for (int i = 0; i < g.length; i++) {
+			g[i] = 0f;
+		}
+		f = new float[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A* OBJECT
+		for (int i = 0; i < f.length; i++) {
+			f[i] = 0f;
+		}
+		previous = new Tile[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A*
+									// OBJECT
+		for (int i = 0; i < previous.length; i++) {
+			previous[i] = null;
+		}
 	}
 
 	public Tile(TileType type, boolean collidable, Vector2 gridPos, MapGrid grid) {
@@ -33,6 +51,24 @@ public abstract class Tile extends Entity {
 		this.collidable = collidable;
 		this.type = type;
 		this.grid = grid;
+
+		h = new float[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A* OBJECT
+		for (int i = 0; i < h.length; i++) {
+			h[i] = 0f;
+		}
+		g = new float[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A* OBJECT
+		for (int i = 0; i < g.length; i++) {
+			g[i] = 0f;
+		}
+		f = new float[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A* OBJECT
+		for (int i = 0; i < f.length; i++) {
+			f[i] = 0f;
+		}
+		previous = new Tile[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A*
+									// OBJECT
+		for (int i = 0; i < previous.length; i++) {
+			previous[i] = null;
+		}
 	}
 
 	public void drawTile(SpriteBatch sb) {
@@ -61,6 +97,18 @@ public abstract class Tile extends Entity {
 		}
 		if (pos.y > 0) {
 			neighbours.add(grid.getTile((int) pos.x, (int) pos.y - 1));
+		}
+		if (pos.x > 0 && pos.y > 0) {
+			neighbours.add(grid.getTile((int) pos.x - 1, (int) pos.y - 1));
+		}
+		if (pos.x < grid.getWidth() - 1 && pos.y > 0) {
+			neighbours.add(grid.getTile((int) pos.x + 1, (int) pos.y - 1));
+		}
+		if (pos.x > 0 && pos.y < grid.getHeight() - 1) {
+			neighbours.add(grid.getTile((int) pos.x - 1, (int) pos.y + 1));
+		}
+		if (pos.x < grid.getWidth() - 1 && pos.y < grid.getHeight() - 1) {
+			neighbours.add(grid.getTile((int) pos.x + 1, (int) pos.y + 1));
 		}
 	}
 

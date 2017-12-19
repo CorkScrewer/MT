@@ -33,17 +33,20 @@ public class Player extends Entity {
 				if (!grid.shouldCollide((int) pos.x + 1, (int) pos.y))
 					pos.x++;
 			}
-		} else if (Gdx.input.isKeyJustPressed(Keys.A) || Gdx.input.isKeyJustPressed(Keys.LEFT)) {
+		}
+		if (Gdx.input.isKeyJustPressed(Keys.A) || Gdx.input.isKeyJustPressed(Keys.LEFT)) {
 			if (pos.x > 0) {
 				if (!grid.shouldCollide((int) pos.x - 1, (int) pos.y))
 					pos.x--;
 			}
-		} else if (Gdx.input.isKeyJustPressed(Keys.W) || Gdx.input.isKeyJustPressed(Keys.UP)) {
+		}
+		if (Gdx.input.isKeyJustPressed(Keys.W) || Gdx.input.isKeyJustPressed(Keys.UP)) {
 			if (pos.y > 0) {
 				if (!grid.shouldCollide((int) pos.x, (int) pos.y - 1))
 					pos.y--;
 			}
-		} else if (Gdx.input.isKeyJustPressed(Keys.S) || Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+		}
+		if (Gdx.input.isKeyJustPressed(Keys.S) || Gdx.input.isKeyJustPressed(Keys.DOWN)) {
 			if (pos.y < grid.getHeight() - 1) {
 				if (!grid.shouldCollide((int) pos.x, (int) pos.y + 1))
 					pos.y++;
