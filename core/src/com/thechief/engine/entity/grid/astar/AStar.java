@@ -9,25 +9,38 @@ public class AStar {
 
 	private Array<Tile> open = new Array<Tile>();
 	private Array<Tile> closed = new Array<Tile>();
+	private Array<Tile> returnPath = new Array<Tile>();
 
-	public Array<Tile> evaluate(Tile start, Tile end, MapGrid grid) {
-		open.clear();
-		closed.clear();
+	private Vector2 prevPlayerPos;
 
-		open.add(start);
-		start.g[0] = 0;
-		start.f[0] = heuristic(start, end);
-
-		for (int y = 0; y < grid.getHeight(); y++) {
-			for (int x = 0; x < grid.getWidth(); x++) {
-				grid.getTile(x, y).addNeighbours();
+	public Array<Tile> evaluate(Tile start, Tile end, MapGrid grid, int indexOfEnemy, boolean isCalculatedByEnemy) {
+		if (isCalculatedByEnemy) {
+			if (prevPlayerPos == null) {
+				prevPlayerPos = grid.getEntityManager().getPlayer().getPosition();
+			} else if (grid.getEntityManager().getPlayer().getPosition() != prevPlayerPos) {
+				prevPlayerPos = grid.getEntityManager().getPlayer().getPosition();
+				return new Array<Tile>();
 			}
 		}
 
-		while (open.size > 0) {
+		if (open.size == 0) {
+			open.clear();
+			closed.clear();
+			open.add(start);
+			start.g[indexOfEnemy] = 0;
+			start.f[indexOfEnemy] = heuristic(start, end);
+
+			for (int y = 0; y < grid.getHeight(); y++) {
+				for (int x = 0; x < grid.getWidth(); x++) {
+					grid.getTile(x, y).addNeighbours();
+				}
+			}
+		}
+
+		if (open.size > 0) {
 			int winner = 0;
 			for (int i = 0; i < open.size; i++) {
-				if (open.get(i).f[0] < open.get(i).f[0]) {
+				if (open.get(i).f[indexOfEnemy] < open.get(i).f[indexOfEnemy]) {
 					winner = i;
 				}
 			}
@@ -37,10 +50,11 @@ public class AStar {
 				Array<Tile> path = new Array<Tile>();
 				Tile temp = current;
 				path.add(temp);
-				while (temp.previous[0] != null) {
-					path.add(temp.previous[0]);
-					temp = temp.previous[0];
+				while (temp.previous[indexOfEnemy] != null) {
+					path.add(temp.previous[indexOfEnemy]);
+					temp = temp.previous[indexOfEnemy];
 				}
+				returnPath = path;
 				return path;
 			}
 
@@ -48,32 +62,33 @@ public class AStar {
 			closed.add(current);
 
 			for (Tile n : current.neighbours) {
-				if (!closed.contains(n, false) && !n.isCollidable()) {
-					float tempG = current.g[0] + heuristic(current, n);
+				if (!closed.contains(n, false) && !n.canEnemyGoThrough()) {
+					float tempG = current.g[indexOfEnemy] + heuristic(current, n);
 
 					boolean newPath = false;
 					if (open.contains(n, false)) {
-						if (tempG < n.g[0]) {
-							n.g[0] = tempG;
+						if (tempG < n.g[indexOfEnemy]) {
+							n.g[indexOfEnemy] = tempG;
 							newPath = true;
 						} else {
 							continue;
 						}
 					} else {
-						n.g[0] = tempG;
+						n.g[indexOfEnemy] = tempG;
 						newPath = true;
 						open.add(n);
 					}
 					if (newPath) {
-						n.h[0] = heuristic(n, end);
-						n.f[0] = n.g[0] + n.h[0];
-						n.previous[0] = current;
+						n.h[indexOfEnemy] = heuristic(n, end);
+						n.f[indexOfEnemy] = n.g[indexOfEnemy] + n.h[indexOfEnemy];
+						n.previous[indexOfEnemy] = current;
 					}
-				} 
+				}
 			}
+		} else {
+			System.err.println("ERROR: ASTAR ALGORITHM HAS NO SOLUTION");
 		}
-		System.err.println("ERROR: ASTAR ALGORITHM HAS NO SOLUTION");
-		return null;
+		return new Array<Tile>();
 	}
 
 	private float heuristic(Tile a, Tile b) {

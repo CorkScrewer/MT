@@ -1,5 +1,6 @@
 package com.thechief.engine.entity;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.entity.enemy.Enemy;
@@ -10,10 +11,12 @@ public class EntityManager {
 	private Array<Enemy> enemies;
 	
 	private Player player;
+	private OrthographicCamera camera;
 	
-	public EntityManager() {
+	public EntityManager(OrthographicCamera camera) {
 		entities = new Array<Entity>();
 		enemies = new Array<Enemy>();
+		this.camera = camera;
 	}
 
 	public void update() {
@@ -24,7 +27,8 @@ public class EntityManager {
 	
 	public void render(SpriteBatch sb) {
 		for (Entity e : entities) {
-			e.render(sb);
+			if (!e.isOffScreen(camera))
+				e.render(sb);
 		}
 	}
 	
@@ -71,7 +75,7 @@ public class EntityManager {
 	}
 	
 	public int getIndex(Enemy enemy) {
-		return enemies.indexOf(enemy, false);
+		return enemies.indexOf(enemy, true);
 	}
 	
 	public Player getPlayer() {

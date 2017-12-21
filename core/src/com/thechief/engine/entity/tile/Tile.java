@@ -9,21 +9,21 @@ import com.thechief.engine.textures.TextureManager;
 
 public abstract class Tile extends Entity {
 
-	protected MapGrid grid;
 	protected int width, height;
 	protected TileType type;
 
 	protected boolean collidable = false;
-
+	protected boolean canEnemyGoThrough = false;
+	
 	public float[] h, g, f;
 	public Array<Tile> neighbours = new Array<Tile>();
 	public Tile[] previous; // array for the multiple astar objects
 
 	public Tile(TileType type, boolean collidable, int width, int height, Vector2 gridPos, MapGrid grid) {
-		super(TextureManager.COOL_DUDE, gridPos);
+		super(TextureManager.COOL_DUDE, gridPos, grid);
 		this.type = type;
 		this.collidable = collidable;
-		this.grid = grid;
+		this.canEnemyGoThrough = collidable;
 		this.width = width;
 		this.height = height;
 
@@ -47,10 +47,9 @@ public abstract class Tile extends Entity {
 	}
 
 	public Tile(TileType type, boolean collidable, Vector2 gridPos, MapGrid grid) {
-		super(TextureManager.COOL_DUDE, gridPos);
+		super(TextureManager.COOL_DUDE, gridPos, grid);
 		this.collidable = collidable;
 		this.type = type;
-		this.grid = grid;
 
 		h = new float[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A* OBJECT
 		for (int i = 0; i < h.length; i++) {
@@ -79,6 +78,10 @@ public abstract class Tile extends Entity {
 		return collidable;
 	}
 
+	public boolean canEnemyGoThrough() {
+		return canEnemyGoThrough;
+	}
+	
 	public TileType getType() {
 		return type;
 	}

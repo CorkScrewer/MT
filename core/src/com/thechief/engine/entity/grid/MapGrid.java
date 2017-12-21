@@ -1,5 +1,6 @@
 package com.thechief.engine.entity.grid;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -18,11 +19,13 @@ public class MapGrid {
 	private Tile[] tiles;
 
 	private EntityManager em;
+	private OrthographicCamera camera;
 
-	public MapGrid(String data, int width, int height, EntityManager em) {
+	public MapGrid(String data, int width, int height, EntityManager em, OrthographicCamera camera) {
 		this.width = width;
 		this.height = height;
 		this.em = em;
+		this.camera = camera;
 
 		tiles = new Tile[width * height];
 
@@ -41,9 +44,9 @@ public class MapGrid {
 			for (int x = 0; x < width; x++) {
 				if (data[x + y * width] == '#') {
 					tiles[x + y * width] = new WallTile(new Vector2(x, y), this);
+					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '/') {
 					em.addEntity(new BasicEnemy(new Vector2(x, y), this));
-					
 				} else if (data[x + y * width] == '@') {
 					em.addEntity(new Player(new Vector2(x, y), this));
 				}
@@ -54,12 +57,13 @@ public class MapGrid {
 	public void render(SpriteBatch sb, ShapeRenderer sr) {
 		for (Tile t : tiles) {
 			t.update();
-			t.render(sb);
+			if (!t.isOffScreen(camera)) {
+				t.render(sb);
+			}
 		}
 
-		sb.end();
-
 		sr.begin(ShapeType.Line);
+		sr.setProjectionMatrix(camera.combined);
 
 		sr.setColor(0.3f, 0.5f, 1, 1);
 
@@ -84,7 +88,7 @@ public class MapGrid {
 	public boolean shouldCollide(int x, int y) {
 		return tiles[x + y * width].isCollidable();
 	}
-	
+
 	public Tile getTile(int x, int y) {
 		return tiles[x + y * width];
 	}

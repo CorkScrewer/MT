@@ -6,23 +6,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.grid.MapGrid;
-import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
 
 public class Player extends Entity {
 
-	private MapGrid grid;
+	private int count = 0;
+	private boolean playersTurn = true;
 
 	public Player(Vector2 pos, MapGrid grid) {
-		super(TextureManager.PLAYER, pos);
-		this.grid = grid;
+		super(TextureManager.PLAYER, pos, grid);
 	}
 
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, pos.y * GameScreen.CELL_SIZE + GameScreen.CELL_SIZE,
-				GameScreen.CELL_SIZE, -GameScreen.CELL_SIZE);
+		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, pos.y * GameScreen.CELL_SIZE + GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, -GameScreen.CELL_SIZE);
 	}
 
 	@Override
@@ -30,26 +28,34 @@ public class Player extends Entity {
 		// Moving + Collision Detection
 		if (Gdx.input.isKeyJustPressed(Keys.D) || Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
 			if (pos.x < grid.getWidth() - 1) {
-				if (!grid.shouldCollide((int) pos.x + 1, (int) pos.y))
+				if (!grid.shouldCollide((int) pos.x + 1, (int) pos.y)) {
 					pos.x++;
+					count++;
+				}
 			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.A) || Gdx.input.isKeyJustPressed(Keys.LEFT)) {
 			if (pos.x > 0) {
-				if (!grid.shouldCollide((int) pos.x - 1, (int) pos.y))
+				if (!grid.shouldCollide((int) pos.x - 1, (int) pos.y)) {
 					pos.x--;
+					count++;
+				}
 			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.W) || Gdx.input.isKeyJustPressed(Keys.UP)) {
 			if (pos.y > 0) {
-				if (!grid.shouldCollide((int) pos.x, (int) pos.y - 1))
+				if (!grid.shouldCollide((int) pos.x, (int) pos.y - 1)) {
 					pos.y--;
+					count++;
+				}
 			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.S) || Gdx.input.isKeyJustPressed(Keys.DOWN)) {
 			if (pos.y < grid.getHeight() - 1) {
-				if (!grid.shouldCollide((int) pos.x, (int) pos.y + 1))
+				if (!grid.shouldCollide((int) pos.x, (int) pos.y + 1)) {
 					pos.y++;
+					count++;
+				}
 			}
 		}
 
@@ -60,6 +66,22 @@ public class Player extends Entity {
 	@Override
 	public void dispose() {
 
+	}
+
+	public boolean isPlayersTurn() {
+		return playersTurn;
+	}
+
+	public void setPlayersTurn(boolean turn) {
+		playersTurn = turn;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }

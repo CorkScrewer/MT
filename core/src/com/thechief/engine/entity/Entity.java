@@ -1,25 +1,28 @@
 package com.thechief.engine.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.thechief.engine.entity.grid.MapGrid;
+import com.thechief.engine.screen.GameScreen;
 
 public abstract class Entity {
 
 	protected Texture texture;
 	protected Vector2 pos, dir;
+	protected MapGrid grid;
 	
-	public Entity(Texture tex, Vector2 pos, Vector2 dir) {
+	public Entity(Texture tex, Vector2 pos, Vector2 dir, MapGrid grid) {
 		this.texture = tex;
 		this.pos = pos;
 		this.dir = dir;
+		this.grid = grid;
 	}
 	
-	public Entity(Texture tex, Vector2 pos) {
-		this.texture = tex;
-		this.pos = pos;
-		this.dir = new Vector2();
+	public Entity(Texture tex, Vector2 pos, MapGrid grid) {
+		this(tex, pos, new Vector2(), grid);
 	}
 	
 	public abstract void render(SpriteBatch sb);
@@ -43,6 +46,10 @@ public abstract class Entity {
 		if (pos.x < minX) pos.x = minX;
 		if (pos.y < minX) pos.y = minY;
 	}
+	
+	public boolean isOffScreen(OrthographicCamera camera) {
+    	return (pos.x + GameScreen.CELL_SIZE < ((camera.position.x - camera.viewportWidth / 2) / GameScreen.CELL_SIZE)|| pos.x > ((camera.position.x + camera.viewportWidth / 2) / GameScreen.CELL_SIZE));
+    }
 	
 	// GETTERS AND SETTERS:
 	
