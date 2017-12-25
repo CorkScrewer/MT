@@ -6,15 +6,17 @@ import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
 
-public class WallTile extends Tile {
+public class GoalTile extends Tile {
 
-	public WallTile(Vector2 gridPos, MapGrid grid) {
-		super(TextureManager.WALL, TileType.Wall, true, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, gridPos, grid, Direction.Null, false);
+	public float minimumAmount = 0.05f;
+	
+	public GoalTile(Vector2 gridPos, MapGrid grid) {
+		super(TextureManager.FLAG, TileType.Goal, false, gridPos, grid, Direction.Null, false);
 	}
 
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, pos.y * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE);
+		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, (pos.y + 1) * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, -GameScreen.CELL_SIZE);
 	}
 
 	@Override

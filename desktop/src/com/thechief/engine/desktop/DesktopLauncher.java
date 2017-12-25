@@ -12,6 +12,7 @@ public class DesktopLauncher {
 		config.width = Main.WIDTH;
 		config.height = Main.HEIGHT;
 		config.title = Main.TITLE;
+		config.useGL30 = true;
 		new LwjglApplication(new Main(), config);
 	}
 }

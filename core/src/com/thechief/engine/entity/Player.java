@@ -6,16 +6,20 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.grid.MapGrid;
+import com.thechief.engine.entity.tile.BlankTile;
+import com.thechief.engine.entity.tile.Direction;
+import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
 
 public class Player extends Entity {
 
-	private int count = 0;
-	private boolean playersTurn = true;
-
+	private float sx, sy;
+	
 	public Player(Vector2 pos, MapGrid grid) {
 		super(TextureManager.PLAYER, pos, grid);
+		sx = pos.x;
+		sy = pos.y;
 	}
 
 	@Override
@@ -26,36 +30,62 @@ public class Player extends Entity {
 	@Override
 	public void update() {
 		// Moving + Collision Detection
-		if (Gdx.input.isKeyJustPressed(Keys.D) || Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
+		if (Gdx.input.isKeyJustPressed(Keys.D)) {
 			if (pos.x < grid.getWidth() - 1) {
 				if (!grid.shouldCollide((int) pos.x + 1, (int) pos.y)) {
 					pos.x++;
-					count++;
+					// count++;
 				}
 			}
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.A) || Gdx.input.isKeyJustPressed(Keys.LEFT)) {
+		if (Gdx.input.isKeyJustPressed(Keys.A)) {
 			if (pos.x > 0) {
 				if (!grid.shouldCollide((int) pos.x - 1, (int) pos.y)) {
 					pos.x--;
-					count++;
+					// count++;
 				}
 			}
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.W) || Gdx.input.isKeyJustPressed(Keys.UP)) {
+		if (Gdx.input.isKeyJustPressed(Keys.W)) {
 			if (pos.y > 0) {
 				if (!grid.shouldCollide((int) pos.x, (int) pos.y - 1)) {
 					pos.y--;
-					count++;
+					// count++;
 				}
 			}
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.S) || Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+		if (Gdx.input.isKeyJustPressed(Keys.S)) {
 			if (pos.y < grid.getHeight() - 1) {
 				if (!grid.shouldCollide((int) pos.x, (int) pos.y + 1)) {
 					pos.y++;
-					count++;
+					// count++;
 				}
+			}
+		}
+
+		if (Gdx.input.isKeyJustPressed(Keys.UP)) {
+			if (grid.getTile((int) pos.x, (int) pos.y).canTileHaveDirection()) {
+				grid.getTile((int) pos.x, (int) pos.y).setTileDirection(Direction.Up);
+			}
+		}
+		if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+			if (grid.getTile((int) pos.x, (int) pos.y).canTileHaveDirection()) {
+				grid.getTile((int) pos.x, (int) pos.y).setTileDirection(Direction.Down);
+			}
+		}
+		if (Gdx.input.isKeyJustPressed(Keys.LEFT)) {
+			if (grid.getTile((int) pos.x, (int) pos.y).canTileHaveDirection()) {
+				grid.getTile((int) pos.x, (int) pos.y).setTileDirection(Direction.Left);
+			}
+		}
+		if (Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
+			if (grid.getTile((int) pos.x, (int) pos.y).canTileHaveDirection()) {
+				grid.getTile((int) pos.x, (int) pos.y).setTileDirection(Direction.Right);
+			}
+		}
+		if (Gdx.input.isKeyJustPressed(Keys.SHIFT_RIGHT) || Gdx.input.isKeyJustPressed(Keys.SHIFT_LEFT)) {
+			if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Blank) {
+				grid.getTile((int) pos.x, (int) pos.y).setTileDirection(Direction.Null);
 			}
 		}
 
@@ -67,21 +97,11 @@ public class Player extends Entity {
 	public void dispose() {
 
 	}
-
-	public boolean isPlayersTurn() {
-		return playersTurn;
-	}
-
-	public void setPlayersTurn(boolean turn) {
-		playersTurn = turn;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
+	
+	@Override
+	public void reset() {
+		pos.x = sx;
+		pos.y = sy;
 	}
 
 }
