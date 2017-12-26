@@ -1,18 +1,20 @@
-package com.thechief.engine.entity.tile;
+package com.thechief.engine.entity.tile.devil;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.thechief.engine.entity.Entity;
 import com.thechief.engine.entity.grid.MapGrid;
+import com.thechief.engine.entity.tile.Direction;
+import com.thechief.engine.entity.tile.GoalTile;
+import com.thechief.engine.entity.tile.PortalTile;
+import com.thechief.engine.entity.tile.SplitterTile;
+import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.level.Level;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
 
-public class DevilHead extends Entity {
+public class DevilHead extends Devil {
 
-	private int time = 0;
-
-	private double lifePoints = 1d;
+	public int time = 0;
 
 	private float sx, sy;
 	private boolean finished = false;
@@ -21,7 +23,7 @@ public class DevilHead extends Entity {
 	private Direction lastDirection;
 
 	public DevilHead(Vector2 pos, MapGrid grid) {
-		super(TextureManager.WATER, pos, grid);
+		super(TextureManager.DEVIL_HEAD, pos, grid, DevilType.DevilHead);
 		sx = pos.x;
 		sy = pos.y;
 		lastDirection = Direction.Null;
@@ -78,11 +80,14 @@ public class DevilHead extends Entity {
 						lifePoints = 1f;
 					}
 				}
-
 				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Portal) {
 					PortalTile p = (PortalTile) grid.getTile((int) pos.x, (int) pos.y);
 					pos.x = p.getOther().getPosition().x;
 					pos.y = p.getOther().getPosition().y;
+				}
+				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Splitter) {
+					SplitterTile sp = (SplitterTile) grid.getTile((int) pos.x, (int) pos.y);
+					sp.split(this);
 				}
 			}
 			if (GameScreen.PLAYING && finished && time - timeA > 30) {
@@ -110,16 +115,8 @@ public class DevilHead extends Entity {
 
 	}
 
-	public void setAmount(double d) {
+	public void setLifePoints(double d) {
 		lifePoints = d;
-	}
-
-	public double getAmount() {
-		return lifePoints;
-	}
-
-	public Direction lastTileDirection() {
-		return lastDirection;
 	}
 
 }

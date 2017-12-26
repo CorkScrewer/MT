@@ -25,13 +25,13 @@ public class TestLevel extends Level {
 	@Override
 	public void create() {
 		data =  "........................" +
-				"......._........@......." +
+				"........................" +
 				"...#####................" +
-				".......##.....#O.#.....F" +
-				"..............#..#......" +
-				"..........#...####......" +
-				".O...#..............#..." + 
-				"............##.........." ;
+				"....@..##..............F" +
+				"........................" +
+				"..._.>.................." +
+				"...........>............" + 
+				"........................" ;
 
 		grid = new MapGrid(data, (Main.WIDTH * 2) / GameScreen.CELL_SIZE, (Main.HEIGHT) / GameScreen.CELL_SIZE, em, camera);
 		sr = new ShapeRenderer();
@@ -51,7 +51,7 @@ public class TestLevel extends Level {
 			camera.position.lerp(new Vector3(em.getPlayer().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.1f);
 			camera.position.set(MiscFuncs.clamp(new Vector2(camera.position.x, camera.position.y), new Vector2(Main.WIDTH / 2, Main.HEIGHT / 2), new Vector2(grid.getWidth() * GameScreen.CELL_SIZE - camera.viewportWidth / 2, grid.getHeight() * GameScreen.CELL_SIZE - camera.viewportHeight / 2)), 0);
 		} else {
-			camera.position.lerp(new Vector3(em.getWater().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.1f);
+			camera.position.lerp(new Vector3(em.getDevilHead().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.1f);
 			camera.position.set(MiscFuncs.clamp(new Vector2(camera.position.x, camera.position.y), new Vector2(Main.WIDTH / 2, Main.HEIGHT / 2), new Vector2(grid.getWidth() * GameScreen.CELL_SIZE - camera.viewportWidth / 2, grid.getHeight() * GameScreen.CELL_SIZE - camera.viewportHeight / 2)), 0);
 		}
 		

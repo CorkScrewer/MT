@@ -11,9 +11,10 @@ import com.thechief.engine.entity.tile.BlankTile;
 import com.thechief.engine.entity.tile.Direction;
 import com.thechief.engine.entity.tile.GoalTile;
 import com.thechief.engine.entity.tile.PortalTile;
+import com.thechief.engine.entity.tile.SplitterTile;
 import com.thechief.engine.entity.tile.Tile;
 import com.thechief.engine.entity.tile.WallTile;
-import com.thechief.engine.entity.tile.DevilHead;
+import com.thechief.engine.entity.tile.devil.DevilHead;
 import com.thechief.engine.screen.GameScreen;
 
 public class MapGrid {
@@ -58,6 +59,9 @@ public class MapGrid {
  				} else if (data[x + y * width] == 'O') {
  					tiles[x + y * width] = new PortalTile(new Vector2(x, y), this);
  					em.addEntity(tiles[x + y * width]);
+ 				} else if (data[x + y * width] == '>') {
+ 					tiles[x + y * width] = new SplitterTile(new Vector2(x, y), this, Direction.Right);
+ 					em.addEntity(tiles[x + y * width]);
  				}
 			}
 		}
@@ -90,7 +94,7 @@ public class MapGrid {
 		for (int i = 0; i < tiles.length; i++) {
 			tiles[i].setTileDirection(Direction.Null);
 		}
-		em.getWater().setAmount(1d);
+		em.getDevilHead().setLifePoints(1d);
 	}
 	
 	public int getWidth() {
