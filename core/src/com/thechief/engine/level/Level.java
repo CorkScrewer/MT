@@ -3,11 +3,10 @@ package com.thechief.engine.level;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.thechief.engine.entity.EntityManager;
-import com.thechief.engine.screen.GameScreen;
 
 public abstract class Level {
 
-	protected float amountWaterLostPerStep;
+	protected float amountLifePointsLostPerStep;
 	
 	protected EntityManager em;
 	protected OrthographicCamera camera;
@@ -15,7 +14,7 @@ public abstract class Level {
 	public Level(OrthographicCamera camera, float amountLostPerStep) {
 		this.camera = camera;
 		this.em = new EntityManager(camera);
-		this.amountWaterLostPerStep = amountLostPerStep;
+		this.amountLifePointsLostPerStep = amountLostPerStep;
 	}
 	
 	public abstract void create();
@@ -28,12 +27,12 @@ public abstract class Level {
 	
 	public abstract void reset();
 	
-	public static float getAmountOfWaterLostPerStep() {
-		return LevelManager.getCurrentLevel().amountWaterLostPerStep;
+	public static float getAmountOfLifePointsLostPerStep() {
+		return LevelManager.getCurrentLevel().amountLifePointsLostPerStep;
 	}
 	
 	public static void setAmountOfWaterLostPerStep(float lost) {
-		LevelManager.getCurrentLevel().amountWaterLostPerStep = lost;
+		LevelManager.getCurrentLevel().amountLifePointsLostPerStep = lost;
 	}
 	
 }

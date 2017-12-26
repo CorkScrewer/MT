@@ -8,11 +8,11 @@ import com.thechief.engine.level.Level;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
 
-public class Water extends Entity {
+public class DevilHead extends Entity {
 
 	private int time = 0;
 
-	private double amount = 1d;
+	private double lifePoints = 1d;
 
 	private float sx, sy;
 	private boolean finished = false;
@@ -20,7 +20,7 @@ public class Water extends Entity {
 
 	private Direction lastDirection;
 
-	public Water(Vector2 pos, MapGrid grid) {
+	public DevilHead(Vector2 pos, MapGrid grid) {
 		super(TextureManager.WATER, pos, grid);
 		sx = pos.x;
 		sy = pos.y;
@@ -42,25 +42,25 @@ public class Water extends Entity {
 					if (grid.getTile((int) pos.x, (int) pos.y).getTileDirection() == Direction.Up) {
 						if (!grid.shouldCollide((int) pos.x, (int) pos.y - 1)) {
 							pos.y--;
-							amount -= Level.getAmountOfWaterLostPerStep();
+							lifePoints -= Level.getAmountOfLifePointsLostPerStep();
 							lastDirection = Direction.Up;
 						}
 					} else if (grid.getTile((int) pos.x, (int) pos.y).getTileDirection() == Direction.Down) {
 						if (!grid.shouldCollide((int) pos.x, (int) pos.y + 1)) {
 							pos.y++;
-							amount -= Level.getAmountOfWaterLostPerStep();
+							lifePoints -= Level.getAmountOfLifePointsLostPerStep();
 							lastDirection = Direction.Down;
 						}
 					} else if (grid.getTile((int) pos.x, (int) pos.y).getTileDirection() == Direction.Left) {
 						if (!grid.shouldCollide((int) pos.x - 1, (int) pos.y)) {
 							pos.x--;
-							amount -= Level.getAmountOfWaterLostPerStep();
+							lifePoints -= Level.getAmountOfLifePointsLostPerStep();
 							lastDirection = Direction.Left;
 						}
 					} else if (grid.getTile((int) pos.x, (int) pos.y).getTileDirection() == Direction.Right) {
 						if (!grid.shouldCollide((int) pos.x + 1, (int) pos.y)) {
 							pos.x++;
-							amount -= Level.getAmountOfWaterLostPerStep();
+							lifePoints -= Level.getAmountOfLifePointsLostPerStep();
 							lastDirection = Direction.Right;
 						}
 					}
@@ -68,14 +68,14 @@ public class Water extends Entity {
 
 				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Goal) {
 					GoalTile gt = (GoalTile) grid.getTile((int) pos.x, (int) pos.y);
-					if (amount >= gt.minimumAmount) {
+					if (lifePoints >= gt.minimumAmount) {
 						System.out.println("U DID IT BREAH!");
 						pos.x = sx;
 						pos.y = sy;
 						// TODO: Go to next level
 						finished = true;
 						timeA = time;
-						amount = 1f;
+						lifePoints = 1f;
 					}
 				}
 
@@ -92,8 +92,8 @@ public class Water extends Entity {
 				timeA = 0;
 			}
 		}
-		if (amount <= 0) {
-			amount = 1f;
+		if (lifePoints <= 0) {
+			lifePoints = 1f;
 			reset();
 			GameScreen.PLAYING = false;
 		}
@@ -111,11 +111,11 @@ public class Water extends Entity {
 	}
 
 	public void setAmount(double d) {
-		amount = d;
+		lifePoints = d;
 	}
 
 	public double getAmount() {
-		return amount;
+		return lifePoints;
 	}
 
 	public Direction lastTileDirection() {

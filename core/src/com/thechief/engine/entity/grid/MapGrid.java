@@ -13,7 +13,7 @@ import com.thechief.engine.entity.tile.GoalTile;
 import com.thechief.engine.entity.tile.PortalTile;
 import com.thechief.engine.entity.tile.Tile;
 import com.thechief.engine.entity.tile.WallTile;
-import com.thechief.engine.entity.tile.Water;
+import com.thechief.engine.entity.tile.DevilHead;
 import com.thechief.engine.screen.GameScreen;
 
 public class MapGrid {
@@ -51,7 +51,7 @@ public class MapGrid {
 				} else if (data[x + y * width] == '@') {
 					em.addEntity(new Player(new Vector2(x, y), this));
 				} else if (data[x + y * width] == '_') {
-					em.addEntity(new Water(new Vector2(x, y), this));
+					em.addEntity(new DevilHead(new Vector2(x, y), this));
 				} else if (data[x + y * width] == 'F') {
 					tiles[x + y * width] = new GoalTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);

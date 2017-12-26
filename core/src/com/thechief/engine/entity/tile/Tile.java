@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.entity.Entity;
 import com.thechief.engine.entity.grid.MapGrid;
-import com.thechief.engine.textures.TextureManager;
 
 public abstract class Tile extends Entity {
 

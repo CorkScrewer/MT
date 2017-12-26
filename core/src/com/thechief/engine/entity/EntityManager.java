@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.entity.tile.PortalTile;
-import com.thechief.engine.entity.tile.Water;
+import com.thechief.engine.entity.tile.DevilHead;
 
 public class EntityManager {
 
@@ -12,7 +12,7 @@ public class EntityManager {
 	private Array<PortalTile[]> portalduos;
 
 	private Player player;
-	private Water water;
+	private DevilHead water;
 	private OrthographicCamera camera;
 
 	public EntityManager(OrthographicCamera camera) {
@@ -51,8 +51,8 @@ public class EntityManager {
 		if (e instanceof Player) {
 			player = (Player) e;
 		}
-		if (e instanceof Water) {
-			water = (Water) e;
+		if (e instanceof DevilHead) {
+			water = (DevilHead) e;
 		}
 		if (e instanceof PortalTile) {
 			if (portalduos.size == 0) {
@@ -91,7 +91,7 @@ public class EntityManager {
 		return player;
 	}
 
-	public Water getWater() {
+	public DevilHead getWater() {
 		return water;
 	}
 

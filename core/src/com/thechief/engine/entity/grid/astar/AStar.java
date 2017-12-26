@@ -9,7 +9,6 @@ public class AStar {
 
 	private Array<Tile> open = new Array<Tile>();
 	private Array<Tile> closed = new Array<Tile>();
-	private Array<Tile> returnPath = new Array<Tile>();
 
 	private Vector2 prevPlayerPos;
 
@@ -54,7 +53,6 @@ public class AStar {
 					path.add(temp.previous[indexOfEnemy]);
 					temp = temp.previous[indexOfEnemy];
 				}
-				returnPath = path;
 				return path;
 			}
 

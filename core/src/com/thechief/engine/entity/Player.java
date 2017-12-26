@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.grid.MapGrid;
-import com.thechief.engine.entity.tile.BlankTile;
 import com.thechief.engine.entity.tile.Direction;
 import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.screen.GameScreen;
