@@ -22,20 +22,13 @@ public class TestLevel extends Level {
 	public TestLevel(OrthographicCamera camera, float amountLostPerStep) {
 		super(camera, amountLostPerStep);
 	}
-	
+
 	@Override
 	public void create() {
-		data =  "........................" +
-				"......._........@......." +
-				"...#####................" +
-				".......##..............F" +
-				"........................" +
-				"............>..........." +
-				"........................" + 
-				"........................" ;
+		data = "........................" + "......._........@......." + "...#####................" + ".......##..............F" + "........................" + "............>..........." + "........................" + "........................";
 
 		DevilHeadChecker dhc = new DevilHeadChecker(em);
-		
+
 		grid = new MapGrid(data, (Main.WIDTH * 2) / GameScreen.CELL_SIZE, (Main.HEIGHT) / GameScreen.CELL_SIZE, em, camera, dhc);
 		sr = new ShapeRenderer();
 	}
@@ -47,7 +40,7 @@ public class TestLevel extends Level {
 
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.draw(TextureManager.BACKGROUND, camera.position.x - camera.viewportWidth/2, camera.position.y - camera.viewportHeight/2, camera.viewportWidth, camera.viewportHeight);
+		sb.draw(TextureManager.BACKGROUND, camera.position.x - camera.viewportWidth / 2, camera.position.y - camera.viewportHeight / 2, camera.viewportWidth, camera.viewportHeight);
 		em.render(sb);
 		grid.render(sb, sr); // drawing the grid
 		if (!GameScreen.PLAYING) {
@@ -57,7 +50,7 @@ public class TestLevel extends Level {
 			camera.position.lerp(new Vector3(em.getDevilHead().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.2f);
 			camera.position.set(MiscFuncs.clamp(new Vector2(camera.position.x, camera.position.y), new Vector2(Main.WIDTH / 2, Main.HEIGHT / 2), new Vector2(grid.getWidth() * GameScreen.CELL_SIZE - camera.viewportWidth / 2, grid.getHeight() * GameScreen.CELL_SIZE - camera.viewportHeight / 2)), 0);
 		}
-		
+
 	}
 
 	@Override
@@ -65,7 +58,7 @@ public class TestLevel extends Level {
 		em.dispose();
 		grid.dispose();
 	}
-	
+
 	@Override
 	public void reset() {
 		grid.reset();
