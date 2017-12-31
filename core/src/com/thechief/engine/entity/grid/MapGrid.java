@@ -17,10 +17,6 @@ import com.thechief.engine.entity.tile.SplitterTile;
 import com.thechief.engine.entity.tile.Tile;
 import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.entity.tile.WallTile;
-<<<<<<< HEAD
-=======
-import com.thechief.engine.entity.tile.devil.DevilHead;
->>>>>>> fc2180890915fc27fd85b8ac517246b5f80281c9
 import com.thechief.engine.screen.GameScreen;
 
 public class MapGrid {
@@ -70,7 +66,6 @@ public class MapGrid {
 				} else if (data[x + y * width] == 'F') {
 					tiles[x + y * width] = new GoalTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
-<<<<<<< HEAD
 				} else if (data[x + y * width] == 'O') {
 					tiles[x + y * width] = new PortalTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
@@ -78,15 +73,6 @@ public class MapGrid {
 					tiles[x + y * width] = new SplitterTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
 				}
-=======
- 				} else if (data[x + y * width] == 'O') {
- 					tiles[x + y * width] = new PortalTile(new Vector2(x, y), this);
- 					em.addEntity(tiles[x + y * width]);
- 				} else if (data[x + y * width] == '>') {
- 					tiles[x + y * width] = new SplitterTile(new Vector2(x, y), this, Direction.Right);
- 					em.addEntity(tiles[x + y * width]);
- 				}
->>>>>>> fc2180890915fc27fd85b8ac517246b5f80281c9
 			}
 		}
 	}
@@ -131,10 +117,6 @@ public class MapGrid {
 				sp.setUses(sp.getMaxUses());
 			}
 		}
-<<<<<<< HEAD
-=======
-		em.getDevilHead().setLifePoints(1d);
->>>>>>> fc2180890915fc27fd85b8ac517246b5f80281c9
 	}
 
 	public void dispose() {
