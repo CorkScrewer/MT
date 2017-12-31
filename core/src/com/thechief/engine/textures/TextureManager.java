@@ -11,7 +11,7 @@ public class TextureManager {
 	public static final Texture WALL 		= new Texture(Gdx.files.internal("wall.png"));
 	public static final Texture BLANK 		= new Texture(Gdx.files.internal("blank.png"));
 	public static final Texture LASER 		= new Texture(Gdx.files.internal("laser.png"));
-	public static final Texture WATER		= new Texture(Gdx.files.internal("water.png"));
+	public static final Texture DEVIL_HEAD		= new Texture(Gdx.files.internal("water.png"));
 	public static final Texture FLAG		= new Texture(Gdx.files.internal("flag.png"));
 	
 	public static final Texture UP_ARROW	= new Texture(Gdx.files.internal("uparrow.png"));

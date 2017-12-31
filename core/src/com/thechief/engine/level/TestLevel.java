@@ -26,12 +26,19 @@ public class TestLevel extends Level {
 	@Override
 	public void create() {
 		data =  "........................" +
-				"......._........@......." +
+				"........................" +
 				"...#####................" +
+<<<<<<< HEAD
 				".......##..............F" +
 				"........................" +
 				"............>..........." +
 				"........................" + 
+=======
+				"....@..##..............F" +
+				"........................" +
+				"..._.>.................." +
+				"...........>............" + 
+>>>>>>> fc2180890915fc27fd85b8ac517246b5f80281c9
 				"........................" ;
 
 		DevilHeadChecker dhc = new DevilHeadChecker(em);
@@ -54,7 +61,11 @@ public class TestLevel extends Level {
 			camera.position.lerp(new Vector3(em.getPlayer().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.2f);
 			camera.position.set(MiscFuncs.clamp(new Vector2(camera.position.x, camera.position.y), new Vector2(Main.WIDTH / 2, Main.HEIGHT / 2), new Vector2(grid.getWidth() * GameScreen.CELL_SIZE - camera.viewportWidth / 2, grid.getHeight() * GameScreen.CELL_SIZE - camera.viewportHeight / 2)), 0);
 		} else {
+<<<<<<< HEAD
 			camera.position.lerp(new Vector3(em.getDevilHead().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.2f);
+=======
+			camera.position.lerp(new Vector3(em.getDevilHead().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.1f);
+>>>>>>> fc2180890915fc27fd85b8ac517246b5f80281c9
 			camera.position.set(MiscFuncs.clamp(new Vector2(camera.position.x, camera.position.y), new Vector2(Main.WIDTH / 2, Main.HEIGHT / 2), new Vector2(grid.getWidth() * GameScreen.CELL_SIZE - camera.viewportWidth / 2, grid.getHeight() * GameScreen.CELL_SIZE - camera.viewportHeight / 2)), 0);
 		}
 		

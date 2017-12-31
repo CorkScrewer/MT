@@ -3,9 +3,14 @@ package com.thechief.engine.entity;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
+<<<<<<< HEAD
 import com.thechief.engine.entity.tile.DevilHead;
 import com.thechief.engine.entity.tile.DevilHeadChecker;
 import com.thechief.engine.entity.tile.PortalTile;
+=======
+import com.thechief.engine.entity.tile.PortalTile;
+import com.thechief.engine.entity.tile.devil.DevilHead;
+>>>>>>> fc2180890915fc27fd85b8ac517246b5f80281c9
 
 public class EntityManager {
 
@@ -112,7 +117,11 @@ public class EntityManager {
 	}
 
 	public DevilHead getDevilHead() {
+<<<<<<< HEAD
 		return devilHead.get(0);
+=======
+		return water;
+>>>>>>> fc2180890915fc27fd85b8ac517246b5f80281c9
 	}
 
 }

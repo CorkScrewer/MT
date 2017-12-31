@@ -27,11 +27,20 @@ public class BlankTile extends Tile {
 		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, pos.y * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE);
 		sb.setColor(1, 1, 1, 1);
 
+<<<<<<< HEAD
 //		if (pos.x == grid.getEntityManager().getDevilHead().getPosition().x && pos.y == grid.getEntityManager().getDevilHead().getPosition().y) {
 //			sb.setColor(1, 0, 0, 1);
 //		} else {
 //			sb.setColor(1, 1, 1, 0.5f);
 //		}
+=======
+		// TODO: Make the red arrow appear for DevilHeadChilds as well
+		if (pos.x == grid.getEntityManager().getDevilHead().getPosition().x && pos.y == grid.getEntityManager().getDevilHead().getPosition().y) {
+			sb.setColor(1, 0, 0, 1);
+		} else {
+			sb.setColor(1, 1, 1, 0.5f);
+		}
+>>>>>>> fc2180890915fc27fd85b8ac517246b5f80281c9
 		
 		if (tileDirection == Direction.Up)
 			sb.draw(TextureManager.UP_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
