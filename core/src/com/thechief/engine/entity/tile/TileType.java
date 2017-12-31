@@ -2,6 +2,6 @@ package com.thechief.engine.entity.tile;
 
 public enum TileType {
 	
-	Blank, Wall, Water, Goal, Portal
+	Blank, Wall, Water, Goal, Portal, Splitter
 	
 }

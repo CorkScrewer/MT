@@ -3,21 +3,23 @@ package com.thechief.engine.entity;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.thechief.engine.entity.tile.PortalTile;
 import com.thechief.engine.entity.tile.DevilHead;
+import com.thechief.engine.entity.tile.DevilHeadChecker;
+import com.thechief.engine.entity.tile.PortalTile;
 
 public class EntityManager {
 
-	private Array<Entity> entities;
-	private Array<PortalTile[]> portalduos;
+	public Array<Entity> entities;
+	public Array<PortalTile[]> portalduos;
+	public Array<DevilHead> devilHead;
 
 	private Player player;
-	private DevilHead water;
-	private OrthographicCamera camera;
+	public OrthographicCamera camera;
 
 	public EntityManager(OrthographicCamera camera) {
 		entities = new Array<Entity>();
 		portalduos = new Array<PortalTile[]>();
+		devilHead = new Array<DevilHead>();
 		this.camera = camera;
 	}
 
@@ -51,23 +53,17 @@ public class EntityManager {
 		if (e instanceof Player) {
 			player = (Player) e;
 		}
-		if (e instanceof DevilHead) {
-			water = (DevilHead) e;
-		}
 		if (e instanceof PortalTile) {
 			if (portalduos.size == 0) {
-				System.out.println("this happened1");
 				PortalTile[] pt = new PortalTile[2];
 				pt[0] = (PortalTile) e;
 				portalduos.add(pt);
 			} else if (portalduos.get(portalduos.size - 1).length != 1) {
-				System.out.println("this happene2d");
 				portalduos.get(portalduos.size - 1)[1] = (PortalTile) e;
-				
+
 				((PortalTile) e).setOther(portalduos.get(portalduos.size - 1)[0]);
 				(portalduos.get(portalduos.size - 1)[0]).setOther((PortalTile) e);
 			} else {
-				System.out.println("this happen3ed");
 				PortalTile[] pt = new PortalTile[2];
 				pt[0] = (PortalTile) e;
 				portalduos.add(pt);
@@ -83,6 +79,30 @@ public class EntityManager {
 		entities.removeIndex(index);
 	}
 
+	public void addDevilHead(DevilHead head) {
+		devilHead.add(head);
+	}
+
+	public void removeDevilHead(DevilHead head) {
+		devilHead.removeValue(head, false);
+	}
+
+	public void removeDevilHeadByIndex(int index) {
+		devilHead.removeIndex(index);
+	}
+
+	public DevilHead getDevilHeadAt(int index) {
+		return devilHead.get(index);
+	}
+
+	public int getIndexOfDevilHead(DevilHead head) {
+		return devilHead.indexOf(head, false);
+	}
+
+	public int devilHeadSize() {
+		return devilHead.size;
+	}
+
 	public int entitiesSize() {
 		return entities.size;
 	}
@@ -91,8 +111,8 @@ public class EntityManager {
 		return player;
 	}
 
-	public DevilHead getWater() {
-		return water;
+	public DevilHead getDevilHead() {
+		return devilHead.get(0);
 	}
 
 }

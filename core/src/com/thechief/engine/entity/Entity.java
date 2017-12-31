@@ -72,6 +72,10 @@ public abstract class Entity {
 		return (pos.x + GameScreen.CELL_SIZE < ((camera.position.x - camera.viewportWidth / 2) / GameScreen.CELL_SIZE) || pos.x > ((camera.position.x + camera.viewportWidth / 2) / GameScreen.CELL_SIZE));
 	}
 
+	public boolean isAlmostOffScreen(OrthographicCamera camera) {
+		return (pos.x + GameScreen.CELL_SIZE < ((camera.position.x - camera.viewportWidth / 2 - GameScreen.CELL_SIZE) / GameScreen.CELL_SIZE) || pos.x > ((camera.position.x + camera.viewportWidth / 2 + GameScreen.CELL_SIZE) / GameScreen.CELL_SIZE));
+	}
+	
 	// GETTERS AND SETTERS:
 
 	public Texture getTexture() {
@@ -88,7 +92,6 @@ public abstract class Entity {
 
 	public void setPosition(Vector2 pos) {
 		this.pos = pos;
-		System.out.println(this.pos);
 	}
 
 	public Vector2 getDirection() {

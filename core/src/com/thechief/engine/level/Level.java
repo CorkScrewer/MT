@@ -3,6 +3,7 @@ package com.thechief.engine.level;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.thechief.engine.entity.EntityManager;
+import com.thechief.engine.entity.tile.DevilHeadChecker;
 
 public abstract class Level {
 
@@ -10,6 +11,7 @@ public abstract class Level {
 	
 	protected EntityManager em;
 	protected OrthographicCamera camera;
+	protected DevilHeadChecker devilHeadChecker;
 	
 	public Level(OrthographicCamera camera, float amountLostPerStep) {
 		this.camera = camera;

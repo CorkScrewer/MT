@@ -2,6 +2,7 @@ package com.thechief.engine.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.math.MathUtils;
 import com.thechief.engine.Main;
 
 public class DesktopLauncher {
@@ -11,8 +12,7 @@ public class DesktopLauncher {
 		config.resizable = true;
 		config.width = Main.WIDTH;
 		config.height = Main.HEIGHT;
-		config.title = Main.TITLE;
-		config.useGL30 = true;
+		config.title = Main.TITLE + Main.SUBTITLES[MathUtils.random(Main.SUBTITLES.length - 1)];
 		new LwjglApplication(new Main(), config);
 	}
 }
