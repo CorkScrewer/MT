@@ -3,6 +3,7 @@ package com.thechief.engine.entity;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
+import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.DevilHead;
 import com.thechief.engine.entity.tile.DevilHeadChecker;
 import com.thechief.engine.entity.tile.PortalTile;
@@ -14,6 +15,7 @@ public class EntityManager {
 	public Array<DevilHead> devilHead;
 
 	private Player player;
+
 	public OrthographicCamera camera;
 
 	public EntityManager(OrthographicCamera camera) {

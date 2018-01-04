@@ -8,7 +8,7 @@ import com.thechief.engine.textures.TextureManager;
 
 public class SplitterTile extends Tile {
 
-	private int maxUses = 5;
+	private int maxUses = 999;
 	private int uses = maxUses;
 
 	public SplitterTile(Vector2 gridPos, MapGrid grid) {

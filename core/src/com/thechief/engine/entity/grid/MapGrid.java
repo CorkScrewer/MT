@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.EntityManager;
+import com.thechief.engine.entity.PausePlay;
 import com.thechief.engine.entity.Player;
 import com.thechief.engine.entity.tile.BlankTile;
 import com.thechief.engine.entity.tile.DevilHead;
@@ -28,6 +29,8 @@ public class MapGrid {
 	private OrthographicCamera camera;
 	private DevilHeadChecker dhc;
 
+	private PausePlay pp;
+	
 	private float sdx = -1, sdy = -1;
 
 	public MapGrid(String data, int width, int height, EntityManager em, OrthographicCamera camera, DevilHeadChecker dhc) {
@@ -36,6 +39,7 @@ public class MapGrid {
 		this.em = em;
 		this.camera = camera;
 		this.dhc = dhc;
+		
 		dhc.create(this);
 
 		tiles = new Tile[width * height];
@@ -77,19 +81,26 @@ public class MapGrid {
 		}
 	}
 
-	public void render(SpriteBatch sb, ShapeRenderer sr) {
-		dhc.update();
-		dhc.render(sb);
+	public void renderTiles(SpriteBatch sb) {
 		for (Tile t : tiles) {
 			t.update();
 			if (!t.isAlmostOffScreen(camera)) {
 				t.render(sb);
 			}
 		}
+	}
+	
+	public void renderDevilHeads(SpriteBatch sb) {
+		dhc.update();
+		dhc.render(sb);
+	}
+	
+	public void renderGrid(SpriteBatch sb, ShapeRenderer sr) {
+		sb.end();
 		sr.begin(ShapeType.Line);
 		sr.setProjectionMatrix(camera.combined);
 
-		sr.setColor(0.3f, 0.5f, 1, 0.2f);
+		sr.setColor(0.25f, 0.25f, 0.25f, 0.1f);
 
 		for (int x = 0; x < width; x++) {
 			sr.line(x * GameScreen.CELL_SIZE, 0, x * GameScreen.CELL_SIZE, height * GameScreen.CELL_SIZE);

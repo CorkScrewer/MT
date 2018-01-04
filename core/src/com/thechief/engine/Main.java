@@ -17,10 +17,11 @@ import com.bitfire.postprocessing.filters.CrtScreen.RgbMode;
 import com.bitfire.utils.ShaderLoader;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.ScreenManager;
+import com.thechief.engine.textrendering.FontManager;
 
 public class Main implements ApplicationListener {
 
-	public static final int WIDTH = 768, HEIGHT = 512;
+	public static final int WIDTH = 1280, HEIGHT = 720;
 	public static String TITLE = "MT v0.11p: ";
 
 	public static final String[] SUBTITLES = { "Time to Tile!", "Directional Madness!", "Mortal Portals!", "Press Spacebar To Pay Respect!", "Many Thanks!", "Aldos: Aluminium Disk Operating System", "Did Somebody Say Grid?", "Out March 27th, 2018!", "Spade: Super Powerful and Deadly Entity", "Made Using libGDX from badlogic! Check them out!", "Enter the Gridgeon.", "Sid: Some Indistiguishable Dog.", "Please don't sue me.", "Ingriduluos!", "Definitely not Pony Island!", "Copyrighted Cereal's Tiger: Theyrrre Grrid!", "STOP TOO MANY GRID PUNS!!!", "Wizard 105.", "Threat Nullified." };
@@ -38,6 +39,8 @@ public class Main implements ApplicationListener {
 		sb = new SpriteBatch();
 		fps = new FPSLogger();
 
+		FontManager.init();
+		
 		ScreenManager.setCurrentScreen(new GameScreen());
 		ShaderLoader.BasePath = "data/shaders/";
 
@@ -95,7 +98,6 @@ public class Main implements ApplicationListener {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		ScreenManager.renderCurrentScreen(sb);
-		sb.end();
 	}
 
 	@Override
