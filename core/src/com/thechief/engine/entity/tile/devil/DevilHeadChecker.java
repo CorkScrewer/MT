@@ -1,4 +1,4 @@
-package com.thechief.engine.entity.tile;
+package com.thechief.engine.entity.tile.devil;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;

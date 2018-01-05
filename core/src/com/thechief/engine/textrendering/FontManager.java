@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 public class FontManager {
 
 	public static BitmapFont SILKSCREEN;
+	public static BitmapFont SILKSCREENS;
 	
 	public static void init() {
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/silkscreen.ttf"));
@@ -16,6 +17,13 @@ public class FontManager {
 		parameter.flip = true;
 		SILKSCREEN = generator.generateFont(parameter); // font size 12 pixels
 		generator.dispose(); // don't forget to dispose to avoid memory leaks!
+
+		FreeTypeFontGenerator generator2 = new FreeTypeFontGenerator(Gdx.files.internal("fonts/silkscreen.ttf"));
+		FreeTypeFontParameter parameter2 = new FreeTypeFontParameter();
+		parameter2.size = 30;
+		parameter2.flip = true;
+		SILKSCREENS = generator2.generateFont(parameter2);
+		generator2.dispose(); // don't forget to dispose to avoid memory leaks!
 	}
 	
 }

@@ -30,18 +30,15 @@ public class PortalTile extends Tile {
 
 		sb.draw(tex, pos.x * GameScreen.CELL_SIZE, pos.y * GameScreen.CELL_SIZE + 4, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE - 8);
 
-		sb.setColor(1, 0, 0, 1);
+		sb.setColor(0, 1, 0, 1);
 		if (tileDirection == Direction.Up) {
 			sb.draw(TextureManager.UP_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		}
-		if (tileDirection == Direction.Down) {
+		} else if (tileDirection == Direction.Down) {
 			sb.draw(TextureManager.DOWN_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		}
-		if (tileDirection == Direction.Left) {
+		} else if (tileDirection == Direction.Left) {
 			sb.draw(TextureManager.LEFT_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		}
-		if (tileDirection == Direction.Right) {
-			sb.draw(texture, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
+		} else if (tileDirection == Direction.Right) {
+			sb.draw(TextureManager.RIGHT_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
 		}
 		sb.setColor(1, 1, 1, 1);
 	}

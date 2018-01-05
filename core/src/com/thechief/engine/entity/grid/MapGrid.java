@@ -6,11 +6,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.EntityManager;
-import com.thechief.engine.entity.PausePlay;
 import com.thechief.engine.entity.Player;
 import com.thechief.engine.entity.tile.BlankTile;
-import com.thechief.engine.entity.tile.DevilHead;
-import com.thechief.engine.entity.tile.DevilHeadChecker;
 import com.thechief.engine.entity.tile.Direction;
 import com.thechief.engine.entity.tile.GoalTile;
 import com.thechief.engine.entity.tile.PortalTile;
@@ -18,6 +15,8 @@ import com.thechief.engine.entity.tile.SplitterTile;
 import com.thechief.engine.entity.tile.Tile;
 import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.entity.tile.WallTile;
+import com.thechief.engine.entity.tile.devil.DevilHead;
+import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
 
 public class MapGrid {
@@ -29,8 +28,6 @@ public class MapGrid {
 	private OrthographicCamera camera;
 	private DevilHeadChecker dhc;
 
-	private PausePlay pp;
-	
 	private float sdx = -1, sdy = -1;
 
 	public MapGrid(String data, int width, int height, EntityManager em, OrthographicCamera camera, DevilHeadChecker dhc) {
@@ -96,7 +93,6 @@ public class MapGrid {
 	}
 	
 	public void renderGrid(SpriteBatch sb, ShapeRenderer sr) {
-		sb.end();
 		sr.begin(ShapeType.Line);
 		sr.setProjectionMatrix(camera.combined);
 

@@ -3,12 +3,15 @@ package com.thechief.engine.entity.tile;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.grid.MapGrid;
+import com.thechief.engine.entity.tile.devil.DevilHead;
 import com.thechief.engine.screen.GameScreen;
+import com.thechief.engine.textrendering.FontManager;
+import com.thechief.engine.textrendering.Text;
 import com.thechief.engine.textures.TextureManager;
 
 public class SplitterTile extends Tile {
 
-	private int maxUses = 999;
+	private int maxUses = 10;
 	private int uses = maxUses;
 
 	public SplitterTile(Vector2 gridPos, MapGrid grid) {
@@ -18,8 +21,7 @@ public class SplitterTile extends Tile {
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, (pos.y + 1) * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, -GameScreen.CELL_SIZE);
-		// TODO: Display the amount of uses it has left.
-		// System.out.println(uses);
+		Text.drawText(sb, FontManager.SILKSCREENS, Integer.toString(uses), (pos.x * GameScreen.CELL_SIZE) + GameScreen.CELL_SIZE / 2, (pos.y * GameScreen.CELL_SIZE) - 6, true);
 	}
 
 	@Override
@@ -50,11 +52,11 @@ public class SplitterTile extends Tile {
 
 		uses--;
 	}
-	
+
 	public int getUses() {
 		return uses;
 	}
-	
+
 	public void setUses(int uses) {
 		this.uses = uses;
 	}

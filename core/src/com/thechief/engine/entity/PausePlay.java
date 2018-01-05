@@ -1,5 +1,6 @@
 package com.thechief.engine.entity;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -18,7 +19,9 @@ public class PausePlay extends Entity {
 
 	@Override
 	public void render(SpriteBatch sb) {
+		sb.setColor(Color.GREEN);
 		sb.draw(texture, pos.x + camera.position.x - camera.viewportWidth / 2, pos.y + camera.position.y - camera.viewportHeight / 2, 90, 70);
+		sb.setColor(Color.WHITE);
 	}
 
 	@Override

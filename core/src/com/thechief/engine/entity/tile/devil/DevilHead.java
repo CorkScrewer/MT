@@ -1,12 +1,18 @@
-package com.thechief.engine.entity.tile;
+package com.thechief.engine.entity.tile.devil;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.Entity;
-import com.thechief.engine.entity.EntityManager;
 import com.thechief.engine.entity.grid.MapGrid;
+import com.thechief.engine.entity.tile.Direction;
+import com.thechief.engine.entity.tile.GoalTile;
+import com.thechief.engine.entity.tile.PortalTile;
+import com.thechief.engine.entity.tile.SplitterTile;
+import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.level.Level;
 import com.thechief.engine.screen.GameScreen;
+import com.thechief.engine.textrendering.FontManager;
+import com.thechief.engine.textrendering.Text;
 import com.thechief.engine.textures.TextureManager;
 
 public class DevilHead extends Entity {
@@ -22,13 +28,15 @@ public class DevilHead extends Entity {
 	public static boolean RESET = false;
 
 	public DevilHead(Vector2 pos, MapGrid grid) {
-		super(TextureManager.WATER, pos, grid);
+		super(TextureManager.DEVIL_HEAD, pos, grid);
 		lastDirection = Direction.Null;
 	}
 
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, pos.y * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE);
+		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, (pos.y + 1) * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, -GameScreen.CELL_SIZE);
+		
+		Text.drawText(sb, FontManager.SILKSCREENS, Integer.toString(lifePoints), (pos.x * GameScreen.CELL_SIZE) + GameScreen.CELL_SIZE / 2, (pos.y * GameScreen.CELL_SIZE) - 6, true);
 	}
 
 	@Override
@@ -106,9 +114,16 @@ public class DevilHead extends Entity {
 
 	@Override
 	public void reset() {
-		grid.getEntityManager().removeDevilHead(this);
+		grid.getEntityManager().addEntity(new DevilHeadRemnant(pos, grid));
+		if (grid.getEntityManager().devilHeadSize() > 1) {
+			grid.getEntityManager().removeDevilHead(this);
+		} else {
+			pos.x = grid.getStartDevilX();
+			pos.y = grid.getStartDevilY();
+			lifePoints = 100;
+		}
 	}
-	
+
 	@Override
 	public void dispose() {
 

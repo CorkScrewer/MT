@@ -3,10 +3,8 @@ package com.thechief.engine.entity;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.thechief.engine.entity.grid.MapGrid;
-import com.thechief.engine.entity.tile.DevilHead;
-import com.thechief.engine.entity.tile.DevilHeadChecker;
 import com.thechief.engine.entity.tile.PortalTile;
+import com.thechief.engine.entity.tile.devil.DevilHead;
 
 public class EntityManager {
 

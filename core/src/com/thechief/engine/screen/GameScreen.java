@@ -10,7 +10,7 @@ import com.thechief.engine.level.TestLevel;
 
 public class GameScreen extends Screen {
 
-	public static final int CELL_SIZE = 64;
+	public static final int CELL_SIZE = 72;
 	public static final int INTERVAL = 30; // 1/2 of a second given 60fps
 
 	public static boolean PLAYING = false;

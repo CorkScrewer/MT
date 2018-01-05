@@ -3,7 +3,7 @@ package com.thechief.engine.level;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.thechief.engine.entity.EntityManager;
-import com.thechief.engine.entity.tile.DevilHeadChecker;
+import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 
 public abstract class Level {
 
