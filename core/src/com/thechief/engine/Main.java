@@ -101,9 +101,6 @@ public class Main implements ApplicationListener {
 			if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) && Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) && Gdx.input.isKeyJustPressed(Keys.P)) {
 				POST_PROCESSING = !POST_PROCESSING;
 			}
-
-			System.out.println(sb.renderCalls);
-			System.out.println(sb.maxSpritesInBatch);
 		}
 
 		fps.log();

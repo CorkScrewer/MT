@@ -49,7 +49,6 @@ public class DevilHeadChecker extends Entity {
 				d.reset();
 			}
 			for (DevilHead d : em.devilHead) {
-				System.out.println(grid.getStartDevilX() + ", " + grid.getStartDevilY());
 				d.setPosition(new Vector2(grid.getStartDevilX(), grid.getStartDevilY()));
 			}
 		} else if (em.devilHead.size == 1) {

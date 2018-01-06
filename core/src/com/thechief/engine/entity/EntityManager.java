@@ -9,16 +9,16 @@ import com.thechief.engine.entity.tile.devil.DevilHead;
 public class EntityManager {
 
 	public Array<Entity> entities;
-	public Array<PortalTile[]> portalduos;
 	public Array<DevilHead> devilHead;
-
+	public Array<PortalTile> portals;
+	
 	private Player player;
 
 	public OrthographicCamera camera;
 
 	public EntityManager(OrthographicCamera camera) {
 		entities = new Array<Entity>();
-		portalduos = new Array<PortalTile[]>();
+		portals = new Array<PortalTile>();
 		devilHead = new Array<DevilHead>();
 		this.camera = camera;
 	}
@@ -54,20 +54,7 @@ public class EntityManager {
 			player = (Player) e;
 		}
 		if (e instanceof PortalTile) {
-			if (portalduos.size == 0) {
-				PortalTile[] pt = new PortalTile[2];
-				pt[0] = (PortalTile) e;
-				portalduos.add(pt);
-			} else if (portalduos.get(portalduos.size - 1).length != 1) {
-				portalduos.get(portalduos.size - 1)[1] = (PortalTile) e;
-
-				((PortalTile) e).setOther(portalduos.get(portalduos.size - 1)[0]);
-				(portalduos.get(portalduos.size - 1)[0]).setOther((PortalTile) e);
-			} else {
-				PortalTile[] pt = new PortalTile[2];
-				pt[0] = (PortalTile) e;
-				portalduos.add(pt);
-			}
+			portals.add((PortalTile) e);
 		}
 	}
 

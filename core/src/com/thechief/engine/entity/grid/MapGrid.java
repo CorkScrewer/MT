@@ -36,7 +36,7 @@ public class MapGrid {
 		this.em = em;
 		this.camera = camera;
 		this.dhc = dhc;
-		
+
 		dhc.create(this);
 
 		tiles = new Tile[width * height];
@@ -67,12 +67,54 @@ public class MapGrid {
 				} else if (data[x + y * width] == 'F') {
 					tiles[x + y * width] = new GoalTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
-				} else if (data[x + y * width] == 'O') {
-					tiles[x + y * width] = new PortalTile(new Vector2(x, y), this);
-					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '>') {
 					tiles[x + y * width] = new SplitterTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
+				}
+
+				else if (data[x + y * width] == 'q') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == 'w') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == 'e') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == 'r') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == 't') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == 'y') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == 'u') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == 'i') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == 'o') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == 'p') {
+					tiles[x + y * width] = new PortalTile(new Vector2(x, y), data[x + y * width], this);
+					em.addEntity(tiles[x + y * width]);
+				}
+			}
+		}
+
+		int index = 0;
+		for (int y = 0; y < em.portals.size; y++) {
+			for (int x = 0; x < em.portals.size; x++) {
+				if (y == x) continue;
+				
+				if (em.portals.get(y).type == em.portals.get(x).type) {
+					em.portals.get(y).setOther(em.portals.get(x));
+					em.portals.get(x).setOther(em.portals.get(y));
+					index++;
 				}
 			}
 		}
@@ -86,12 +128,12 @@ public class MapGrid {
 			}
 		}
 	}
-	
+
 	public void renderDevilHeads(SpriteBatch sb) {
 		dhc.update();
 		dhc.render(sb);
 	}
-	
+
 	public void renderGrid(SpriteBatch sb, ShapeRenderer sr) {
 		sr.begin(ShapeType.Line);
 		sr.setProjectionMatrix(camera.combined);

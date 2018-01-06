@@ -21,7 +21,7 @@ public class DevilHeadRemnant extends Entity {
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.setColor(color);
-		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, pos.y * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE);
+		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, (pos.y + 1) * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, -GameScreen.CELL_SIZE);
 		sb.setColor(Color.WHITE);
 	}
 
