@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.thechief.engine.entity.Entity;
 import com.thechief.engine.entity.EntityManager;
 import com.thechief.engine.entity.Player;
 import com.thechief.engine.entity.tile.BlankTile;
@@ -13,20 +15,27 @@ import com.thechief.engine.entity.tile.GoalTile;
 import com.thechief.engine.entity.tile.PortalTile;
 import com.thechief.engine.entity.tile.SplitterTile;
 import com.thechief.engine.entity.tile.Tile;
+import com.thechief.engine.entity.tile.TileDirectionRenderer;
 import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.entity.tile.WallTile;
 import com.thechief.engine.entity.tile.devil.DevilHead;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
+import com.thechief.engine.entity.tile.puzzle.Button;
+import com.thechief.engine.entity.tile.puzzle.Door;
+import com.thechief.engine.entity.tile.puzzle.Electronic;
 import com.thechief.engine.screen.GameScreen;
+import com.thechief.engine.textures.TextureManager;
 
 public class MapGrid {
 
 	private int width, height;
-	private Tile[] tiles;
+	public Tile[] tiles;
 
 	private EntityManager em;
 	private OrthographicCamera camera;
 	private DevilHeadChecker dhc;
+	
+	private TileDirectionRenderer tdr;
 
 	private float sdx = -1, sdy = -1;
 
@@ -47,6 +56,8 @@ public class MapGrid {
 			}
 		}
 		parse(data);
+		
+		tdr = new TileDirectionRenderer(this);
 	}
 
 	private void parse(String d) {
@@ -54,12 +65,12 @@ public class MapGrid {
 
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				if (data[x + y * width] == '#') {
+				if (data[x + y * width] == 'W') {
 					tiles[x + y * width] = new WallTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
-				} else if (data[x + y * width] == '@') {
+				} else if (data[x + y * width] == 'P') {
 					em.addEntity(new Player(new Vector2(x, y), this));
-				} else if (data[x + y * width] == '_') {
+				} else if (data[x + y * width] == 'D') {
 					DevilHead h = new DevilHead(new Vector2(x, y), this);
 					sdx = h.getPosition().x;
 					sdy = h.getPosition().y;
@@ -67,8 +78,130 @@ public class MapGrid {
 				} else if (data[x + y * width] == 'F') {
 					tiles[x + y * width] = new GoalTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
-				} else if (data[x + y * width] == '>') {
+				} else if (data[x + y * width] == 'S') {
 					tiles[x + y * width] = new SplitterTile(new Vector2(x, y), this);
+					em.addEntity(tiles[x + y * width]);
+				}
+
+				else if (data[x + y * width] == '1') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '!') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '2') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '@') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '3') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '#') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '4') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '$') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '5') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '%') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '6') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '^') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '7') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '&') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '8') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '*') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '9') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '(') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '0') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == ')') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '-') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '_') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '[') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '{') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == ']') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '}') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '\\') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '|') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == ';') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == ':') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '\'') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '"') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == ',') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '<') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '.') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '>') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '/') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '?') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '`') {
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					em.addEntity(tiles[x + y * width]);
+				} else if (data[x + y * width] == '~') {
+					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				}
 
@@ -106,15 +239,35 @@ public class MapGrid {
 			}
 		}
 
-		int index = 0;
 		for (int y = 0; y < em.portals.size; y++) {
 			for (int x = 0; x < em.portals.size; x++) {
-				if (y == x) continue;
-				
+				if (y == x)
+					continue;
+
 				if (em.portals.get(y).type == em.portals.get(x).type) {
 					em.portals.get(y).setOther(em.portals.get(x));
 					em.portals.get(x).setOther(em.portals.get(y));
-					index++;
+				}
+			}
+		}
+
+		Array<Electronic> els = new Array<Electronic>();
+		for (Entity e : em.entities) {
+			if (e instanceof Electronic) {
+				Electronic el = (Electronic) e;
+				els.add(el);
+			}
+		}
+		for (int x = 0; x < els.size; x++) {
+			for (int y = 0; y < els.size; y++) {
+				Electronic z = els.get(x);
+				Electronic t = els.get(y);
+
+				if (x == y)
+					continue;
+
+				if (z.getTypeChar().getChar() == t.getTypeChar().getShiftedVersion()) {
+					t.setOther(z);
 				}
 			}
 		}
@@ -127,6 +280,8 @@ public class MapGrid {
 				t.render(sb);
 			}
 		}
+
+		tdr.render(sb);
 	}
 
 	public void renderDevilHeads(SpriteBatch sb) {
@@ -182,6 +337,10 @@ public class MapGrid {
 
 	public boolean shouldCollide(int x, int y) {
 		return tiles[x + y * width].isCollidable();
+	}
+	
+	public boolean shouldPlayerCollide(int x, int y) {
+		return tiles[x + y * width].isCollidableForPlayer();
 	}
 
 	public Tile getTile(int x, int y) {

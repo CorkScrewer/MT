@@ -15,7 +15,7 @@ public class SplitterTile extends Tile {
 	private int uses = maxUses;
 
 	public SplitterTile(Vector2 gridPos, MapGrid grid) {
-		super(TextureManager.COOL_DUDE, TileType.Splitter, false, gridPos, grid, Direction.Right, false);
+		super(TextureManager.COOL_DUDE, TileType.Splitter, false, false, gridPos, grid, Direction.Right, false);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import com.thechief.engine.textures.TextureManager;
 public class WallTile extends Tile {
 
 	public WallTile(Vector2 gridPos, MapGrid grid) {
-		super(TextureManager.WALL, TileType.Wall, true, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, gridPos, grid, Direction.Null, false);
+		super(TextureManager.WALL, TileType.Wall, true, true, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, gridPos, grid, Direction.Null, false);
 	}
 
 	@Override
@@ -19,17 +19,17 @@ public class WallTile extends Tile {
 
 	@Override
 	public void update() {
-		
+
 	}
 
 	@Override
 	public void dispose() {
-		
+
 	}
 
 	@Override
 	public void reset() {
-		
+
 	}
-	
+
 }

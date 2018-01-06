@@ -32,17 +32,17 @@ public class TestLevel extends Level {
 
 	@Override
 	public void create() {
-		data =  "........................." +
-				"..@......................" +
-				"......#q.#..............F" +
-				"......####...........w..." +
-				"........................." +
-				"............_..........w." +
-				"........................." +
-				"..>......................" +
-				"...................#.#..." +
-				"...................#q#..." +
-				"...................###...";
+		data =  "NNNNNNNNNNNNNNNNNNNNNNNNN" +
+				"NNPNNNNNNNNNNNNNNNNNNNNNN" +
+				"NNNNNNWqNWNNNNNNNNNNNNNNF" +
+				"NNNNNNWWWWNNNNNNNNNNNwNNN" +
+				"NNNNNNNNNNNNNNNNNNNNNNNNN" +
+				"NNNNNNNNNNNNDNNNNNNNNNNwN" +
+				"NNNNNNNNNNNNNNNNNNNNNNNNN" +
+				"NNSNNNNNNNNNNNNNNNNNNNNNN" +
+				"NNNNNNNNNNN4NNNNNNNWNWNNN" +
+				"NNNNNNNNNNNNN$NNNNNWqWNNN" +
+				"NNNNNNNNNNNNNNNNNNNWWWNNN";
 		
 		DevilHeadChecker dhc = new DevilHeadChecker(em);
 
@@ -69,11 +69,14 @@ public class TestLevel extends Level {
 		grid.renderGrid(sb, sr); // drawing the grid
 
 		sb.begin();
+
 		em.render(sb);
 
 		grid.renderDevilHeads(sb);
 		grid.renderTiles(sb);
 
+		grid.getEntityManager().renderPlayer(sb);
+			
 		pp.render(sb);
 
 		if (GameScreen.PLAYING && Gdx.input.isKeyJustPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Keys.CONTROL_RIGHT)) {

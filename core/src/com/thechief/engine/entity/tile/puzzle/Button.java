@@ -1,17 +1,17 @@
-package com.thechief.engine.entity.tile;
+package com.thechief.engine.entity.tile.puzzle;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.grid.MapGrid;
+import com.thechief.engine.entity.tile.Direction;
+import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
 
-public class GoalTile extends Tile {
+public class Button extends Electronic {
 
-	public float minimumAmount = 0.05f;
-
-	public GoalTile(Vector2 gridPos, MapGrid grid) {
-		super(TextureManager.FLAG, TileType.Goal, false, false, gridPos, grid, Direction.Null, false);
+	public Button(Vector2 gridPos, MapGrid grid, char type) {
+		super(TextureManager.BUTTON_OFF, TileType.Button, false, false, gridPos, grid, Direction.Null, true, type);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class GoalTile extends Tile {
 
 	@Override
 	public void update() {
-
+		texture = on ? TextureManager.BUTTON_ON : TextureManager.BUTTON_OFF;
 	}
 
 	@Override

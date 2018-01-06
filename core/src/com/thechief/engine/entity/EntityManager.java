@@ -31,9 +31,13 @@ public class EntityManager {
 
 	public void render(SpriteBatch sb) {
 		for (Entity e : entities) {
-			if (!e.isOffScreen(camera))
+			if (!e.isOffScreen(camera) && !(e instanceof Player))
 				e.render(sb);
 		}
+	}
+	
+	public void renderPlayer(SpriteBatch sb) {
+		player.render(sb);
 	}
 
 	public void dispose() {

@@ -15,11 +15,11 @@ public class PortalTile extends Tile {
 	private PortalTile other;
 
 	private float time = 0;
-	
+
 	public char type = '0';
 
 	public PortalTile(Vector2 gridPos, char type, MapGrid grid) {
-		super(TextureManager.DOWN_ARROW, TileType.Portal, false, gridPos, grid, Direction.Null, true);
+		super(TextureManager.DOWN_ARROW, TileType.Portal, false, false, gridPos, grid, Direction.Null, true);
 		this.type = type;
 		Texture[] texs = { TextureManager.PORTAL1, TextureManager.PORTAL2, TextureManager.PORTAL3, TextureManager.PORTAL4 };
 		animation = new Animation<Texture>(0.3f, texs);
@@ -32,18 +32,6 @@ public class PortalTile extends Tile {
 		Texture tex = animation.getKeyFrame(time, true);
 
 		sb.draw(tex, pos.x * GameScreen.CELL_SIZE, pos.y * GameScreen.CELL_SIZE + 4, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE - 8);
-
-		sb.setColor(0, 1, 0, 1);
-		if (tileDirection == Direction.Up) {
-			sb.draw(TextureManager.UP_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		} else if (tileDirection == Direction.Down) {
-			sb.draw(TextureManager.DOWN_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		} else if (tileDirection == Direction.Left) {
-			sb.draw(TextureManager.LEFT_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		} else if (tileDirection == Direction.Right) {
-			sb.draw(TextureManager.RIGHT_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		}
-		sb.setColor(1, 1, 1, 1);
 	}
 
 	@Override

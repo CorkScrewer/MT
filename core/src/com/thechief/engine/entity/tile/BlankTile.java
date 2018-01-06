@@ -14,7 +14,7 @@ public class BlankTile extends Tile {
 	private int width, height;
 
 	public BlankTile(Direction tileDir, Vector2 gridPos, MapGrid grid) {
-		super(TextureManager.BLANK, TileType.Blank, false, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, gridPos, grid, tileDir, true);
+		super(TextureManager.BLANK, TileType.Blank, false, false, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, gridPos, grid, tileDir, true);
 		c = new Color(1, 1, 1, 0);
 
 		width = 16;
@@ -27,21 +27,13 @@ public class BlankTile extends Tile {
 		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, pos.y * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE);
 		sb.setColor(1, 1, 1, 1);
 
-//		if (pos.x == grid.getEntityManager().getDevilHead().getPosition().x && pos.y == grid.getEntityManager().getDevilHead().getPosition().y) {
-//			sb.setColor(1, 0, 0, 1);
-//		} else {
-//			sb.setColor(1, 1, 1, 0.5f);
-//		}
-		
-		if (tileDirection == Direction.Up)
-			sb.draw(TextureManager.UP_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		if (tileDirection == Direction.Down)
-			sb.draw(TextureManager.DOWN_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		if (tileDirection == Direction.Left)
-			sb.draw(TextureManager.LEFT_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		if (tileDirection == Direction.Right)
-			sb.draw(TextureManager.RIGHT_ARROW, pos.x * GameScreen.CELL_SIZE + (32 - width / 2), height + pos.y * GameScreen.CELL_SIZE + (32 - width / 2), width, -height);
-		sb.setColor(1f, 1f, 1f, 1f);
+		// if (pos.x == grid.getEntityManager().getDevilHead().getPosition().x && pos.y
+		// == grid.getEntityManager().getDevilHead().getPosition().y) {
+		// sb.setColor(1, 0, 0, 1);
+		// } else {
+		// sb.setColor(1, 1, 1, 0.5f);
+		// }
+
 	}
 
 	@Override

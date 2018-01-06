@@ -26,9 +26,9 @@ public class Main implements ApplicationListener {
 
 	public static final String[] SUBTITLES = { "Time to Tile!", "Directional Madness!", "Mortal Portals!", "Press Spacebar To Pay Respect!", "Many Thanks!", "Aldos: Aluminium Disk Operating System", "Did Somebody Say Grid?", "Out April 27th, 2018!", "Spade: Super Powerful and Deadly Entity", "Made Using libGDX from badlogic! Check them out!", "Enter the Gridgeon.", "Sid: Some Indistiguishable Dog.", "Please don't sue me.", "Ingriduluos!", "Theyrrre Grrid!", "STOP TOO MANY GRID PUNS!!!", "Threat Nullified." };
 
-	public static boolean POST_PROCESSING = false;
+	public static boolean POST_PROCESSING = true;
 
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
 	private SpriteBatch sb;
 	private FPSLogger fps;

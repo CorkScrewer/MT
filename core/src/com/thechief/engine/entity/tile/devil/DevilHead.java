@@ -9,6 +9,7 @@ import com.thechief.engine.entity.tile.GoalTile;
 import com.thechief.engine.entity.tile.PortalTile;
 import com.thechief.engine.entity.tile.SplitterTile;
 import com.thechief.engine.entity.tile.TileType;
+import com.thechief.engine.entity.tile.puzzle.Button;
 import com.thechief.engine.level.Level;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textrendering.FontManager;
@@ -35,9 +36,11 @@ public class DevilHead extends Entity {
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, (pos.y + 1) * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, -GameScreen.CELL_SIZE);
-		
+
 		Text.drawText(sb, FontManager.SILKSCREENS, Integer.toString(lifePoints), (pos.x * GameScreen.CELL_SIZE) + GameScreen.CELL_SIZE / 2, (pos.y * GameScreen.CELL_SIZE) - 6, true);
 	}
+
+	Button prev;
 
 	@Override
 	public void update() {
@@ -101,6 +104,17 @@ public class DevilHead extends Entity {
 					PortalTile p = (PortalTile) grid.getTile((int) pos.x, (int) pos.y);
 					pos.x = p.getOther().getPosition().x;
 					pos.y = p.getOther().getPosition().y;
+				}
+				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Button) {
+					Button b = (Button) grid.getTile((int) pos.x, (int) pos.y);
+					b.setOn(true);
+					prev = b;
+				}
+				if (grid.getTile((int) pos.x, (int) pos.y).getType() != TileType.Button) {
+					if (prev != null) {
+						prev.setOn(false);
+						prev = null;
+					}
 				}
 			}
 		}
