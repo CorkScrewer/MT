@@ -9,6 +9,8 @@ import com.thechief.engine.Main;
 import com.thechief.engine.level.Level;
 import com.thechief.engine.level.LevelManager;
 import com.thechief.engine.level.LevelOne;
+import com.thechief.engine.level.LevelThree;
+import com.thechief.engine.level.LevelTwo;
 import com.thechief.engine.level.LevelZero;
 
 public class GameScreen extends Screen {
@@ -30,6 +32,8 @@ public class GameScreen extends Screen {
 		
 		levels.add(new LevelZero(camera));
 		levels.add(new LevelOne(camera));
+		levels.add(new LevelTwo(camera));
+		levels.add(new LevelThree(camera));
 		
 		LevelManager.setCurrentLevel(levels.first());
 	}

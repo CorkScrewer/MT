@@ -2,7 +2,10 @@ package com.thechief.engine.level;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.thechief.engine.entity.EntityManager;
+import com.thechief.engine.entity.PausePlay;
+import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 
 public abstract class Level {
@@ -10,6 +13,15 @@ public abstract class Level {
 	protected EntityManager em;
 	protected OrthographicCamera camera;
 	protected DevilHeadChecker devilHeadChecker;
+	
+	protected MapGrid grid;
+
+	protected ShapeRenderer sr;
+	protected String data;
+
+	protected PausePlay pp;
+
+	protected boolean shouldFocusOnPlayer = false;
 	
 	protected int levelNumber;
 	
@@ -30,11 +42,32 @@ public abstract class Level {
 	public abstract void reset();
 	
 	public int next() {
-		return levelNumber + 1;
+		return (levelNumber += 1);
 	}
 	
 	public int getLevelNumber() {
 		return levelNumber;
 	}
+	
+	public MapGrid getGrid() {
+		return grid;
+	}
+
+	public ShapeRenderer getSr() {
+		return sr;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public PausePlay getPp() {
+		return pp;
+	}
+
+	public boolean isShouldFocusOnPlayer() {
+		return shouldFocusOnPlayer;
+	}
+
 	
 }

@@ -355,6 +355,10 @@ public class MapGrid {
 	public EntityManager getEntityManager() {
 		return em;
 	}
+	
+	public TileDirectionRenderer tileDirectionRenderer() {
+		return tdr;
+	}
 
 	public float getStartDevilX() {
 		return sdx;

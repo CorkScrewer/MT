@@ -14,23 +14,23 @@ import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
 
-public class LevelOne extends Level {
+public class LevelThree extends Level {
 
-	public LevelOne(OrthographicCamera camera) {
-		super(camera, 1);
+	public LevelThree(OrthographicCamera camera) {
+		super(camera, 3);
 	}
 
 	@Override
 	public void create() {
-		data =  "                  " +
+		data =  "                  " + 
 				"                  " + 
+				"   ••••••         " +
+				"   •   •••••••••••" + 
+				"  ☻• • •          " +
+				"•••• • •        ◘ " +
+				"  ☺  •            " + 
+				"••••••••••••••••••" + 
 				"                  " + 
-				"            ☻     " + 
-				"         •        " + 
-				"    ☺   •◘        " +
-				"         •        " +
-				"                  " +
-				"                  " +
 				"                  ";
 
 		DevilHeadChecker dhc = new DevilHeadChecker(em, -1);
@@ -44,7 +44,6 @@ public class LevelOne extends Level {
 	public void update() {
 		em.update();
 		pp.update();
-		
 		if (GameScreen.PLAYING && Gdx.input.isKeyJustPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Keys.CONTROL_RIGHT)) {
 			shouldFocusOnPlayer = !shouldFocusOnPlayer;
 		}

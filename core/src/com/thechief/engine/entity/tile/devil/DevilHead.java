@@ -10,7 +10,6 @@ import com.thechief.engine.entity.tile.PortalTile;
 import com.thechief.engine.entity.tile.SplitterTile;
 import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.entity.tile.puzzle.Button;
-import com.thechief.engine.level.Level;
 import com.thechief.engine.level.LevelManager;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textrendering.FontManager;

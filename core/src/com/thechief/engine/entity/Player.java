@@ -33,34 +33,26 @@ public class Player extends Entity {
 		// Moving + Collision Detection
 		if (Gdx.input.isKeyJustPressed(Keys.D)) {
 			if (pos.x < grid.getWidth() - 1) {
-				if (!grid.shouldPlayerCollide((int) pos.x + 1, (int) pos.y)) {
-					pos.x++;
-					// count++;
-				}
+				pos.x++;
+				// count++;
 			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.A)) {
 			if (pos.x > 0) {
-				if (!grid.shouldPlayerCollide((int) pos.x - 1, (int) pos.y)) {
-					pos.x--;
-					// count++;
-				}
+				pos.x--;
+				// count++;
 			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.W)) {
 			if (pos.y > 0) {
-				if (!grid.shouldPlayerCollide((int) pos.x, (int) pos.y - 1)) {
-					pos.y--;
-					// count++;
-				}
+				pos.y--;
+				// count++;
 			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.S)) {
 			if (pos.y < grid.getHeight() - 1) {
-				if (!grid.shouldPlayerCollide((int) pos.x, (int) pos.y + 1)) {
-					pos.y++;
-					// count++;
-				}
+				pos.y++;
+				// count++;
 			}
 		}
 

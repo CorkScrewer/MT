@@ -13,18 +13,8 @@ import com.thechief.engine.entity.PausePlay;
 import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
-import com.thechief.engine.textures.TextureManager;
 
 public class LevelZero extends Level {
-
-	private MapGrid grid;
-
-	private ShapeRenderer sr;
-	private String data;
-
-	private PausePlay pp;
-
-	private boolean shouldFocusOnPlayer = false;
 
 	public LevelZero(OrthographicCamera camera) {
 		super(camera, 0);
@@ -35,10 +25,9 @@ public class LevelZero extends Level {
 		data =  "                  " +
 				"                  " +
 				"                  " +
-				"            ☻     " +
+				"        ☻         " +
 				"                  " +
-				"    ☺            ◘" +
-				"                  " +
+				"    ☺       ◘     " +
 				"                  " +
 				"                  " +
 				"                  " +
@@ -46,7 +35,7 @@ public class LevelZero extends Level {
 		
 		DevilHeadChecker dhc = new DevilHeadChecker(em, -1);
 
-		grid = new MapGrid(data, 18, 11, em, camera, dhc);
+		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();
 		pp = new PausePlay(new Vector2(30, 30), grid);
 	}
@@ -55,30 +44,7 @@ public class LevelZero extends Level {
 	public void update() {
 		em.update();
 		pp.update();
-	}
-
-	/**
-	 * KEEP ORDER SAME!!! (had some..problems with that)
-	 */
-	@Override
-	public void render(SpriteBatch sb) {
-		sb.begin();
-		sb.draw(TextureManager.BACKGROUND, camera.position.x - camera.viewportWidth / 2, camera.position.y - camera.viewportHeight / 2, camera.viewportWidth, camera.viewportHeight);
-		sb.end();
-
-		grid.renderGrid(sb, sr); // drawing the grid
-
-		sb.begin();
-
-		em.render(sb);
-
-		grid.renderDevilHeads(sb);
-		grid.renderTiles(sb);
-
-		grid.getEntityManager().renderPlayer(sb);
 		
-		pp.render(sb);
-
 		if (GameScreen.PLAYING && Gdx.input.isKeyJustPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Keys.CONTROL_RIGHT)) {
 			shouldFocusOnPlayer = !shouldFocusOnPlayer;
 		}
@@ -95,7 +61,14 @@ public class LevelZero extends Level {
 				camera.position.set(MiscFuncs.clamp(new Vector2(camera.position.x, camera.position.y), new Vector2(Main.WIDTH / 2, Main.HEIGHT / 2), new Vector2(grid.getWidth() * GameScreen.CELL_SIZE - camera.viewportWidth / 2, grid.getHeight() * GameScreen.CELL_SIZE - camera.viewportHeight / 2)), 0);
 			}
 		}
-		sb.end();
+	}
+
+	/**
+	 * KEEP ORDER SAME!!! (had some..problems with that)
+	 */
+	@Override
+	public void render(SpriteBatch sb) {
+		LevelRenderer.defualtRenderSequence(sb, this);
 	}
 
 	@Override
@@ -110,5 +83,6 @@ public class LevelZero extends Level {
 		em.reset();
 		GameScreen.PLAYING = false;
 	}
+
 
 }
