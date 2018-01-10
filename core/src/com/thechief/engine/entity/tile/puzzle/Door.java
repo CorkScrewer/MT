@@ -23,8 +23,7 @@ public class Door extends Electronic {
 
 	@Override
 	public void update() {
-		if (on)
-			collidable = false;
+		collidable = !on;
 	}
 
 	@Override

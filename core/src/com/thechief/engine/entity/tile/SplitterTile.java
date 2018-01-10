@@ -43,7 +43,7 @@ public class SplitterTile extends Tile {
 		if (uses <= 0)
 			return;
 
-		DevilHead newHead = new DevilHead(new Vector2(pos.x + 1, pos.y + 1), grid);
+		DevilHead newHead = new DevilHead(new Vector2(pos.x + 1, pos.y + 1), grid, head.getMaxLifePoints());
 		newHead.setLifePoints(head.getLifePoints() / 2);
 		head.setLifePoints(head.getLifePoints() / 2);
 

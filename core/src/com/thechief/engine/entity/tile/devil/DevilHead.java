@@ -11,6 +11,7 @@ import com.thechief.engine.entity.tile.SplitterTile;
 import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.entity.tile.puzzle.Button;
 import com.thechief.engine.level.Level;
+import com.thechief.engine.level.LevelManager;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textrendering.FontManager;
 import com.thechief.engine.textrendering.Text;
@@ -20,7 +21,9 @@ public class DevilHead extends Entity {
 
 	private int time = 0;
 
-	private int lifePoints = 100;
+	private int totalLifePoints;
+
+	private int lifePoints = totalLifePoints;
 
 	private Direction lastDirection;
 
@@ -28,16 +31,25 @@ public class DevilHead extends Entity {
 
 	public static boolean RESET = false;
 
-	public DevilHead(Vector2 pos, MapGrid grid) {
+	public DevilHead(Vector2 pos, MapGrid grid, int totalLifePoints) {
 		super(TextureManager.DEVIL_HEAD, pos, grid);
 		lastDirection = Direction.Null;
+		if (totalLifePoints == -1) {
+			this.totalLifePoints = Integer.MAX_VALUE;
+		} else {
+			this.totalLifePoints = totalLifePoints;
+		}
 	}
 
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.draw(texture, pos.x * GameScreen.CELL_SIZE, (pos.y + 1) * GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, -GameScreen.CELL_SIZE);
 
-		Text.drawText(sb, FontManager.SILKSCREENS, Integer.toString(lifePoints), (pos.x * GameScreen.CELL_SIZE) + GameScreen.CELL_SIZE / 2, (pos.y * GameScreen.CELL_SIZE) - 6, true);
+		if (this.totalLifePoints < Integer.MAX_VALUE) {
+			Text.drawText(sb, FontManager.SILKSCREENS, Integer.toString(lifePoints), (pos.x * GameScreen.CELL_SIZE) + GameScreen.CELL_SIZE / 2, (pos.y * GameScreen.CELL_SIZE) - 6, true);
+		} else {
+			Text.drawText(sb, FontManager.SILKSCREENS, "infinity", (pos.x * GameScreen.CELL_SIZE) + GameScreen.CELL_SIZE / 2, (pos.y * GameScreen.CELL_SIZE) - 6, true);
+		}
 	}
 
 	Button prev;
@@ -50,25 +62,29 @@ public class DevilHead extends Entity {
 				if (grid.getTile((int) pos.x, (int) pos.y).getTileDirection() == Direction.Up) {
 					if (pos.y > 0 && !grid.shouldCollide((int) pos.x, (int) pos.y - 1)) {
 						pos.y--;
-						lifePoints -= Level.getAmountOfLifePointsLostPerStep();
+						if (totalLifePoints != Integer.MAX_VALUE)
+							lifePoints--;
 						lastDirection = Direction.Up;
 					}
 				} else if (grid.getTile((int) pos.x, (int) pos.y).getTileDirection() == Direction.Down) {
 					if (pos.y < grid.getHeight() - 1 && !grid.shouldCollide((int) pos.x, (int) pos.y + 1)) {
 						pos.y++;
-						lifePoints -= Level.getAmountOfLifePointsLostPerStep();
+						if (totalLifePoints != Integer.MAX_VALUE)
+							lifePoints--;
 						lastDirection = Direction.Down;
 					}
 				} else if (grid.getTile((int) pos.x, (int) pos.y).getTileDirection() == Direction.Left) {
 					if (pos.x > 0 && !grid.shouldCollide((int) pos.x - 1, (int) pos.y)) {
 						pos.x--;
-						lifePoints -= Level.getAmountOfLifePointsLostPerStep();
+						if (totalLifePoints != Integer.MAX_VALUE)
+							lifePoints--;
 						lastDirection = Direction.Left;
 					}
 				} else if (grid.getTile((int) pos.x, (int) pos.y).getTileDirection() == Direction.Right) {
 					if (pos.x < grid.getWidth() - 1 && !grid.shouldCollide((int) pos.x + 1, (int) pos.y)) {
 						pos.x++;
-						lifePoints -= Level.getAmountOfLifePointsLostPerStep();
+						if (totalLifePoints != Integer.MAX_VALUE)
+							lifePoints--;
 						lastDirection = Direction.Right;
 					}
 				}
@@ -91,9 +107,15 @@ public class DevilHead extends Entity {
 						System.out.println("TODAY IS THE BEST DAY!");
 						pos.x = grid.getStartDevilX();
 						pos.y = grid.getStartDevilY();
-						// TODO: Go to next level
-						lifePoints = 100;
-						GameScreen.PLAYING = false;
+						
+						// go to next level
+						if (LevelManager.getCurrentLevel().getLevelNumber() == GameScreen.levels.size - 1) {
+							// If we are not going to the next level.
+							lifePoints = totalLifePoints;
+							GameScreen.PLAYING = false;
+						} else {
+							LevelManager.setCurrentLevel(GameScreen.levels.get(LevelManager.getCurrentLevel().next()));
+						}
 					}
 				}
 				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Splitter) {
@@ -134,7 +156,7 @@ public class DevilHead extends Entity {
 		} else {
 			pos.x = grid.getStartDevilX();
 			pos.y = grid.getStartDevilY();
-			lifePoints = 100;
+			lifePoints = totalLifePoints;
 		}
 	}
 
@@ -149,6 +171,14 @@ public class DevilHead extends Entity {
 
 	public int getLifePoints() {
 		return lifePoints;
+	}
+
+	public int getMaxLifePoints() {
+		return totalLifePoints;
+	}
+
+	public void setMaxLifePoints(int totalLifePoints) {
+		this.totalLifePoints = totalLifePoints;
 	}
 
 	public Direction lastTileDirection() {

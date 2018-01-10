@@ -15,7 +15,7 @@ import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
 
-public class TestLevel extends Level {
+public class LevelZero extends Level {
 
 	private MapGrid grid;
 
@@ -26,27 +26,27 @@ public class TestLevel extends Level {
 
 	private boolean shouldFocusOnPlayer = false;
 
-	public TestLevel(OrthographicCamera camera, float amountLostPerStep) {
-		super(camera, amountLostPerStep);
+	public LevelZero(OrthographicCamera camera) {
+		super(camera, 0);
 	}
 
 	@Override
 	public void create() {
-		data =  "NNNNNNNNNNNNNNNNNNNNNNNNN" +
-				"NNPNNNNNNNNNNNNNNNNNNNNNN" +
-				"NNNNNNWqNWNNNNNNNNNNNNNNF" +
-				"NNNNNNWWWWNNNNNNNNNNNwNNN" +
-				"NNNNNNNNNNNNNNNNNNNNNNNNN" +
-				"NNNNNNNNNNNNDNNNNNNNNNNwN" +
-				"NNNNNNNNNNNNNNNNNNNNNNNNN" +
-				"NNSNNNNNNNNNNNNNNNNNNNNNN" +
-				"NNNNNNNNNNN4NNNNNNNWNWNNN" +
-				"NNNNNNNNNNNNN$NNNNNWqWNNN" +
-				"NNNNNNNNNNNNNNNNNNNWWWNNN";
+		data =  "                  " +
+				"                  " +
+				"                  " +
+				"            ☻     " +
+				"                  " +
+				"    ☺            ◘" +
+				"                  " +
+				"                  " +
+				"                  " +
+				"                  " +
+				"                  ";
 		
-		DevilHeadChecker dhc = new DevilHeadChecker(em);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, -1);
 
-		grid = new MapGrid(data, 25, 11, em, camera, dhc);
+		grid = new MapGrid(data, 18, 11, em, camera, dhc);
 		sr = new ShapeRenderer();
 		pp = new PausePlay(new Vector2(30, 30), grid);
 	}
@@ -76,7 +76,7 @@ public class TestLevel extends Level {
 		grid.renderTiles(sb);
 
 		grid.getEntityManager().renderPlayer(sb);
-			
+		
 		pp.render(sb);
 
 		if (GameScreen.PLAYING && Gdx.input.isKeyJustPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Keys.CONTROL_RIGHT)) {

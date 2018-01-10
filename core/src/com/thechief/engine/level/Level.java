@@ -7,16 +7,16 @@ import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 
 public abstract class Level {
 
-	protected float amountLifePointsLostPerStep;
-	
 	protected EntityManager em;
 	protected OrthographicCamera camera;
 	protected DevilHeadChecker devilHeadChecker;
 	
-	public Level(OrthographicCamera camera, float amountLostPerStep) {
+	protected int levelNumber;
+	
+	public Level(OrthographicCamera camera, int levelno) {
 		this.camera = camera;
 		this.em = new EntityManager(camera);
-		this.amountLifePointsLostPerStep = amountLostPerStep;
+		levelNumber = levelno;
 	}
 	
 	public abstract void create();
@@ -29,12 +29,12 @@ public abstract class Level {
 	
 	public abstract void reset();
 	
-	public static float getAmountOfLifePointsLostPerStep() {
-		return LevelManager.getCurrentLevel().amountLifePointsLostPerStep;
+	public int next() {
+		return levelNumber + 1;
 	}
 	
-	public static void setAmountOfWaterLostPerStep(float lost) {
-		LevelManager.getCurrentLevel().amountLifePointsLostPerStep = lost;
+	public int getLevelNumber() {
+		return levelNumber;
 	}
 	
 }

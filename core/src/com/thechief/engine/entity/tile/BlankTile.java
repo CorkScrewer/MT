@@ -11,8 +11,6 @@ public class BlankTile extends Tile {
 
 	private Color c;
 
-	private int width, height;
-
 	public BlankTile(Direction tileDir, Vector2 gridPos, MapGrid grid) {
 		super(TextureManager.BLANK, TileType.Blank, false, false, GameScreen.CELL_SIZE, GameScreen.CELL_SIZE, gridPos, grid, tileDir, true);
 		c = new Color(1, 1, 1, 0);

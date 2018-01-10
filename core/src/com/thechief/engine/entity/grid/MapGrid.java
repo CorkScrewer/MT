@@ -24,7 +24,6 @@ import com.thechief.engine.entity.tile.puzzle.Button;
 import com.thechief.engine.entity.tile.puzzle.Door;
 import com.thechief.engine.entity.tile.puzzle.Electronic;
 import com.thechief.engine.screen.GameScreen;
-import com.thechief.engine.textures.TextureManager;
 
 public class MapGrid {
 
@@ -34,10 +33,16 @@ public class MapGrid {
 	private EntityManager em;
 	private OrthographicCamera camera;
 	private DevilHeadChecker dhc;
-	
+
 	private TileDirectionRenderer tdr;
 
 	private float sdx = -1, sdy = -1;
+
+	private static final char WALL = '•';
+	private static final char PLAYER = '☻';
+	private static final char DEVILHEAD = '☺';
+	private static final char GOAL = '◘';
+	private static final char SPLITTER = '♦';
 
 	public MapGrid(String data, int width, int height, EntityManager em, OrthographicCamera camera, DevilHeadChecker dhc) {
 		this.width = width;
@@ -56,7 +61,7 @@ public class MapGrid {
 			}
 		}
 		parse(data);
-		
+
 		tdr = new TileDirectionRenderer(this);
 	}
 
@@ -65,20 +70,20 @@ public class MapGrid {
 
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				if (data[x + y * width] == 'W') {
+				if (data[x + y * width] == WALL) {
 					tiles[x + y * width] = new WallTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
-				} else if (data[x + y * width] == 'P') {
+				} else if (data[x + y * width] == PLAYER) {
 					em.addEntity(new Player(new Vector2(x, y), this));
-				} else if (data[x + y * width] == 'D') {
-					DevilHead h = new DevilHead(new Vector2(x, y), this);
+				} else if (data[x + y * width] == DEVILHEAD) {
+					DevilHead h = new DevilHead(new Vector2(x, y), this, dhc.getMaxDevilHeadLifePoints());
 					sdx = h.getPosition().x;
 					sdy = h.getPosition().y;
 					em.addDevilHead(h);
-				} else if (data[x + y * width] == 'F') {
+				} else if (data[x + y * width] == GOAL) {
 					tiles[x + y * width] = new GoalTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
-				} else if (data[x + y * width] == 'S') {
+				} else if (data[x + y * width] == SPLITTER) {
 					tiles[x + y * width] = new SplitterTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
 				}
@@ -311,7 +316,7 @@ public class MapGrid {
 
 	public void reset() {
 		for (DevilHead d : em.devilHead) {
-			d.setLifePoints(100);
+			d.setLifePoints(d.getMaxLifePoints());
 		}
 		dhc.reset();
 		for (int i = 0; i < tiles.length; i++) {
@@ -338,7 +343,7 @@ public class MapGrid {
 	public boolean shouldCollide(int x, int y) {
 		return tiles[x + y * width].isCollidable();
 	}
-	
+
 	public boolean shouldPlayerCollide(int x, int y) {
 		return tiles[x + y * width].isCollidableForPlayer();
 	}

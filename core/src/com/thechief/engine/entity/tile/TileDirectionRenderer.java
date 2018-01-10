@@ -1,7 +1,6 @@
 package com.thechief.engine.entity.tile;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.Entity;
 import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.screen.GameScreen;
