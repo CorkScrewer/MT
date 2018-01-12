@@ -51,8 +51,8 @@ public class DevilHead extends Entity {
 		}
 	}
 
-	Button prev;
-
+	Button buttonPrev;
+	
 	@Override
 	public void update() {
 		if (GameScreen.PLAYING) {
@@ -103,15 +103,13 @@ public class DevilHead extends Entity {
 				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Goal) {
 					GoalTile gt = (GoalTile) grid.getTile((int) pos.x, (int) pos.y);
 					if (lifePoints >= gt.minimumAmount) {
-						System.out.println("TODAY IS THE BEST DAY!");
 						pos.x = grid.getStartDevilX();
 						pos.y = grid.getStartDevilY();
-						
+
 						// go to next level
-						if (LevelManager.getCurrentLevel().getLevelNumber() == GameScreen.levels.size - 1) {
+						if (LevelManager.getCurrentLevel().getLevelNumber() >= GameScreen.levels.size - 1) {
 							// If we are not going to the next level.
-							lifePoints = totalLifePoints;
-							GameScreen.PLAYING = false;
+							LevelManager.getCurrentLevel().reset();
 						} else {
 							LevelManager.setCurrentLevel(GameScreen.levels.get(LevelManager.getCurrentLevel().next()));
 						}
@@ -126,15 +124,19 @@ public class DevilHead extends Entity {
 					pos.x = p.getOther().getPosition().x;
 					pos.y = p.getOther().getPosition().y;
 				}
-				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Button) {
-					Button b = (Button) grid.getTile((int) pos.x, (int) pos.y);
-					b.setOn(true);
-					prev = b;
-				}
-				if (grid.getTile((int) pos.x, (int) pos.y).getType() != TileType.Button) {
-					if (prev != null) {
-						prev.setOn(false);
-						prev = null;
+				{ // button
+					if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Button) {
+						Button b = (Button) grid.getTile((int) pos.x, (int) pos.y);
+						b.setOn(true);
+						buttonPrev = b;
+					}
+					if (grid.getTile((int) pos.x, (int) pos.y).getType() != TileType.Button) {
+						if (buttonPrev != null) {
+							if (!buttonPrev.isLever) {
+								buttonPrev.setOn(false);
+							}
+							buttonPrev = null;
+						}
 					}
 				}
 			}

@@ -23,6 +23,7 @@ import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.entity.tile.puzzle.Button;
 import com.thechief.engine.entity.tile.puzzle.Door;
 import com.thechief.engine.entity.tile.puzzle.Electronic;
+import com.thechief.engine.level.LevelManager;
 import com.thechief.engine.screen.GameScreen;
 
 public class MapGrid {
@@ -89,121 +90,121 @@ public class MapGrid {
 				}
 
 				else if (data[x + y * width] == '1') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '!') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '2') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '@') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '3') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '#') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '4') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '$') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '5') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '%') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '6') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '^') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '7') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '&') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '8') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '*') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '9') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '(') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '0') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == ')') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '-') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '_') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '[') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '{') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == ']') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '}') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '\\') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '|') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == ';') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == ':') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '\'') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '"') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == ',') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '<') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '.') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '>') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '/') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '?') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '`') {
-					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width]);
+					tiles[x + y * width] = new Button(new Vector2(x, y), this, data[x + y * width], LevelManager.getCurrentLevel().isUseLevers());
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == '~') {
 					tiles[x + y * width] = new Door(new Vector2(x, y), this, data[x + y * width]);
@@ -244,7 +245,9 @@ public class MapGrid {
 			}
 		}
 
-		for (int y = 0; y < em.portals.size; y++) {
+		for (
+
+				int y = 0; y < em.portals.size; y++) {
 			for (int x = 0; x < em.portals.size; x++) {
 				if (y == x)
 					continue;
@@ -315,6 +318,7 @@ public class MapGrid {
 	}
 
 	public void reset() {
+		System.out.println("this happene");
 		for (DevilHead d : em.devilHead) {
 			d.setLifePoints(d.getMaxLifePoints());
 		}
@@ -355,7 +359,7 @@ public class MapGrid {
 	public EntityManager getEntityManager() {
 		return em;
 	}
-	
+
 	public TileDirectionRenderer tileDirectionRenderer() {
 		return tdr;
 	}

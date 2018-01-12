@@ -15,8 +15,6 @@ public class TileDirectionRenderer extends Entity {
 	@Override
 	public void render(SpriteBatch sb) {
 		for (Tile t : grid.tiles) {
-			if (!t.canTileHaveDirection) continue;
-			
 			if (t.tileDirection == Direction.Up)
 				sb.draw(TextureManager.UP_ARROW, t.getPosition().x * GameScreen.CELL_SIZE + ((GameScreen.CELL_SIZE / 2) - t.width / 2), t.height + t.getPosition().y * GameScreen.CELL_SIZE + ((GameScreen.CELL_SIZE / 2) - t.width / 2), t.width, -t.height);
 			if (t.tileDirection == Direction.Down)

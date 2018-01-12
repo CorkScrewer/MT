@@ -13,7 +13,7 @@ public abstract class Level {
 	protected EntityManager em;
 	protected OrthographicCamera camera;
 	protected DevilHeadChecker devilHeadChecker;
-	
+
 	protected MapGrid grid;
 
 	protected ShapeRenderer sr;
@@ -22,33 +22,34 @@ public abstract class Level {
 	protected PausePlay pp;
 
 	protected boolean shouldFocusOnPlayer = false;
-	
+	protected boolean useLevers = false;
+
 	protected int levelNumber;
-	
+
 	public Level(OrthographicCamera camera, int levelno) {
 		this.camera = camera;
 		this.em = new EntityManager(camera);
 		levelNumber = levelno;
 	}
-	
+
 	public abstract void create();
-	
+
 	public abstract void update();
-	
+
 	public abstract void render(SpriteBatch sb);
-	
+
 	public abstract void dispose();
-	
+
 	public abstract void reset();
-	
+
 	public int next() {
 		return (levelNumber += 1);
 	}
-	
+
 	public int getLevelNumber() {
 		return levelNumber;
 	}
-	
+
 	public MapGrid getGrid() {
 		return grid;
 	}
@@ -69,5 +70,12 @@ public abstract class Level {
 		return shouldFocusOnPlayer;
 	}
 
-	
+	public boolean isUseLevers() {
+		return useLevers;
+	}
+
+	public void setUseLevers(boolean useLevers) {
+		this.useLevers = useLevers;
+	}
+
 }

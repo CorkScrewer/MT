@@ -10,8 +10,11 @@ import com.thechief.engine.textures.TextureManager;
 
 public class Button extends Electronic {
 
-	public Button(Vector2 gridPos, MapGrid grid, char type) {
+	public boolean isLever = false;
+	
+	public Button(Vector2 gridPos, MapGrid grid, char type, boolean isLever) {
 		super(TextureManager.BUTTON_OFF, TileType.Button, false, false, gridPos, grid, Direction.Null, true, type);
+		this.isLever = isLever;
 	}
 
 	@Override
