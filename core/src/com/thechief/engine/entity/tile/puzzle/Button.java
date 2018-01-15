@@ -34,7 +34,7 @@ public class Button extends Electronic {
 
 	@Override
 	public void reset() {
-
+		on = false;
 	}
 
 }

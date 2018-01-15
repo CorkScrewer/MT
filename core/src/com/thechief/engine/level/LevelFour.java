@@ -17,7 +17,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelFour extends Level {
 
 	public LevelFour(OrthographicCamera camera) {
-		super(camera, 3);
+		super(camera, 4);
 		useLevers = true;
 	}
 
@@ -34,7 +34,7 @@ public class LevelFour extends Level {
 				"                  " + 
 				"                  ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, -1);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, 20);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();
@@ -79,6 +79,7 @@ public class LevelFour extends Level {
 
 	@Override
 	public void reset() {
+		System.out.println("this is called.");
 		grid.reset();
 		em.reset();
 		GameScreen.PLAYING = false;

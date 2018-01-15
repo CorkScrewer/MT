@@ -6,15 +6,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.bitfire.postprocessing.PostProcessor;
-import com.bitfire.postprocessing.effects.Bloom;
-import com.bitfire.postprocessing.effects.CrtMonitor;
-import com.bitfire.postprocessing.effects.Curvature;
-import com.bitfire.postprocessing.effects.Vignette;
-import com.bitfire.postprocessing.filters.Combine;
-import com.bitfire.postprocessing.filters.CrtScreen.Effect;
-import com.bitfire.postprocessing.filters.CrtScreen.RgbMode;
-import com.bitfire.utils.ShaderLoader;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.ScreenManager;
 import com.thechief.engine.textrendering.FontManager;
@@ -44,14 +35,11 @@ public class Main implements ApplicationListener {
 
 	public static boolean POST_PROCESSING = true;
 
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
 	private SpriteBatch sb;
 	private FPSLogger fps;
-	private PostProcessor post;
-	private CrtMonitor crt;
-	private Vignette vig;
-
+	
 	@Override
 	public void create() {
 		sb = new SpriteBatch();
@@ -60,35 +48,11 @@ public class Main implements ApplicationListener {
 		FontManager.init();
 
 		ScreenManager.setCurrentScreen(new GameScreen());
-		ShaderLoader.BasePath = "data/shaders/";
 
-		post = new PostProcessor(false, false, true);
-
-		Bloom bloom = new Bloom((int) (Gdx.graphics.getWidth() * 0.25f), (int) (Gdx.graphics.getHeight() * 0.25f));
-		post.addEffect(bloom);
-
-		Curvature c = new Curvature();
-		c.setDistortion(0.4f);
-		post.addEffect(c);
-
-		int effects = Effect.Scanlines.v | Effect.PhosphorVibrance.v | Effect.Scanlines.v | Effect.Tint.v | Effect.Vignette.v;
-		crt = new CrtMonitor(WIDTH, HEIGHT, false, false, RgbMode.RgbShift, effects);
-		Combine combine = crt.getCombinePass();
-		combine.setSource1Intensity(0.7f);
-		combine.setSource2Intensity(1.0f);
-		combine.setSource1Saturation(0.6f);
-		combine.setSource2Saturation(1f);
-
-		post.addEffect(crt);
-
-		vig = new Vignette(WIDTH, HEIGHT, false);
-		vig.setIntensity(1.25f);
-
-		post.addEffect(vig);
+		PostProcessing.create();
+		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 	}
-
-	float elapsedSecs = 0;
 
 	// LOOK WAHT HAPPENED. i was tweakin the settins of the game gfx and this
 	// happened lol xd.
@@ -97,20 +61,19 @@ public class Main implements ApplicationListener {
 	@Override
 	public void render() {
 		if (POST_PROCESSING) {
-			post.capture(); // post
+			PostProcessing.capture(); // post
 		}
 
 		myRender();
 
 		if (POST_PROCESSING) {
-			post.render(); // post
+			PostProcessing.render(); // post
 		}
 
 		ScreenManager.updateCurrentScreen();
 		
 		if (POST_PROCESSING) {
-			elapsedSecs += Gdx.graphics.getDeltaTime() * 2f;
-			crt.setTime(elapsedSecs);
+			PostProcessing.update();
 		}
 		
 		if (DEBUG) {
@@ -132,7 +95,7 @@ public class Main implements ApplicationListener {
 	public void dispose() {
 		ScreenManager.dispose();
 		sb.dispose();
-		post.dispose();
+		PostProcessing.dispose();
 	}
 
 	// UNWANTED METHODS
@@ -149,6 +112,6 @@ public class Main implements ApplicationListener {
 
 	@Override
 	public void resume() {
-		post.rebind();
+		PostProcessing.rebind();
 	}
 }

@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.Entity;
 import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.Direction;
-import com.thechief.engine.entity.tile.GoalTile;
 import com.thechief.engine.entity.tile.PortalTile;
 import com.thechief.engine.entity.tile.SplitterTile;
 import com.thechief.engine.entity.tile.TileType;
@@ -52,7 +51,7 @@ public class DevilHead extends Entity {
 	}
 
 	Button buttonPrev;
-	
+
 	@Override
 	public void update() {
 		if (GameScreen.PLAYING) {
@@ -101,18 +100,16 @@ public class DevilHead extends Entity {
 				}
 
 				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Goal) {
-					GoalTile gt = (GoalTile) grid.getTile((int) pos.x, (int) pos.y);
-					if (lifePoints >= gt.minimumAmount) {
-						pos.x = grid.getStartDevilX();
-						pos.y = grid.getStartDevilY();
+					pos.x = grid.getStartDevilX();
+					pos.y = grid.getStartDevilY();
 
-						// go to next level
-						if (LevelManager.getCurrentLevel().getLevelNumber() >= GameScreen.levels.size - 1) {
-							// If we are not going to the next level.
-							LevelManager.getCurrentLevel().reset();
-						} else {
-							LevelManager.setCurrentLevel(GameScreen.levels.get(LevelManager.getCurrentLevel().next()));
-						}
+					// go to next level
+					if (LevelManager.getCurrentLevel().getLevelNumber() >= GameScreen.levels.size - 1) {
+						// If we are not going to the next level.
+						LevelManager.getCurrentLevel().reset();
+						lifePoints = totalLifePoints;
+					} else {
+						LevelManager.setCurrentLevel(GameScreen.levels.get(LevelManager.getCurrentLevel().next()));
 					}
 				}
 				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Splitter) {
@@ -151,14 +148,13 @@ public class DevilHead extends Entity {
 
 	@Override
 	public void reset() {
-		grid.getEntityManager().addEntity(new DevilHeadRemnant(pos, grid));
 		if (grid.getEntityManager().devilHeadSize() > 1) {
 			grid.getEntityManager().removeDevilHead(this);
-		} else {
-			pos.x = grid.getStartDevilX();
-			pos.y = grid.getStartDevilY();
-			lifePoints = totalLifePoints;
+			grid.getEntityManager().addEntity(new DevilHeadRemnant(pos, grid));
 		}
+		pos.x = grid.getStartDevilX();
+		pos.y = grid.getStartDevilY();
+		lifePoints = totalLifePoints;
 	}
 
 	@Override

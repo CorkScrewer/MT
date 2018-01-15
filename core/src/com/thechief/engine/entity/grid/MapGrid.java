@@ -245,9 +245,7 @@ public class MapGrid {
 			}
 		}
 
-		for (
-
-				int y = 0; y < em.portals.size; y++) {
+		for (int y = 0; y < em.portals.size; y++) {
 			for (int x = 0; x < em.portals.size; x++) {
 				if (y == x)
 					continue;
@@ -318,9 +316,8 @@ public class MapGrid {
 	}
 
 	public void reset() {
-		System.out.println("this happene");
 		for (DevilHead d : em.devilHead) {
-			d.setLifePoints(d.getMaxLifePoints());
+			d.reset();
 		}
 		dhc.reset();
 		for (int i = 0; i < tiles.length; i++) {
