@@ -25,7 +25,8 @@ public abstract class Level {
 	protected boolean useLevers = false;
 
 	protected int levelNumber;
-
+	protected int splitterUses = 10;
+	
 	public Level(OrthographicCamera camera, int levelno) {
 		this.camera = camera;
 		this.em = new EntityManager(camera);
@@ -76,6 +77,14 @@ public abstract class Level {
 
 	public void setUseLevers(boolean useLevers) {
 		this.useLevers = useLevers;
+	}
+
+	public int getSplitterUses() {
+		return splitterUses;
+	}
+
+	public void setSplitterUses(int splitterUses) {
+		this.splitterUses = splitterUses;
 	}
 
 }

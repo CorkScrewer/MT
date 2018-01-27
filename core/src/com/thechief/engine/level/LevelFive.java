@@ -9,27 +9,28 @@ import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
 
-public class LevelFour extends Level {
+public class LevelFive extends Level {
 
-	public LevelFour(OrthographicCamera camera) {
-		super(camera, 4);
+	public LevelFive(OrthographicCamera camera) {
+		super(camera, 5);
 		useLevers = true;
+//		splitterUses = 1;
 	}
 
 	@Override
 	public void create() {
-		data =  "     •   •        " + 
-				"     •            " + 
-				"     •  1         " +
-				"     •••••        " + 
-				"  ☻            •••" +
-				"        ☺      !◘•" +
-				"               •••" + 
+		data =  "                  " + 
 				"                  " + 
+				"                  " +
+				"        1         " + 
+				"             •••••" +
+				"  ☺     ☻    !@ ◘ " +
+				"             •••••" + 
+				"        2         " + 
 				"                  " + 
 				"                  ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 20);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, 25);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();
@@ -61,6 +62,7 @@ public class LevelFour extends Level {
 		grid.reset();
 		em.reset();
 		GameScreen.PLAYING = false;
+		em.getDevilHead().setLifePoints(em.getDevilHead().getMaxLifePoints());
 	}
 
 }

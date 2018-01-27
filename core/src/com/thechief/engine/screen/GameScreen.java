@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.Main;
 import com.thechief.engine.level.Level;
+import com.thechief.engine.level.LevelFive;
 import com.thechief.engine.level.LevelFour;
 import com.thechief.engine.level.LevelManager;
 import com.thechief.engine.level.LevelOne;
+import com.thechief.engine.level.LevelSix;
 import com.thechief.engine.level.LevelThree;
 import com.thechief.engine.level.LevelTwo;
 import com.thechief.engine.level.LevelZero;
@@ -36,6 +38,8 @@ public class GameScreen extends Screen {
 		levels.add(new LevelTwo(camera));
 		levels.add(new LevelThree(camera));
 		levels.add(new LevelFour(camera));
+		levels.add(new LevelFive(camera));
+		levels.add(new LevelSix(camera));
 		
 		LevelManager.setCurrentLevel(levels.first());
 	}

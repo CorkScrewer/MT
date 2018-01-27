@@ -14,8 +14,10 @@ public class SplitterTile extends Tile {
 	private int maxUses = 10;
 	private int uses = maxUses;
 
-	public SplitterTile(Vector2 gridPos, MapGrid grid) {
+	public SplitterTile(Vector2 gridPos, MapGrid grid, int maxUses) {
 		super(TextureManager.COOL_DUDE, TileType.Splitter, false, false, gridPos, grid, Direction.Right, false);
+		this.maxUses = maxUses;
+		uses = maxUses;
 	}
 
 	@Override

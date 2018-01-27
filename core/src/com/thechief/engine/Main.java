@@ -13,7 +13,7 @@ import com.thechief.engine.textrendering.FontManager;
 public class Main implements ApplicationListener {
 
 	public static final int WIDTH = 1280, HEIGHT = 720;
-	public static String TITLE = "MT v0.21p: ";
+	public static String TITLE = "MT v0.1b: ";
 
 	public static final String[] SUBTITLES = { "Time to Tile!",
 											   "Directional Madness!", 
@@ -35,7 +35,7 @@ public class Main implements ApplicationListener {
 
 	public static boolean POST_PROCESSING = true;
 
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 
 	private SpriteBatch sb;
 	private FPSLogger fps;
@@ -53,10 +53,6 @@ public class Main implements ApplicationListener {
 		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 	}
-
-	// LOOK WAHT HAPPENED. i was tweakin the settins of the game gfx and this
-	// happened lol xd.
-	// ill keep it for a trippy scene or somethin.
 
 	@Override
 	public void render() {

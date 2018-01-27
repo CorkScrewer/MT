@@ -85,7 +85,7 @@ public class MapGrid {
 					tiles[x + y * width] = new GoalTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
 				} else if (data[x + y * width] == SPLITTER) {
-					tiles[x + y * width] = new SplitterTile(new Vector2(x, y), this);
+					tiles[x + y * width] = new SplitterTile(new Vector2(x, y), this, LevelManager.getCurrentLevel().getSplitterUses());
 					em.addEntity(tiles[x + y * width]);
 				}
 

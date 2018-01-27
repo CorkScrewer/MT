@@ -11,7 +11,7 @@ import com.thechief.engine.textures.TextureManager;
 public class Button extends Electronic {
 
 	public boolean isLever = false;
-	
+
 	public Button(Vector2 gridPos, MapGrid grid, char type, boolean isLever) {
 		super(TextureManager.BUTTON_OFF, TileType.Button, false, false, gridPos, grid, Direction.Null, true, type);
 		this.isLever = isLever;
@@ -24,7 +24,11 @@ public class Button extends Electronic {
 
 	@Override
 	public void update() {
-		texture = on ? TextureManager.BUTTON_ON : TextureManager.BUTTON_OFF;
+		if (!isLever) {
+			texture = on ? TextureManager.BUTTON_ON : TextureManager.BUTTON_OFF;
+		} else {
+			texture = on ? TextureManager.LEVER_ON : TextureManager.LEVER_OFF;
+		}
 	}
 
 	@Override

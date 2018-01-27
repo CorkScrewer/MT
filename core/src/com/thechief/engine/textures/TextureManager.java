@@ -32,5 +32,7 @@ public class TextureManager {
 	
 	public static final Texture BUTTON_ON	= new Texture(Gdx.files.internal("gfx/buttonon.png"));
 	public static final Texture BUTTON_OFF	= new Texture(Gdx.files.internal("gfx/buttonoff.png"));
-
+	
+	public static final Texture LEVER_ON	= new Texture(Gdx.files.internal("gfx/lever_on.png"));
+	public static final Texture LEVER_OFF	= new Texture(Gdx.files.internal("gfx/lever_off.png"));
 }
