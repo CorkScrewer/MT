@@ -15,7 +15,7 @@ public class SplitterTile extends Tile {
 	private int uses = maxUses;
 
 	public SplitterTile(Vector2 gridPos, MapGrid grid, int maxUses) {
-		super(TextureManager.COOL_DUDE, TileType.Splitter, false, false, gridPos, grid, Direction.Right, false);
+		super(TextureManager.SPLITTER, TileType.Splitter, false, false, gridPos, grid, Direction.Right, false);
 		this.maxUses = maxUses;
 		uses = maxUses;
 	}
@@ -28,7 +28,9 @@ public class SplitterTile extends Tile {
 
 	@Override
 	public void update() {
-
+		if (uses <= 0) {
+			collidable = true;
+		}
 	}
 
 	@Override
@@ -38,7 +40,7 @@ public class SplitterTile extends Tile {
 
 	@Override
 	public void reset() {
-
+		collidable = false;
 	}
 
 	public void split(DevilHead head) {
@@ -48,9 +50,25 @@ public class SplitterTile extends Tile {
 		DevilHead newHead = new DevilHead(new Vector2(pos.x + 1, pos.y + 1), grid, head.getMaxLifePoints());
 		newHead.setLifePoints(head.getLifePoints() / 2);
 		head.setLifePoints(head.getLifePoints() / 2);
-
 		grid.getEntityManager().addDevilHead(newHead);
+		for (int i = 0; i < grid.getEntityManager().devilHeadSize(); i++) {
+			DevilHead current = grid.getEntityManager().getDevilHeadAt(i);
+			if (current == newHead) continue;
+			
+			if (current.getPosition().x == newHead.getPosition().x && current.getPosition().y == newHead.getPosition().y) {
+				current.getPosition().add(1, 0);
+			}
+		}
+		
 		head.getPosition().add(1, -1);
+		for (int i = 0; i < grid.getEntityManager().devilHeadSize(); i++) {
+			DevilHead current = grid.getEntityManager().getDevilHeadAt(i);
+			if (current == head) continue;
+			
+			if (current.getPosition().x == head.getPosition().x && current.getPosition().y == head.getPosition().y) {
+				current.getPosition().add(1, 0);
+			}
+		}
 
 		uses--;
 	}

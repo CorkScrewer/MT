@@ -12,8 +12,8 @@ public class TextureManager {
 	public static final Texture BLANK 		= new Texture(Gdx.files.internal("gfx/blank.png"));
 	public static final Texture LASER 		= new Texture(Gdx.files.internal("gfx/laser.png"));
 	public static final Texture DEVIL_HEAD	= new Texture(Gdx.files.internal("gfx/water.png"));
-	public static final Texture FLAG		= new Texture(Gdx.files.internal("gfx/flag.png"));
 	public static final Texture DOOR		= new Texture(Gdx.files.internal("gfx/door.png"));
+	public static final Texture SPLITTER	= new Texture(Gdx.files.internal("gfx/splitter.png"));
 	
 	public static final Texture UP_ARROW	= new Texture(Gdx.files.internal("gfx/uparrow.png"));
 	public static final Texture DOWN_ARROW  = new Texture(Gdx.files.internal("gfx/downarrow.png"));
@@ -24,8 +24,6 @@ public class TextureManager {
 	
 	public static final Texture PORTAL1		= new Texture(Gdx.files.internal("gfx/portal1.png"));
 	public static final Texture PORTAL2		= new Texture(Gdx.files.internal("gfx/portal2.png"));
-	public static final Texture PORTAL3		= new Texture(Gdx.files.internal("gfx/portal3.png"));
-	public static final Texture PORTAL4		= new Texture(Gdx.files.internal("gfx/portal4.png"));
 	
 	public static final Texture PAUSE		= new Texture(Gdx.files.internal("gfx/pause.png"));
 	public static final Texture PLAY		= new Texture(Gdx.files.internal("gfx/play.png"));
@@ -35,4 +33,7 @@ public class TextureManager {
 	
 	public static final Texture LEVER_ON	= new Texture(Gdx.files.internal("gfx/lever_on.png"));
 	public static final Texture LEVER_OFF	= new Texture(Gdx.files.internal("gfx/lever_off.png"));
+	
+	public static final Texture GOAL1		= new Texture(Gdx.files.internal("gfx/goal1.png"));
+	public static final Texture GOAL2		= new Texture(Gdx.files.internal("gfx/goal2.png"));
 }

@@ -9,26 +9,28 @@ import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
 
-public class LevelThree extends Level {
+public class LevelNine extends Level {
 
-	public LevelThree(OrthographicCamera camera) {
-		super("I Have Claustrophobia.", camera, 3);
+	public LevelNine(OrthographicCamera camera) {
+		super("help", camera, 9);
+		useLevers = false;
+		splitterUses = 1;
 	}
 
 	@Override
 	public void create() {
-		data =  "                  " + 
+		data =  "      • 2 •       " + 
+				"      •   •       " + 
+				"      ••!••       " +
+				"                  " +
+				"              ••••" +
+				"  ☺ ☻   ♦  1  @ ◘ " +
+				"              ••••" + 
 				"                  " + 
-				"   ••••••         " +
-				"   •   •••••••••••" + 
-				"  ☻• • •          " +
-				"•••• • •        ◘ " +
-				"  ☺  •            " + 
-				"••••••••••••••••••" + 
 				"                  " + 
 				"                  ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 28);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, 90);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();
@@ -56,9 +58,11 @@ public class LevelThree extends Level {
 
 	@Override
 	public void reset() {
+		System.out.println("this is called.");
 		grid.reset();
 		em.reset();
 		GameScreen.PLAYING = false;
+		em.getDevilHead().setLifePoints(em.getDevilHead().getMaxLifePoints());
 	}
 
 }

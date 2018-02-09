@@ -2,11 +2,15 @@ package com.thechief.engine.level;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.thechief.engine.Main;
 import com.thechief.engine.MiscFuncs;
+import com.thechief.engine.entity.Entity;
+import com.thechief.engine.entity.tile.puzzle.Button;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
 
@@ -28,12 +32,28 @@ public class LevelRenderer {
 		l.grid.tileDirectionRenderer().render(sb);
 
 		l.grid.getEntityManager().renderPlayer(sb);
-		
+
 		l.pp.render(sb);
 
+		l.renderName(sb);
 		sb.end();
+
+		l.sr.begin(ShapeType.Line);
+
+		l.sr.setColor(Color.RED);
+		for (Entity e : l.em.entities) {
+			if (e instanceof Button) {
+				if (((Button) e).getOther() != null) {
+					Vector2 first = new Vector2(e.getPosition()).scl(GameScreen.CELL_SIZE).add(GameScreen.CELL_SIZE / 2, GameScreen.CELL_SIZE / 2);
+					Vector2 second = new Vector2(((Button) e).getOther().getPosition()).scl(GameScreen.CELL_SIZE).add(GameScreen.CELL_SIZE / 2, GameScreen.CELL_SIZE / 2);
+					l.sr.rectLine(first, second, 2);
+				}
+			}
+		}
+		
+		l.sr.end();
 	}
-	
+
 	public static void defaultUpdateSequence(Level l) {
 		l.em.update();
 		l.pp.update();
@@ -54,5 +74,5 @@ public class LevelRenderer {
 			}
 		}
 	}
-	
+
 }

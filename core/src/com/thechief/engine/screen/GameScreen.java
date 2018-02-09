@@ -7,12 +7,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.Main;
 import com.thechief.engine.level.Level;
+import com.thechief.engine.level.LevelEight;
+import com.thechief.engine.level.LevelEleven;
 import com.thechief.engine.level.LevelFive;
 import com.thechief.engine.level.LevelFour;
 import com.thechief.engine.level.LevelManager;
+import com.thechief.engine.level.LevelNine;
 import com.thechief.engine.level.LevelOne;
+import com.thechief.engine.level.LevelSeven;
 import com.thechief.engine.level.LevelSix;
+import com.thechief.engine.level.LevelTen;
 import com.thechief.engine.level.LevelThree;
+import com.thechief.engine.level.LevelTwelve;
 import com.thechief.engine.level.LevelTwo;
 import com.thechief.engine.level.LevelZero;
 
@@ -33,13 +39,19 @@ public class GameScreen extends Screen {
 		
 		levels = new Array<Level>();
 		
-		levels.add(new LevelZero(camera));
-		levels.add(new LevelOne(camera));
-		levels.add(new LevelTwo(camera));
-		levels.add(new LevelThree(camera));
-		levels.add(new LevelFour(camera));
-		levels.add(new LevelFive(camera));
-		levels.add(new LevelSix(camera));
+		levels.add(new LevelZero  (camera));
+		levels.add(new LevelOne   (camera));
+		levels.add(new LevelTwo   (camera));
+		levels.add(new LevelThree (camera));
+		levels.add(new LevelFour  (camera));
+		levels.add(new LevelFive  (camera));
+		levels.add(new LevelSix   (camera));
+		levels.add(new LevelSeven (camera));
+		levels.add(new LevelEight (camera));
+		levels.add(new LevelNine  (camera));
+		levels.add(new LevelTen   (camera));
+		levels.add(new LevelEleven(camera));
+		levels.add(new LevelTwelve(camera));
 		
 		LevelManager.setCurrentLevel(levels.first());
 	}
@@ -61,6 +73,7 @@ public class GameScreen extends Screen {
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			LevelManager.getCurrentLevel().reset();
+			LevelManager.getCurrentLevel().nametime = 0;
 		}
 	}
 

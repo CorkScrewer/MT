@@ -19,9 +19,9 @@ public class PortalTile extends Tile {
 	public char type = '0';
 
 	public PortalTile(Vector2 gridPos, char type, MapGrid grid) {
-		super(TextureManager.DOWN_ARROW, TileType.Portal, false, false, gridPos, grid, Direction.Null, true);
+		super(TextureManager.PORTAL1, TileType.Portal, false, false, gridPos, grid, Direction.Null, true);
 		this.type = type;
-		Texture[] texs = { TextureManager.PORTAL1, TextureManager.PORTAL2, TextureManager.PORTAL3, TextureManager.PORTAL4 };
+		Texture[] texs = { TextureManager.PORTAL1, TextureManager.PORTAL2 };
 		animation = new Animation<Texture>(0.3f, texs);
 		width = 16;
 		height = 16;

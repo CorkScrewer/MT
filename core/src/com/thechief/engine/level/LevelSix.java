@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelSix extends Level {
 
 	public LevelSix(OrthographicCamera camera) {
-		super(camera, 6);
+		super("2 Fast 2 Complicated.", camera, 6);
 		useLevers = true;
 //		splitterUses = 1;
 	}
@@ -21,16 +21,16 @@ public class LevelSix extends Level {
 	public void create() {
 		data =  "       ••••••••   " + 
 				"       •  1   •   " + 
-				"       ••• ••••   " +
+				"       •••  •••   " +
 				"                  " + 
 				"             •••••" +
 				"  ☺     ☻    !@ ◘ " +
 				"             •••••" + 
 				"                  " + 
-				"       ••• ••••   " + 
+				"       •••  •••   " + 
 				"       •   2  •   ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 40);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, 46);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();

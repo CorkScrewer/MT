@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelFour extends Level {
 
 	public LevelFour(OrthographicCamera camera) {
-		super(camera, 4);
+		super("Woah", camera, 4);
 		useLevers = true;
 	}
 
@@ -29,7 +29,7 @@ public class LevelFour extends Level {
 				"                  " + 
 				"                  ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 20);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, 25);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();

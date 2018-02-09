@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelZero extends Level {
 
 	public LevelZero(OrthographicCamera camera) {
-		super(camera, 0);
+		super("It Begins.", camera, 0);
 	}
 
 	@Override

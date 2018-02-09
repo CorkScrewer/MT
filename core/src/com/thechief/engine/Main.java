@@ -13,7 +13,7 @@ import com.thechief.engine.textrendering.FontManager;
 public class Main implements ApplicationListener {
 
 	public static final int WIDTH = 1280, HEIGHT = 720;
-	public static String TITLE = "MT v0.1b: ";
+	public static String TITLE = "MT v0.2b: ";
 
 	public static final String[] SUBTITLES = { "Time to Tile!",
 											   "Directional Madness!", 
@@ -35,7 +35,7 @@ public class Main implements ApplicationListener {
 
 	public static boolean POST_PROCESSING = true;
 
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
 	private SpriteBatch sb;
 	private FPSLogger fps;

@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelTwo extends Level {
 
 	public LevelTwo(OrthographicCamera camera) {
-		super(camera, 2);
+		super("Obstacles 2 *_*", camera, 2);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class LevelTwo extends Level {
 				"     •            " + 
 				"     •            ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 23);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, 30);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();
