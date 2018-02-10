@@ -12,7 +12,7 @@ public class DesktopLauncher {
 		config.resizable = true;
 		config.width = Main.WIDTH;
 		config.height = Main.HEIGHT;
-		config.title = Main.TITLE + Main.SUBTITLES[MathUtils.random(Main.SUBTITLES.length - 1)];
+		config.title = Main.TITLE = Main.TITLE +  Main.SUBTITLES[MathUtils.random(Main.SUBTITLES.length - 1)];
 		new LwjglApplication(new Main(), config);
 	}
 }

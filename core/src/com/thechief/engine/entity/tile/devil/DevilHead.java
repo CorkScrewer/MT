@@ -104,12 +104,13 @@ public class DevilHead extends Entity {
 					pos.y = grid.getStartDevilY();
 
 					// go to next level
-					if (LevelManager.getCurrentLevel().getLevelNumber() >= GameScreen.levels.size - 1) {
+					if (LevelManager.getCurrentLevel().getLevelNumber() >= GameScreen.levels.get(GameScreen.levels.size - 1).getLevelNumber()) {
 						// If we are not going to the next level.
 						LevelManager.getCurrentLevel().reset();
 						lifePoints = totalLifePoints;
 					} else {
-						LevelManager.setCurrentLevel(GameScreen.levels.get(LevelManager.getCurrentLevel().next()));
+						LevelManager.getCurrentLevel().next();
+						LevelManager.setCurrentLevel(GameScreen.levels.get(GameScreen.levels.lastIndexOf(LevelManager.getCurrentLevel(), false) + 1));
 					}
 				}
 				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Splitter) {

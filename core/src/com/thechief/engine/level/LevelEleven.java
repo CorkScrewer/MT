@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelEleven extends Level {
 
 	public LevelEleven(OrthographicCamera camera) {
-		super("O_O wot", camera, 11);
+		super("Portals 1", camera, 11);
 //		useLevers = false;
 //		splitterUses = 2;
 	}

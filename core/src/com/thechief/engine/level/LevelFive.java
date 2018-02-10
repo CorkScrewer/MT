@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelFive extends Level {
 
 	public LevelFive(OrthographicCamera camera) {
-		super("Me duele el cerebro", camera, 5);
+		super("Leverence 2", camera, 5);
 		useLevers = true;
 //		splitterUses = 1;
 	}

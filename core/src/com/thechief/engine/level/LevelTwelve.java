@@ -12,19 +12,19 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelTwelve extends Level {
 
 	public LevelTwelve(OrthographicCamera camera) {
-		super("(._.)", camera, 11);
+		super("Portals 2", camera, 12);
 //		useLevers = false;
 //		splitterUses = 2;
 	}
 
 	@Override
 	public void create() {
-		data =  "                  " + 
-				"                  " +
-				"                  " +
-				"••••••      ••••••" +
-				" ☺☻  q•    •q   ◘ " +
-				"••••••      ••••••" + 
+		data =  "    ••••• •••••   " +
+				"    •q w• •w e•   " +
+				"    ••••• •••••   " + 
+				"••••••     •••••••" +
+				" ☺☻ q•     •e   ◘ " +
+				"••••••     •••••••" + 
 				"                  " + 
 				"                  " + 
 				"                  " + 

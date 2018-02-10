@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelTwo extends Level {
 
 	public LevelTwo(OrthographicCamera camera) {
-		super("Obstacles 2 *_*", camera, 2);
+		super("Obstacles 2", camera, 2);
 	}
 
 	@Override

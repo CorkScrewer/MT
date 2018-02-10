@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelThree extends Level {
 
 	public LevelThree(OrthographicCamera camera) {
-		super("I Have Claustrophobia.", camera, 3);
+		super("Claustrophobia", camera, 3);
 	}
 
 	@Override

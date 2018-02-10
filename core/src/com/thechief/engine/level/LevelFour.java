@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelFour extends Level {
 
 	public LevelFour(OrthographicCamera camera) {
-		super("Woah", camera, 4);
+		super("Leverence 1", camera, 4);
 		useLevers = true;
 	}
 

@@ -6,32 +6,17 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.ScreenManager;
 import com.thechief.engine.textrendering.FontManager;
 
 public class Main implements ApplicationListener {
 
-	public static final int WIDTH = 1280, HEIGHT = 720;
+	public static int WIDTH = 1280, HEIGHT = 720;
 	public static String TITLE = "MT v0.2b: ";
 
-	public static final String[] SUBTITLES = { "Time to Tile!",
-											   "Directional Madness!", 
-											   "Mortal Portals!", 
-											   "Press Spacebar To Pay Respect!", 
-											   "Many Thanks!", 
-											   "Aldos: Aluminium Disk Operating System", 
-											   "Did Somebody Say Grid?", 
-											   "Out April 27th, 2018!", 
-											   "Spade: Super Powerful and Deadly Entity", 
-											   "Made Using libGDX from badlogicgames! Check them out!", 
-											   "Enter the Gridgeon.", 
-											   "Sid: Some Indistiguishable Dog.", 
-											   "Please don't sue me.", 
-											   "Ingriduluos!", 
-											   "Theyrrre Grrid!", 
-											   "STOP TOO MANY GRID PUNS!!!", 
-											   "Threat Nullified." };
+	public static final String[] SUBTITLES = { "Time to Tile!", "Directional Madness!", "Mortal Portals!", "Press Spacebar To Pay Respect!", "Many Thanks!", "Aldos: Aluminium Disk Operating System", "Did Somebody Say Grid?", "Out April 27th, 2018!", "Spade: Super Powerful and Deadly Entity", "Made Using libGDX from badlogicgames! Check them out!", "Enter the Gridgeon.", "Please don't sue me.", "Ingriduluos!", "Theyrrre Grrid!", "STOP TOO MANY GRID PUNS!!!", "Threat Nullified." };
 
 	public static boolean POST_PROCESSING = true;
 
@@ -39,18 +24,19 @@ public class Main implements ApplicationListener {
 
 	private SpriteBatch sb;
 	private FPSLogger fps;
-	
+
+	private long startTime;
+
 	@Override
 	public void create() {
 		sb = new SpriteBatch();
 		fps = new FPSLogger();
+		startTime = TimeUtils.nanoTime();
 
 		FontManager.init();
-
 		ScreenManager.setCurrentScreen(new GameScreen());
-
 		PostProcessing.create();
-		
+
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 	}
 
@@ -67,11 +53,11 @@ public class Main implements ApplicationListener {
 		}
 
 		ScreenManager.updateCurrentScreen();
-		
+
 		if (POST_PROCESSING) {
 			PostProcessing.update();
 		}
-		
+
 		if (DEBUG) {
 			if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) && Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) && Gdx.input.isKeyJustPressed(Keys.P)) {
 				POST_PROCESSING = !POST_PROCESSING;
@@ -79,6 +65,10 @@ public class Main implements ApplicationListener {
 		}
 
 		fps.log();
+		if (TimeUtils.nanoTime() - startTime > 1000000000) /* 1,000,000,000ns == one second */ {
+			Gdx.graphics.setTitle(TITLE + " || FPS: " + Gdx.graphics.getFramesPerSecond());
+			startTime = TimeUtils.nanoTime();
+		}
 	}
 
 	private void myRender() {

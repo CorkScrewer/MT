@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelSeven extends Level {
 
 	public LevelSeven(OrthographicCamera camera) {
-		super("owah", camera, 7);
+		super("Splitter-Button 1", camera, 7);
 		useLevers = false;
 		splitterUses = 1;
 	}

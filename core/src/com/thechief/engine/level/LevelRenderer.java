@@ -35,9 +35,8 @@ public class LevelRenderer {
 
 		l.pp.render(sb);
 
-		l.renderName(sb);
 		sb.end();
-
+		
 		l.sr.begin(ShapeType.Line);
 
 		l.sr.setColor(Color.RED);
@@ -52,6 +51,10 @@ public class LevelRenderer {
 		}
 		
 		l.sr.end();
+
+		sb.begin();
+		l.renderName(sb);
+		sb.end();
 	}
 
 	public static void defaultUpdateSequence(Level l) {

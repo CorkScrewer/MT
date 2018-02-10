@@ -55,13 +55,13 @@ public abstract class Level {
 		if (nametime < 4) {
 			nametime += Gdx.graphics.getDeltaTime();
 			FontManager.SILKSCREENB.setColor(1, 1, 1, (4 - nametime) / 4);
-			Text.drawText(sb, FontManager.SILKSCREENB, name, (camera.position.x + Gdx.graphics.getWidth() / 2) / 2, (Gdx.graphics.getHeight() / 2 - camera.position.y) / 2 + 60, true);
+			Text.drawText(sb, FontManager.SILKSCREENB, "Level " + levelNumber + ": " + name, (camera.position.x + Gdx.graphics.getWidth() / 2) / 2, (Gdx.graphics.getHeight() / 2 - camera.position.y) / 2 + 60, true);
 			FontManager.SILKSCREENB.setColor(1, 1, 1, 1);
 		}
 	}
 
 	public int next() {
-		return (levelNumber += 1);
+		return ++levelNumber;
 	}
 
 	public int getLevelNumber() {
