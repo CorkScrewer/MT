@@ -14,8 +14,10 @@ import com.bitfire.utils.ShaderLoader;
 public class PostProcessing {
 
 	private static PostProcessor post;
-	private static CrtMonitor crt;
-	private static Vignette vig;
+	public static CrtMonitor crt;
+	public static Vignette vig;
+	public static Bloom bloom;
+	public static Curvature curvature;
 	
 	private static float elapsedSecs;
 	
@@ -24,12 +26,13 @@ public class PostProcessing {
 
 		post = new PostProcessor(false, false, true);
 
-		Bloom bloom = new Bloom((int) (Gdx.graphics.getWidth() * 0.25f), (int) (Gdx.graphics.getHeight() * 0.25f));
+		bloom = new Bloom((int) (Gdx.graphics.getWidth() * 0.25f), (int) (Gdx.graphics.getHeight() * 0.25f));
+		bloom.setBloomIntesity(0.75f);
 		post.addEffect(bloom);
 
-		Curvature c = new Curvature();
-		c.setDistortion(0.4f);
-		post.addEffect(c);
+		curvature = new Curvature();
+		curvature.setDistortion(0.4f);
+		post.addEffect(curvature);
 
 		int effects = Effect.Scanlines.v | Effect.PhosphorVibrance.v | Effect.Scanlines.v | Effect.Tint.v | Effect.Vignette.v;
 		crt = new CrtMonitor(Main.WIDTH, Main.HEIGHT, false, false, RgbMode.RgbShift, effects);

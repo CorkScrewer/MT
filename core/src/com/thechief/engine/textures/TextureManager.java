@@ -21,6 +21,8 @@ public class TextureManager {
 	public static final Texture RIGHT_ARROW = new Texture(Gdx.files.internal("gfx/rightarrow.png"));
 	
 	public static final Texture BACKGROUND	= new Texture(Gdx.files.internal("gfx/background.png"));
+	public static final Texture B_BACKGROUND= new Texture(Gdx.files.internal("gfx/backgroundblue.png"));
+	public static final Texture D_BACKGROUND= new Texture(Gdx.files.internal("gfx/backgroundDesaturated.png"));
 	
 	public static final Texture PORTAL1		= new Texture(Gdx.files.internal("gfx/portal1.png"));
 	public static final Texture PORTAL2		= new Texture(Gdx.files.internal("gfx/portal2.png"));

@@ -7,14 +7,14 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.ScreenManager;
+import com.thechief.engine.screen.title.TitleScreen;
 import com.thechief.engine.textrendering.FontManager;
 
 public class Main implements ApplicationListener {
 
 	public static int WIDTH = 1280, HEIGHT = 720;
-	public static String TITLE = "MT v0.2b: ";
+	public static String TITLE = "MT v0.3b: ";
 
 	public static final String[] SUBTITLES = { "Time to Tile!", "Directional Madness!", "Mortal Portals!", "Press Spacebar To Pay Respect!", "Many Thanks!", "Aldos: Aluminium Disk Operating System", "Did Somebody Say Grid?", "Out April 27th, 2018!", "Spade: Super Powerful and Deadly Entity", "Made Using libGDX from badlogicgames! Check them out!", "Enter the Gridgeon.", "Please don't sue me.", "Ingriduluos!", "Theyrrre Grrid!", "STOP TOO MANY GRID PUNS!!!", "Threat Nullified." };
 
@@ -34,10 +34,10 @@ public class Main implements ApplicationListener {
 		startTime = TimeUtils.nanoTime();
 
 		FontManager.init();
-		ScreenManager.setCurrentScreen(new GameScreen());
 		PostProcessing.create();
+		ScreenManager.setCurrentScreen(new TitleScreen());
 
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor((8/255f), 6/255f, 54/255f, 1);
 	}
 
 	@Override
@@ -65,10 +65,10 @@ public class Main implements ApplicationListener {
 		}
 
 		fps.log();
-		if (TimeUtils.nanoTime() - startTime > 1000000000) /* 1,000,000,000ns == one second */ {
-			Gdx.graphics.setTitle(TITLE + " || FPS: " + Gdx.graphics.getFramesPerSecond());
-			startTime = TimeUtils.nanoTime();
-		}
+//		if (TimeUtils.nanoTime() - startTime > 1000000000) /* 1,000,000,000ns == one second */ {
+//			Gdx.graphics.setTitle(TITLE + " || FPS: " + Gdx.graphics.getFramesPerSecond());
+//			startTime = TimeUtils.nanoTime();
+//		}
 	}
 
 	private void myRender() {
