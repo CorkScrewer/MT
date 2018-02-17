@@ -27,7 +27,7 @@ public class GameScreen extends Screen {
 
 	public static Array<Level> levels;
 	
-	public static final int CELL_SIZE = 72;
+	public static final int CELL_SIZE = Main.HEIGHT / 10;
 	public static final int INTERVAL = 30; // 1/2 of a second given 60fps
 
 	public static boolean PLAYING = false;
@@ -77,6 +77,28 @@ public class GameScreen extends Screen {
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			LevelManager.getCurrentLevel().reset();
 			LevelManager.getCurrentLevel().nametime = 0;
+		}
+		if (Main.DEBUG) {
+			if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) && Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
+				// go to next level
+				if (LevelManager.getCurrentLevel().getLevelNumber() >= levels.get(levels.size - 1).getLevelNumber()) {
+					// If we are not going to the next level.
+					LevelManager.getCurrentLevel().reset();
+				} else {
+					LevelManager.getCurrentLevel().next();
+					LevelManager.setCurrentLevel(levels.get(levels.lastIndexOf(LevelManager.getCurrentLevel(), false) + 1));
+				}
+			}
+			if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) && Gdx.input.isKeyJustPressed(Keys.LEFT)) {
+				// go to next level
+				if (LevelManager.getCurrentLevel().getLevelNumber() <= 1) {
+					// If we are not going to the next level.
+					LevelManager.getCurrentLevel().reset();
+				} else {
+					LevelManager.getCurrentLevel().before();
+					LevelManager.setCurrentLevel(levels.get(levels.lastIndexOf(LevelManager.getCurrentLevel(), false) - 1));
+				}
+			}
 		}
 	}
 

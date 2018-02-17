@@ -10,17 +10,14 @@ import com.thechief.engine.textures.TextureManager;
 
 public class PausePlay extends Entity {
 
-	private OrthographicCamera camera;
-
 	public PausePlay(Vector2 pos, MapGrid grid) {
 		super(TextureManager.PAUSE, pos, grid);
-		camera = grid.getEntityManager().camera;
 	}
 
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.setColor(Color.GREEN);
-		sb.draw(texture, pos.x + camera.position.x - camera.viewportWidth / 2, pos.y + camera.position.y - camera.viewportHeight / 2, 90, 70);
+		sb.draw(texture, pos.x + grid.getEntityManager().camera.position.x - grid.getEntityManager().camera.viewportWidth / 2, pos.y + grid.getEntityManager().camera.position.y - grid.getEntityManager().camera.viewportHeight / 2, 90, 70);
 		sb.setColor(Color.WHITE);
 	}
 

@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.entity.Entity;
 import com.thechief.engine.entity.grid.MapGrid;
+import com.thechief.engine.screen.GameScreen;
 
 public abstract class Tile extends Entity {
 
@@ -30,9 +31,8 @@ public abstract class Tile extends Entity {
 		this.collidableForPlayer = collidableForPlayer;
 		this.canEnemyGoThrough = collidable;
 		this.canTileHaveDirection = canTileHaveDir;
-		this.width = width;
-		this.height = height;
-		this.width = this.height = 16;
+		this.width = (int) (GameScreen.CELL_SIZE / 4.5f);
+		this.height = (int) (GameScreen.CELL_SIZE / 4.5f);
 
 		// h = new float[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A* OBJECT
 		// for (int i = 0; i < h.length; i++) {
@@ -61,7 +61,8 @@ public abstract class Tile extends Entity {
 		this.type = type;
 		this.canTileHaveDirection = canTileHaveDir;
 		
-		width = height = 16;
+		this.width = (int) (GameScreen.CELL_SIZE / 4.5f);
+		this.height = (int) (GameScreen.CELL_SIZE / 4.5f);
 
 		// h = new float[512]; // THIS IS THE AMOUNT OF OBJECTS THAT USE THE A* OBJECT
 		// for (int i = 0; i < h.length; i++) {

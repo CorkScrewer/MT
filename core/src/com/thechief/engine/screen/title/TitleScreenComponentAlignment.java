@@ -1,6 +1,7 @@
 package com.thechief.engine.screen.title;
 
 import com.badlogic.gdx.Gdx;
+import com.thechief.engine.Main;
 
 public enum TitleScreenComponentAlignment {
 
@@ -8,13 +9,13 @@ public enum TitleScreenComponentAlignment {
 	
 	int getPositionFromAlignment(TitleScreenComponentAlignment al) {
 		if (al == Left) {
-			return Gdx.graphics.getWidth() / 4;
+			return Main.WIDTH / 4;
 		}
 		if (al == Center) {
-			return Gdx.graphics.getWidth() / 2;
+			return Main.WIDTH / 2;
 		}
 		if (al == Right) {
-			return Gdx.graphics.getWidth() - Gdx.graphics.getWidth() / 4;
+			return Main.WIDTH - Main.WIDTH / 4;
 		}
 		return 0;
 	}

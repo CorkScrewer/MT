@@ -23,8 +23,6 @@ public class PortalTile extends Tile {
 		this.type = type;
 		Texture[] texs = { TextureManager.PORTAL1, TextureManager.PORTAL2 };
 		animation = new Animation<Texture>(0.3f, texs);
-		width = 16;
-		height = 16;
 	}
 
 	@Override

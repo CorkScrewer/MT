@@ -7,17 +7,15 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.Main;
-import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.Screen;
-import com.thechief.engine.screen.ScreenManager;
 import com.thechief.engine.textrendering.FontManager;
 import com.thechief.engine.textrendering.Text;
 import com.thechief.engine.textures.TextureManager;
 
 public class TitleScreen extends Screen {
 
-	public Array<TitleScreenComponent> options = new Array<TitleScreenComponent>();
-	public TitleScreenComponent selected;
+	public Array<TitleScreenComponent<TitleScreen>> options = new Array<TitleScreenComponent<TitleScreen>>();
+	public TitleScreenComponent<TitleScreen> selected;
 	public int selectedInt;
 	
 	@Override

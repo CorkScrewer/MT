@@ -3,13 +3,15 @@ package com.thechief.engine.screen.title;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
+import com.thechief.engine.Main;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.ScreenManager;
+import com.thechief.engine.textures.TextureManager;
 
-public class OptionsButton extends TitleScreenComponent {
+public class OptionsButton extends TitleScreenComponent<TitleScreen> {
 
 	public OptionsButton(float y, TitleScreen title) {
-		super("Options", Color.RED, new Color(1f, 0.25f, 0.25f, 1f), TitleScreenComponentType.Button, y, TitleScreenComponentAlignment.Center, title);
+		super("Options", Color.RED, Color.WHITE, TitleScreenComponentType.Button, y, TitleScreenComponentAlignment.Center, title);
 	}
 
 	@Override
@@ -18,7 +20,7 @@ public class OptionsButton extends TitleScreenComponent {
 
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
-				ScreenManager.setCurrentScreen(new GameScreen());
+				ScreenManager.setCurrentScreen(new OptionsScreen());
 			}
 		}
 	}

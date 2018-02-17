@@ -20,7 +20,7 @@ public class Main implements ApplicationListener {
 
 	public static boolean POST_PROCESSING = true;
 
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 
 	private SpriteBatch sb;
 	private FPSLogger fps;
@@ -37,7 +37,7 @@ public class Main implements ApplicationListener {
 		PostProcessing.create();
 		ScreenManager.setCurrentScreen(new TitleScreen());
 
-		Gdx.gl.glClearColor((8/255f), 6/255f, 54/255f, 1);
+		Gdx.gl.glClearColor((8 / 255f), 6 / 255f, 54 / 255f, 1);
 	}
 
 	@Override
@@ -65,10 +65,12 @@ public class Main implements ApplicationListener {
 		}
 
 		fps.log();
-//		if (TimeUtils.nanoTime() - startTime > 1000000000) /* 1,000,000,000ns == one second */ {
-//			Gdx.graphics.setTitle(TITLE + " || FPS: " + Gdx.graphics.getFramesPerSecond());
-//			startTime = TimeUtils.nanoTime();
-//		}
+		if (DEBUG) {
+			if (TimeUtils.nanoTime() - startTime > 1000000000) /* 1,000,000,000ns == one second */ {
+				Gdx.graphics.setTitle(TITLE + " || FPS: " + Gdx.graphics.getFramesPerSecond());
+				startTime = TimeUtils.nanoTime();
+			}
+		}
 	}
 
 	private void myRender() {

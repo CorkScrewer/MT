@@ -63,6 +63,10 @@ public abstract class Level {
 	public int next() {
 		return ++levelNumber;
 	}
+	
+	public int before() {
+		return --levelNumber;
+	}
 
 	public int getLevelNumber() {
 		return levelNumber;
