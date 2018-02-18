@@ -14,13 +14,14 @@ import com.thechief.engine.textrendering.FontManager;
 public class Main implements ApplicationListener {
 
 	public static int WIDTH = 1280, HEIGHT = 720;
-	public static String TITLE = "MT v0.3b: ";
+	public static String VERSION = "0.41b";
+	public static String TITLE = "MT v" + VERSION + ": ";
 
 	public static final String[] SUBTITLES = { "Time to Tile!", "Directional Madness!", "Mortal Portals!", "Press Spacebar To Pay Respect!", "Many Thanks!", "Aldos: Aluminium Disk Operating System", "Did Somebody Say Grid?", "Out April 27th, 2018!", "Spade: Super Powerful and Deadly Entity", "Made Using libGDX from badlogicgames! Check them out!", "Enter the Gridgeon.", "Please don't sue me.", "Ingriduluos!", "Theyrrre Grrid!", "STOP TOO MANY GRID PUNS!!!", "Threat Nullified." };
 
 	public static boolean POST_PROCESSING = true;
 
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
 	private SpriteBatch sb;
 	private FPSLogger fps;

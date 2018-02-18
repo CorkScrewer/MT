@@ -23,6 +23,8 @@ public class OptionsExitButton extends TitleScreenComponent<OptionsScreen> {
 			Main.HEIGHT = title.resolutionSlider.resolution[1];
 			
 		    Gdx.graphics.setWindowedMode(Main.WIDTH, Main.HEIGHT);
+		    
+		    Main.POST_PROCESSING = title.postSlider.selection;
 
 			ScreenManager.setCurrentScreen(new TitleScreen());
 		}

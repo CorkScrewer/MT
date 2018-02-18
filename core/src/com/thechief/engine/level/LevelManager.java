@@ -1,6 +1,10 @@
 package com.thechief.engine.level;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.thechief.engine.Main;
+import com.thechief.engine.screen.GameScreen;
 
 public class LevelManager {
 
@@ -15,6 +19,11 @@ public class LevelManager {
 			currentLevel.dispose();
 		currentLevel = l;
 		currentLevel.create();
+
+		GameScreen.CURRENT_LEVEL = LevelManager.getCurrentLevel().getLevelNumber();
+
+		FileHandle file = Gdx.files.external("save.mt");
+		file.writeString(Integer.toString(GameScreen.CURRENT_LEVEL) + " " + Main.VERSION, false);
 	}
 	
 	public static void updateCurrentLevel() {
