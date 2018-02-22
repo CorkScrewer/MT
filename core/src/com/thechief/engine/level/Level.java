@@ -107,5 +107,5 @@ public abstract class Level {
 	public void setSplitterUses(int splitterUses) {
 		this.splitterUses = splitterUses;
 	}
-
+	
 }

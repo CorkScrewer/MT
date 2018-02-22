@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.Main;
 import com.thechief.engine.level.Level;
@@ -49,17 +50,17 @@ public class GameScreen extends Screen {
 		
 		levels = new Array<Level>();
 		
-		levels.add(new LevelZero  (camera));
-		levels.add(new LevelOne   (camera));
-		levels.add(new LevelTwo   (camera));
-		levels.add(new LevelThree (camera));
-		levels.add(new LevelFour  (camera));
-		levels.add(new LevelFive  (camera));
-		levels.add(new LevelSix   (camera));
-		levels.add(new LevelSeven (camera));
-		levels.add(new LevelEight (camera));
-		levels.add(new LevelNine  (camera));
-		levels.add(new LevelTen   (camera));
+//		levels.add(new LevelZero  (camera));
+//		levels.add(new LevelOne   (camera));
+//		levels.add(new LevelTwo   (camera));
+//		levels.add(new LevelThree (camera));
+//		levels.add(new LevelFour  (camera));
+//		levels.add(new LevelFive  (camera));
+//		levels.add(new LevelSix   (camera));
+//		levels.add(new LevelSeven (camera));
+//		levels.add(new LevelEight (camera));
+//		levels.add(new LevelNine  (camera));
+//		levels.add(new LevelTen   (camera));
 		levels.add(new LevelEleven(camera));
 		levels.add(new LevelTwelve(camera));
 
@@ -73,6 +74,7 @@ public class GameScreen extends Screen {
 				CURRENT_LEVEL = Integer.parseInt(strings[0]);
 			}
 		}
+		CURRENT_LEVEL = MathUtils.clamp(CURRENT_LEVEL, 0, levels.size - 1);
 		
 		if (newGame) {
 			LevelManager.setCurrentLevel(levels.first());
@@ -82,6 +84,7 @@ public class GameScreen extends Screen {
 			LevelManager.setCurrentLevel(levels.first());
 		} else {
 			LevelManager.setCurrentLevel(levels.get(CURRENT_LEVEL));
+			System.out.println(CURRENT_LEVEL);
 		}
 	}
 

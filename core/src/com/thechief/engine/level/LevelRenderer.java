@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.thechief.engine.Main;
 import com.thechief.engine.MiscFuncs;
 import com.thechief.engine.entity.Entity;
+import com.thechief.engine.entity.tile.PortalTile;
 import com.thechief.engine.entity.tile.puzzle.Button;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
@@ -46,6 +47,15 @@ public class LevelRenderer {
 					Vector2 first = new Vector2(e.getPosition()).scl(GameScreen.CELL_SIZE).add(GameScreen.CELL_SIZE / 2, GameScreen.CELL_SIZE / 2);
 					Vector2 second = new Vector2(((Button) e).getOther().getPosition()).scl(GameScreen.CELL_SIZE).add(GameScreen.CELL_SIZE / 2, GameScreen.CELL_SIZE / 2);
 					l.sr.rectLine(first, second, 2);
+				}
+			}
+			if (e instanceof PortalTile) {
+				if (((PortalTile) e).getOther() != null) {
+					l.sr.setColor(Color.GOLD);
+					Vector2 first = new Vector2(e.getPosition()).scl(GameScreen.CELL_SIZE).add(GameScreen.CELL_SIZE / 2, GameScreen.CELL_SIZE / 2);
+					Vector2 second = new Vector2(((PortalTile) e).getOther().getPosition()).scl(GameScreen.CELL_SIZE).add(GameScreen.CELL_SIZE / 2, GameScreen.CELL_SIZE / 2);
+					l.sr.rectLine(first, second, 2);
+					l.sr.setColor(Color.WHITE);
 				}
 			}
 		}
