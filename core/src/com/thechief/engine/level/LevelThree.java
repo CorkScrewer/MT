@@ -19,11 +19,11 @@ public class LevelThree extends Level {
 	public void create() {
 		data =  "                  " + 
 				"                  " + 
-				"   ••••••         " +
-				"   •   •••••••••••" + 
-				"  ☻• • •          " +
-				"•••• • •        ◘ " +
-				"  ☺  •            " + 
+				"   •••••••••      " +
+				"   •   •   •      " + 
+				"   • • • • •      " +
+				"•••• • • • •••••••" +
+				"  ☺  •   •      ◘ " + 
 				"••••••••••••••••••" + 
 				"                  " + 
 				"                  ";
@@ -56,9 +56,7 @@ public class LevelThree extends Level {
 
 	@Override
 	public void reset() {
-		grid.reset();
-		em.reset();
-		GameScreen.PLAYING = false;
+		LevelRenderer.defaultResetSequence(this);
 	}
 
 }

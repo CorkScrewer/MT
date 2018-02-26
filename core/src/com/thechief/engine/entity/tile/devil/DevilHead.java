@@ -141,9 +141,6 @@ public class DevilHead extends Entity {
 		}
 		if (lifePoints <= 0) {
 			reset();
-			if (grid.getEntityManager().devilHeadSize() == 1 && pos.x == grid.getStartDevilX() && pos.y == grid.getStartDevilY()) {
-				GameScreen.PLAYING = false;
-			}
 		}
 	}
 

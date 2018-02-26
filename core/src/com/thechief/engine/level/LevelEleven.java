@@ -12,27 +12,28 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelEleven extends Level {
 
 	public LevelEleven(OrthographicCamera camera) {
-		super("Portals 1", camera, 11);
-//		useLevers = false;
-//		splitterUses = 2;
+		super("Splitter-Button 2", camera, 11);
+		useLevers = false;
+		splitterUses = 2;
 	}
 
 	@Override
 	public void create() {
-		data =  "                  " + 
-				"                  " +
-				"                  " +
-				"•••••••    •••••••" +
-				" ☺☻  q•    •q   ◘ " +
-				"•••••••    •••••••" + 
-				"                  " + 
-				"                  " + 
-				"                  " + 
-				"                  ";
+		data =  "           •••••••" + 
+				"           •     •" + 
+				"••••••••••••  1  •" +
+				"•                •" +
+				"•             ••••" +
+				"• ☺    ♦      !@◘ " +
+				"•             ••••" + 
+				"•                •" + 
+				"••••••••••••  2  •" + 
+				"           •     •" + 
+				"           •••••••";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 120);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, 90);
 
-		grid = new MapGrid(data, 18, 10, em, camera, dhc);
+		grid = new MapGrid(data, 18, 11, em, camera, dhc);
 		sr = new ShapeRenderer();
 		pp = new PausePlay(new Vector2(30, 30), grid);
 	}
@@ -58,11 +59,7 @@ public class LevelEleven extends Level {
 
 	@Override
 	public void reset() {
-		System.out.println("this is called.");
-		grid.reset();
-		em.reset();
-		GameScreen.PLAYING = false;
-		em.getDevilHead().setLifePoints(em.getDevilHead().getMaxLifePoints());
+		LevelRenderer.defaultResetSequence(this);
 	}
 
 }

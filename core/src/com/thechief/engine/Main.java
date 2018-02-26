@@ -2,7 +2,8 @@ package com.thechief.engine;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,7 +22,10 @@ public class Main implements ApplicationListener {
 
 	public static boolean POST_PROCESSING = true;
 
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
+	
+	public static boolean CONTROLLER_PLUGGED_IN = true;
+	public static Controller controller;
 
 	private SpriteBatch sb;
 	private FPSLogger fps;
@@ -38,6 +42,16 @@ public class Main implements ApplicationListener {
 		PostProcessing.create();
 		ScreenManager.setCurrentScreen(new TitleScreen());
 
+		if (Controllers.getControllers().size == 0) {
+			CONTROLLER_PLUGGED_IN = false;
+		} else {
+			for (Controller cs : Controllers.getControllers()) {
+				controller = cs;
+				System.out.println(controller);
+			}
+		}
+		
+		System.out.println(Gdx.graphics.getDisplayMode().width);
 		Gdx.gl.glClearColor((8 / 255f), 6 / 255f, 54 / 255f, 1);
 	}
 
@@ -57,12 +71,6 @@ public class Main implements ApplicationListener {
 
 		if (POST_PROCESSING) {
 			PostProcessing.update();
-		}
-
-		if (DEBUG) {
-			if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) && Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) && Gdx.input.isKeyJustPressed(Keys.P)) {
-				POST_PROCESSING = !POST_PROCESSING;
-			}
 		}
 
 		fps.log();

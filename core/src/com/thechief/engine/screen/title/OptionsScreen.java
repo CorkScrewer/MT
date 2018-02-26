@@ -17,6 +17,7 @@ public class OptionsScreen extends Screen {
 	
 	public OptionsResolutionSlider resolutionSlider;
 	public OptionsPostProcessingSlider postSlider;
+	public OptionsFullscreenSlider fullSlider;
 	
 	@Override
 	public void create() {
@@ -26,6 +27,7 @@ public class OptionsScreen extends Screen {
 
 		components.add(resolutionSlider = new OptionsResolutionSlider(Main.HEIGHT / 4, this));
 		components.add(postSlider = new OptionsPostProcessingSlider(resolutionSlider.y + 100, this));
+		components.add(fullSlider = new OptionsFullscreenSlider(postSlider.y + 100, this));
 		components.add(new OptionsExitButton(Main.HEIGHT - Main.HEIGHT / 4, this));
 		
 		selected = components.first();

@@ -21,7 +21,7 @@ public class LevelTwo extends Level {
 				"     •            " +
 				"     •            " + 
 				"     •    •       " + 
-				"  ☻  •   ••       " + 
+				"     •   ••       " + 
 				"         ••     ◘ " +
 				"  ☺  •   ••       " +
 				"     •    •       " + 
@@ -56,9 +56,7 @@ public class LevelTwo extends Level {
 
 	@Override
 	public void reset() {
-		grid.reset();
-		em.reset();
-		GameScreen.PLAYING = false;
+		LevelRenderer.defaultResetSequence(this);
 	}
 
 }

@@ -78,14 +78,22 @@ public class LevelRenderer {
 		}
 
 		if (!GameScreen.PLAYING || l.shouldFocusOnPlayer) {
-			l.camera.position.lerp(new Vector3(l.em.getPlayer().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.2f);
-			l.camera.position.set(MiscFuncs.clamp(new Vector2(l.camera.position.x, l.camera.position.y), new Vector2(Main.WIDTH / 2, Main.HEIGHT / 2), new Vector2(l.grid.getWidth() * GameScreen.CELL_SIZE - l.camera.viewportWidth / 2, l.grid.getHeight() * GameScreen.CELL_SIZE - l.camera.viewportHeight / 2)), 0);
+			l.camera.position.lerp(new Vector3(l.em.getPlayer().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.1f);
+			l.camera.position.set(MiscFuncs.clamp(new Vector3(l.camera.position.x, l.camera.position.y, 0), new Vector3(Main.WIDTH / 2, Main.HEIGHT / 2, 0), new Vector3(l.grid.getWidth() * GameScreen.CELL_SIZE - l.camera.viewportWidth / 2, l.grid.getHeight() * GameScreen.CELL_SIZE - l.camera.viewportHeight / 2, 0)));
 		} else {
 			if (l.em.devilHeadSize() > 0) {
-				l.camera.position.lerp(new Vector3(l.em.getDevilHead().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.2f);
-				l.camera.position.set(MiscFuncs.clamp(new Vector2(l.camera.position.x, l.camera.position.y), new Vector2(Main.WIDTH / 2, Main.HEIGHT / 2), new Vector2(l.grid.getWidth() * GameScreen.CELL_SIZE - l.camera.viewportWidth / 2, l.grid.getHeight() * GameScreen.CELL_SIZE - l.camera.viewportHeight / 2)), 0);
+				l.camera.position.lerp(new Vector3(l.em.getDevilHead().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.1f);
+				l.camera.position.set(MiscFuncs.clamp(new Vector3(l.camera.position.x, l.camera.position.y, 0), new Vector3(Main.WIDTH / 2, Main.HEIGHT / 2, 0), new Vector3(l.grid.getWidth() * GameScreen.CELL_SIZE - l.camera.viewportWidth / 2, l.grid.getHeight() * GameScreen.CELL_SIZE - l.camera.viewportHeight / 2, 0)));
 			}
 		}
+	}
+	
+	public static void defaultResetSequence(Level l) {
+		l.nametime = 0;
+		l.grid.reset();
+		l.em.reset();
+		GameScreen.PLAYING = false;
+		l.em.getDevilHead().setLifePoints(l.em.getDevilHead().getMaxLifePoints());
 	}
 
 }

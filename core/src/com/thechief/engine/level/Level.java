@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.thechief.engine.Main;
 import com.thechief.engine.entity.EntityManager;
 import com.thechief.engine.entity.PausePlay;
 import com.thechief.engine.entity.grid.MapGrid;
@@ -55,7 +56,7 @@ public abstract class Level {
 		if (nametime < 4) {
 			nametime += Gdx.graphics.getDeltaTime();
 			FontManager.SILKSCREENB.setColor(1, 1, 1, (4 - nametime) / 4);
-			Text.drawText(sb, FontManager.SILKSCREENB, "Level " + levelNumber + ": " + name, (camera.position.x + Gdx.graphics.getWidth() / 2) / 2, (Gdx.graphics.getHeight() / 2 - camera.position.y) / 2 + 60, true);
+			Text.drawText(sb, FontManager.SILKSCREENB, "Level " + levelNumber + ": " + name, camera.position.x, (camera.position.y - Main.HEIGHT / 2) + 60, true);
 			FontManager.SILKSCREENB.setColor(1, 1, 1, 1);
 		}
 	}

@@ -9,13 +9,14 @@ public class OptionsResolutionSlider extends TitleScreenComponent<OptionsScreen>
 
 	private int[][] resolutions;
 	private int selection = 2;
+	private int max = 3;
 	
 	public int[] resolution;
 	
 	public OptionsResolutionSlider(float y, OptionsScreen title) {
 		super("Resolution", Color.RED, Color.YELLOW, TitleScreenComponentType.Slider, y, TitleScreenComponentAlignment.Center, title);
 	
-		resolutions = new int[4][2];
+		resolutions = new int[5][2];
 		
 		resolution = new int[2];
 		
@@ -32,7 +33,10 @@ public class OptionsResolutionSlider extends TitleScreenComponent<OptionsScreen>
 		resolutions[3][0] = 1920;
 		resolutions[3][1] = 1080;
 
-		for (int i = 0; i < 3; i++) {
+		resolutions[4][0] = Main.WIDTH;
+		resolutions[4][1] = Main.HEIGHT;
+
+		for (int i = 0; i < 4; i++) {
 			if (Main.WIDTH == resolutions[i][0]) {
 				selection = i;
 			}
@@ -40,11 +44,17 @@ public class OptionsResolutionSlider extends TitleScreenComponent<OptionsScreen>
 		
 		resolution[0] = resolutions[selection][0];
 		resolution[1] = resolutions[selection][1];
+		
+		if (checkForRes()) {
+			selection = 4;
+		}
 	}
 
 	@Override
 	public void update() {
 		selected = title.selected == this;
+
+		checkForRes();
 		
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.D)) {
@@ -54,8 +64,8 @@ public class OptionsResolutionSlider extends TitleScreenComponent<OptionsScreen>
 				selection--;
 			}
 
-			if (selection > 3) selection = 0;
-			if (selection < 0) selection = 3;
+			if (selection > max) selection = 0;
+			if (selection < 0) selection = max;
 
 			resolution[0] = resolutions[selection][0];
 			resolution[1] = resolutions[selection][1];
@@ -64,4 +74,21 @@ public class OptionsResolutionSlider extends TitleScreenComponent<OptionsScreen>
 		sliderExtra = resolution[0] + "x" + resolution[1];
 	}
 
+	private boolean checkForRes() {
+		boolean go = true;
+		for (int i = 0; i < 3; i++) {
+			if (resolutions[4][0] == resolutions[i][0]) {
+				go = false;
+			}
+		}
+		if (go) {
+			resolutions[4][0] = Main.WIDTH;
+			resolutions[4][1] = Main.HEIGHT;
+			max = 4;
+		} else {
+			max = 3;
+		}
+		return go;
+	}
+	
 }

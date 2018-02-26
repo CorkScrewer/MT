@@ -40,7 +40,6 @@ public class MapGrid {
 	private float sdx = -1, sdy = -1;
 
 	private static final char WALL = '•';
-	private static final char PLAYER = '☻';
 	private static final char DEVILHEAD = '☺';
 	private static final char GOAL = '◘';
 	private static final char SPLITTER = '♦';
@@ -74,13 +73,12 @@ public class MapGrid {
 				if (data[x + y * width] == WALL) {
 					tiles[x + y * width] = new WallTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
-				} else if (data[x + y * width] == PLAYER) {
-					em.addEntity(new Player(new Vector2(x, y), this));
 				} else if (data[x + y * width] == DEVILHEAD) {
 					DevilHead h = new DevilHead(new Vector2(x, y), this, dhc.getMaxDevilHeadLifePoints());
 					sdx = h.getPosition().x;
 					sdy = h.getPosition().y;
 					em.addDevilHead(h);
+					em.addEntity(new Player(new Vector2(x, y), this));
 				} else if (data[x + y * width] == GOAL) {
 					tiles[x + y * width] = new GoalTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);

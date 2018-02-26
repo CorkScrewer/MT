@@ -9,30 +9,32 @@ import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
 
-public class LevelFive extends Level {
+public class LevelFifteen extends Level {
 
-	public LevelFive(OrthographicCamera camera) {
-		super("Leverage 2", camera, 5);
-		useLevers = true;
-//		splitterUses = 1;
+	public LevelFifteen(OrthographicCamera camera) {
+		super("Portals 3", camera, 15);
+		useLevers = false;
+		splitterUses = 1;
 	}
 
 	@Override
 	public void create() {
-		data =  "    •••••••••••   " + 
-				"    •         •   " + 
-				"    •         •   " +
-				"    •  •   •  •   " + 
-				"•••••  •   •  ••••" +
-				"• ☺    • 1 •  !@◘•" +
-				"•••••  •••••  ••••" + 
-				"    •         •   " + 
-				"    •    2    •   " + 
-				"    •••••••••••   ";
+		data =  "           •••••••••••" +
+				"           •w    ! e •" +
+				"   •••••••••••••••••••" + 
+				"   •       • w       •" +
+				"   • ♦     •         •" +
+				"   •       q    1    •" +
+				"••••••••••••••••••••••" + 
+				"• ☺    • e         ◘ •" + 
+				"•••••• •••••••••••••••" + 
+				"     •            q  •" + 
+				"     •••••••••••••••••" +
+				"                      ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 70);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, 120);
 
-		grid = new MapGrid(data, 18, 10, em, camera, dhc);
+		grid = new MapGrid(data, 22, 12, em, camera, dhc);
 		sr = new ShapeRenderer();
 		pp = new PausePlay(new Vector2(30, 30), grid);
 	}
@@ -59,6 +61,6 @@ public class LevelFive extends Level {
 	@Override
 	public void reset() {
 		LevelRenderer.defaultResetSequence(this);
-	}
+ 	}
 
 }

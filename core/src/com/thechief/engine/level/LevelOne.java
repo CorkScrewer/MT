@@ -20,7 +20,7 @@ public class LevelOne extends Level {
 		data =  "                  " +
 				"                  " + 
 				"                  " + 
-				"            ☻     " + 
+				"                  " + 
 				"         •        " + 
 				"    ☺   •◘        " +
 				"         •        " +
@@ -56,9 +56,7 @@ public class LevelOne extends Level {
 
 	@Override
 	public void reset() {
-		grid.reset();
-		em.reset();
-		GameScreen.PLAYING = false;
+		LevelRenderer.defaultResetSequence(this);
 	}
 
 }

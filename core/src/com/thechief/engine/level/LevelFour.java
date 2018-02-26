@@ -12,7 +12,7 @@ import com.thechief.engine.screen.GameScreen;
 public class LevelFour extends Level {
 
 	public LevelFour(OrthographicCamera camera) {
-		super("Leverence 1", camera, 4);
+		super("Leverage 1", camera, 4);
 		useLevers = true;
 	}
 
@@ -22,7 +22,7 @@ public class LevelFour extends Level {
 				"     •            " + 
 				"     •  1         " +
 				"     •••••        " + 
-				"  ☻            •••" +
+				"               •••" +
 				"        ☺      !◘•" +
 				"               •••" + 
 				"                  " + 
@@ -57,10 +57,7 @@ public class LevelFour extends Level {
 
 	@Override
 	public void reset() {
-		System.out.println("this is called.");
-		grid.reset();
-		em.reset();
-		GameScreen.PLAYING = false;
+		LevelRenderer.defaultResetSequence(this);
 	}
 
 }

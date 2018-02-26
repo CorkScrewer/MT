@@ -1,12 +1,12 @@
 package com.thechief.engine.screen.title;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics.DisplayMode;
+import com.badlogic.gdx.Graphics.Monitor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.thechief.engine.Main;
 import com.thechief.engine.screen.ScreenManager;
-import com.thechief.engine.textrendering.FontManager;
 
 public class OptionsExitButton extends TitleScreenComponent<OptionsScreen> {
 
@@ -17,14 +17,25 @@ public class OptionsExitButton extends TitleScreenComponent<OptionsScreen> {
 	@Override
 	public void update() {
 		selected = title.selected == this;
-		
+
 		if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
-			Main.WIDTH = title.resolutionSlider.resolution[0];
-			Main.HEIGHT = title.resolutionSlider.resolution[1];
-			
-		    Gdx.graphics.setWindowedMode(Main.WIDTH, Main.HEIGHT);
-		    
-		    Main.POST_PROCESSING = title.postSlider.selection;
+			if (title.fullSlider.fullscreen) {
+				Monitor currMonitor = Gdx.graphics.getMonitor();
+				DisplayMode displayMode = Gdx.graphics.getDisplayMode(currMonitor);
+				Main.WIDTH = displayMode.width;
+				Main.HEIGHT = displayMode.height;
+				System.out.println(Main.WIDTH + ", " + Main.HEIGHT);
+				if (!Gdx.graphics.setFullscreenMode(displayMode)) {
+					System.out.println("FAILED TO SWITCH FULLSCREEN");
+				}
+			} else {
+				Main.WIDTH = title.resolutionSlider.resolution[0];
+				Main.HEIGHT = title.resolutionSlider.resolution[1];
+
+				Gdx.graphics.setWindowedMode(Main.WIDTH, Main.HEIGHT);
+			}
+
+			Main.POST_PROCESSING = title.postSlider.selection;
 
 			ScreenManager.setCurrentScreen(new TitleScreen());
 		}

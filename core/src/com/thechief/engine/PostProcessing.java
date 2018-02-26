@@ -34,7 +34,7 @@ public class PostProcessing {
 		curvature.setDistortion(0.4f);
 		post.addEffect(curvature);
 
-		int effects = Effect.Scanlines.v | Effect.PhosphorVibrance.v | Effect.Scanlines.v | Effect.Tint.v | Effect.Vignette.v;
+		int effects = Effect.TweakContrast.v | Effect.PhosphorVibrance.v | Effect.Scanlines.v | Effect.Tint.v;
 		crt = new CrtMonitor(Main.WIDTH, Main.HEIGHT, false, false, RgbMode.RgbShift, effects);
 		Combine combine = crt.getCombinePass();
 		combine.setSource1Intensity(0.7f);

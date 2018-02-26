@@ -9,28 +9,28 @@ import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
 
-public class LevelFive extends Level {
+public class LevelFourteen extends Level {
 
-	public LevelFive(OrthographicCamera camera) {
-		super("Leverage 2", camera, 5);
-		useLevers = true;
-//		splitterUses = 1;
+	public LevelFourteen(OrthographicCamera camera) {
+		super("Portals 2", camera, 14);
+//		useLevers = false;
+//		splitterUses = 2;
 	}
 
 	@Override
 	public void create() {
-		data =  "    •••••••••••   " + 
-				"    •         •   " + 
-				"    •         •   " +
-				"    •  •   •  •   " + 
-				"•••••  •   •  ••••" +
-				"• ☺    • 1 •  !@◘•" +
-				"•••••  •••••  ••••" + 
-				"    •         •   " + 
-				"    •    2    •   " + 
-				"    •••••••••••   ";
+		data =  "    ••••• •••••   " +
+				"    •q w• •w e•   " +
+				"    ••••• •••••   " + 
+				"••••••     •••••••" +
+				" ☺  q•     •e   ◘ " +
+				"••••••     •••••••" + 
+				"                  " + 
+				"                  " + 
+				"                  " + 
+				"                  ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 70);
+		DevilHeadChecker dhc = new DevilHeadChecker(em, 120);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();
