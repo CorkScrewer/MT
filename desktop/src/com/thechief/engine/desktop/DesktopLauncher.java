@@ -13,6 +13,7 @@ public class DesktopLauncher {
 		config.width = Main.WIDTH;
 		config.height = Main.HEIGHT;
 		config.title = Main.TITLE = Main.TITLE +  Main.SUBTITLES[MathUtils.random(Main.SUBTITLES.length - 1)];
+		config.samples = 0;
 		new LwjglApplication(new Main(), config);
 	}
 }

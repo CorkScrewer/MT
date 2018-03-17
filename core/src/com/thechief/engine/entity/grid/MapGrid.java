@@ -70,6 +70,7 @@ public class MapGrid {
 
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
+				
 				if (data[x + y * width] == WALL) {
 					tiles[x + y * width] = new WallTile(new Vector2(x, y), this);
 					em.addEntity(tiles[x + y * width]);
@@ -340,7 +341,13 @@ public class MapGrid {
 	}
 
 	public boolean shouldCollide(int x, int y) {
-		return tiles[x + y * width].isCollidable();
+		boolean isDevilThere = false;
+		for (int i = 0; i < em.devilHeadSize(); i++) {
+			if (em.getDevilHeadAt(i).getPosition().x == x && em.getDevilHeadAt(i).getPosition().y == y) {
+				isDevilThere = true;
+			}
+		}
+		return tiles[x + y * width].isCollidable() || isDevilThere;
 	}
 
 	public boolean shouldPlayerCollide(int x, int y) {

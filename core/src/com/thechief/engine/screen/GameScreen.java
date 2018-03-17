@@ -19,7 +19,9 @@ import com.thechief.engine.level.LevelManager;
 import com.thechief.engine.level.LevelNine;
 import com.thechief.engine.level.LevelOne;
 import com.thechief.engine.level.LevelSeven;
+import com.thechief.engine.level.LevelSeventeen;
 import com.thechief.engine.level.LevelSix;
+import com.thechief.engine.level.LevelSixteen;
 import com.thechief.engine.level.LevelTen;
 import com.thechief.engine.level.LevelThirteen;
 import com.thechief.engine.level.LevelThree;
@@ -69,6 +71,8 @@ public class GameScreen extends Screen {
 		levels.add(new LevelThirteen(camera));
 		levels.add(new LevelFourteen(camera));
 		levels.add(new LevelFifteen(camera));
+		levels.add(new LevelSixteen(camera));
+		levels.add(new LevelSeventeen(camera));
 
 		FileHandle handle = Gdx.files.external("save.mt");
 		if (handle.exists()) {
@@ -115,14 +119,11 @@ public class GameScreen extends Screen {
 			PLAYING = !PLAYING;
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.R)) {
-			LevelManager.getCurrentLevel().reset();
-			LevelManager.getCurrentLevel().nametime = 0;
+			if (LevelManager.getCurrentLevel() != null)
+				LevelManager.getCurrentLevel().reset();
 		}
 		if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) && Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			ScreenManager.setCurrentScreen(new TitleScreen());
-		}
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			LevelManager.getCurrentLevel().reset();
 		}
 		if (Main.DEBUG) {
 			if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) && Gdx.input.isKeyJustPressed(Keys.RIGHT)) {

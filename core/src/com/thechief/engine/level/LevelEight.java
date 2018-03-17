@@ -32,7 +32,7 @@ public class LevelEight extends Level {
 				"    •••••••       " +
 				"                  "; 
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 60);
+		dhc = new DevilHeadChecker(em, 60);
 
 		grid = new MapGrid(data, 18, 12, em, camera, dhc);
 		sr = new ShapeRenderer();

@@ -30,7 +30,7 @@ public class LevelFive extends Level {
 				"    •    2    •   " + 
 				"    •••••••••••   ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 70);
+		dhc = new DevilHeadChecker(em, 70);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();

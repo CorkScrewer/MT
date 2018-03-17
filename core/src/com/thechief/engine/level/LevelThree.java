@@ -28,7 +28,7 @@ public class LevelThree extends Level {
 				"                  " + 
 				"                  ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 28);
+		dhc = new DevilHeadChecker(em, 28);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();

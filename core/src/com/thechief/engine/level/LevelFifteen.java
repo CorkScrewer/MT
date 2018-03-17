@@ -7,32 +7,31 @@ import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.PausePlay;
 import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
-import com.thechief.engine.screen.GameScreen;
 
 public class LevelFifteen extends Level {
 
 	public LevelFifteen(OrthographicCamera camera) {
 		super("Portals 3", camera, 15);
-		useLevers = false;
+		useLevers = true;
 		splitterUses = 1;
 	}
 
 	@Override
 	public void create() {
-		data =  "           •••••••••••" +
-				"           •w    ! e •" +
-				"   •••••••••••••••••••" + 
-				"   •       • w       •" +
-				"   • ♦     •         •" +
-				"   •       q    1    •" +
-				"••••••••••••••••••••••" + 
-				"• ☺    • e         ◘ •" + 
-				"•••••• •••••••••••••••" + 
-				"     •            q  •" + 
-				"     •••••••••••••••••" +
-				"                      ";
+		data =  "   ••••••••••••••     " +
+				"   •q    •      •     " +
+				"   •           e•     " +
+				"   ••••••••••••••     " +
+				"                      " +
+				"••••••••••••••••••••• " +
+				"•☺     q • wr      ◘• " + 
+				"••••••••••••••••••••• " + 
+				"                      " + 
+				"    •••••   •••••     " + 
+				"    • r •   •w e•     " +
+				"    •••••   •••••     ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 120);
+		dhc = new DevilHeadChecker(em, 120);
 
 		grid = new MapGrid(data, 22, 12, em, camera, dhc);
 		sr = new ShapeRenderer();

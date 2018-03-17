@@ -6,11 +6,12 @@ import com.badlogic.gdx.Graphics.Monitor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.thechief.engine.Main;
+import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.ScreenManager;
 
-public class OptionsExitButton extends TitleScreenComponent<OptionsScreen> {
+public class OptionsExitButton extends TitleScreenComponent<GraphicsOptionsScreen> {
 
-	public OptionsExitButton(float y, OptionsScreen title) {
+	public OptionsExitButton(float y, GraphicsOptionsScreen title) {
 		super("Apply and Exit", Color.PURPLE, Color.YELLOW, TitleScreenComponentType.Button, y, TitleScreenComponentAlignment.Right, title);
 	}
 
@@ -18,7 +19,7 @@ public class OptionsExitButton extends TitleScreenComponent<OptionsScreen> {
 	public void update() {
 		selected = title.selected == this;
 
-		if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+		if (Gdx.input.isKeyJustPressed(Keys.ENTER) && selected) {
 			if (title.fullSlider.fullscreen) {
 				Monitor currMonitor = Gdx.graphics.getMonitor();
 				DisplayMode displayMode = Gdx.graphics.getDisplayMode(currMonitor);
@@ -34,6 +35,7 @@ public class OptionsExitButton extends TitleScreenComponent<OptionsScreen> {
 
 				Gdx.graphics.setWindowedMode(Main.WIDTH, Main.HEIGHT);
 			}
+			GameScreen.CELL_SIZE = Main.HEIGHT / 10;
 
 			Main.POST_PROCESSING = title.postSlider.selection;
 

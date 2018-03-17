@@ -9,35 +9,41 @@ import com.thechief.engine.Main;
 import com.thechief.engine.screen.Screen;
 import com.thechief.engine.textures.TextureManager;
 
-public class OptionsScreen extends Screen {
+public class GraphicsOptionsScreen extends Screen {
 
-	public Array<TitleScreenComponent<OptionsScreen>> components = new Array<TitleScreenComponent<OptionsScreen>>();
-	public TitleScreenComponent<OptionsScreen> selected;
+	public Array<TitleScreenComponent<GraphicsOptionsScreen>> components = new Array<TitleScreenComponent<GraphicsOptionsScreen>>();
+	public TitleScreenComponent<GraphicsOptionsScreen> selected;
 	public int selectedInt;
 	
+	public OptionsResolutionSlider resolutionSlider;
+	public OptionsPostProcessingSlider postSlider;
+	public OptionsFullscreenSlider fullSlider;
 	@Override
 	public void create() {
 		camera = new OrthographicCamera(Main.WIDTH, Main.HEIGHT);
 		camera.setToOrtho(true, Main.WIDTH, Main.HEIGHT);
 		camera.position.set(Main.WIDTH / 2, Main.HEIGHT / 2, 0);
 
-		components.add(new GraphicsOptionsButton(Main.HEIGHT / 2, this));
+		components.add(resolutionSlider = new OptionsResolutionSlider(Main.HEIGHT / 4, this));
+		components.add(postSlider = new OptionsPostProcessingSlider(resolutionSlider.y + 100, this));
+		components.add(fullSlider = new OptionsFullscreenSlider(postSlider.y + 100, this));
+		components.add(new OptionsExitButton(Main.HEIGHT - Main.HEIGHT / 4, this));
+		
+		selected = components.first();
 	}
-
 	@Override
 	public void render(SpriteBatch sb) {
 		sb.begin();
 		sb.setProjectionMatrix(camera.combined);
 		
 		sb.draw(TextureManager.D_BACKGROUND, 0, 0, Main.WIDTH, Main.HEIGHT);
-
+		
 		for (int i = 0; i < components.size; i++) {
 			components.get(i).render(sb);
 		}
 		
 		sb.end();
 	}
-
 	@Override
 	public void update() {
 		for (int i = 0; i < components.size; i++) {
@@ -56,10 +62,9 @@ public class OptionsScreen extends Screen {
 	
 		selected = components.get(selectedInt);
 	}
-
 	@Override
 	public void dispose() {
-		
-	}
 
+	}
+	
 }

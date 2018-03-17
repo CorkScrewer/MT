@@ -16,7 +16,11 @@ public abstract class Level {
 
 	protected EntityManager em;
 	protected OrthographicCamera camera;
-	protected DevilHeadChecker devilHeadChecker;
+	protected DevilHeadChecker dhc;
+
+	public DevilHeadChecker getDevilHeadChecker() {
+		return dhc;
+	}
 
 	protected MapGrid grid;
 
@@ -38,6 +42,7 @@ public abstract class Level {
 		this.camera = camera;
 		this.em = new EntityManager(camera);
 		levelNumber = levelno;
+		camera.setToOrtho(true);
 	}
 
 	public abstract void create();

@@ -21,7 +21,15 @@ public class Text {
     private GlyphLayout layout;
     private boolean centered = false;
 
-    /**
+    public boolean isCentered() {
+		return centered;
+	}
+
+	public void setCentered(boolean centered) {
+		this.centered = centered;
+	}
+
+	/**
      * Creates the Text, if you are using objects, that is.
      * @param font The BitmapFont that you want to utilize
      * @param text The Text you want to show.
@@ -87,6 +95,15 @@ public class Text {
      */
     public static void drawText(SpriteBatch sb, BitmapFont font, String text, float x, float y) {
         Text.drawText(sb, font, text, x, y, false);
+    }
+    
+    public String getString() {
+    	return text;
+    }
+    
+    public void setText(String text) {
+    	this.text = text;
+    	layout.setText(font, text);
     }
     
     public void setX(float x) {

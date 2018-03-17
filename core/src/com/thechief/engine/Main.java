@@ -2,6 +2,7 @@ package com.thechief.engine;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.FPSLogger;
@@ -10,12 +11,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.thechief.engine.screen.ScreenManager;
 import com.thechief.engine.screen.title.TitleScreen;
+import com.thechief.engine.sfx.SoundManager;
 import com.thechief.engine.textrendering.FontManager;
+import com.thechief.engine.textures.TextureManager;
 
 public class Main implements ApplicationListener {
 
 	public static int WIDTH = 1280, HEIGHT = 720;
-	public static String VERSION = "0.41b";
+	public static String VERSION = "0.45b";
 	public static String TITLE = "MT v" + VERSION + ": ";
 
 	public static final String[] SUBTITLES = { "Time to Tile!", "Directional Madness!", "Mortal Portals!", "Press Spacebar To Pay Respect!", "Many Thanks!", "Aldos: Aluminium Disk Operating System", "Did Somebody Say Grid?", "Out April 27th, 2018!", "Spade: Super Powerful and Deadly Entity", "Made Using libGDX from badlogicgames! Check them out!", "Enter the Gridgeon.", "Please don't sue me.", "Ingriduluos!", "Theyrrre Grrid!", "STOP TOO MANY GRID PUNS!!!", "Threat Nullified." };
@@ -79,6 +82,10 @@ public class Main implements ApplicationListener {
 				Gdx.graphics.setTitle(TITLE + " || FPS: " + Gdx.graphics.getFramesPerSecond());
 				startTime = TimeUtils.nanoTime();
 			}
+			
+			if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) && Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) && Gdx.input.isKeyJustPressed(Keys.P)) {
+				Main.POST_PROCESSING = !Main.POST_PROCESSING;
+			}
 		}
 	}
 
@@ -91,6 +98,8 @@ public class Main implements ApplicationListener {
 	@Override
 	public void dispose() {
 		ScreenManager.dispose();
+		TextureManager.dispose();
+		SoundManager.dispose();
 		sb.dispose();
 		PostProcessing.dispose();
 	}

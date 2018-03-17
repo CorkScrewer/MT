@@ -4,11 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 
-public class OptionsFullscreenSlider extends TitleScreenComponent<OptionsScreen> {
+public class OptionsFullscreenSlider extends TitleScreenComponent<GraphicsOptionsScreen> {
 
 	public boolean fullscreen = false;
 	
-	public OptionsFullscreenSlider(float y, OptionsScreen title) {
+	public OptionsFullscreenSlider(float y, GraphicsOptionsScreen title) {
 		super("Fullscreen", Color.RED, Color.YELLOW, TitleScreenComponentType.Slider, y, TitleScreenComponentAlignment.Center, title);
 		fullscreen = Gdx.graphics.isFullscreen();
 	}

@@ -20,7 +20,7 @@ public class LevelNine extends Level {
 	@Override
 	public void create() {
 		data =  "                  " + 
-				"                  " +
+				"                  " + 
 				"                  " + 
 				"•••••••••••••••   " +
 				"•             ••••" +
@@ -28,11 +28,13 @@ public class LevelNine extends Level {
 				"•             ••••" + 
 				"•••••••••••••••   " +
 				"                  " + 
+				"                  " + 
+				"                  " +
 				"                  ";
 
-		DevilHeadChecker dhc = new DevilHeadChecker(em, 40);
+		dhc = new DevilHeadChecker(em, 40);
 
-		grid = new MapGrid(data, 18, 10, em, camera, dhc);
+		grid = new MapGrid(data, 18, 12, em, camera, dhc);
 		sr = new ShapeRenderer();
 		pp = new PausePlay(new Vector2(30, 30), grid);
 	}

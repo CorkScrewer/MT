@@ -45,7 +45,7 @@ public class PostProcessing {
 		post.addEffect(crt);
 
 		vig = new Vignette(Main.WIDTH, Main.HEIGHT, false);
-		vig.setIntensity(1.25f);
+		vig.setIntensity(0.6f);
 
 		post.addEffect(vig);
 	}

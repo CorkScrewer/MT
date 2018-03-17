@@ -38,4 +38,39 @@ public class TextureManager {
 	
 	public static final Texture GOAL1		= new Texture(Gdx.files.internal("gfx/goal1.png"));
 	public static final Texture GOAL2		= new Texture(Gdx.files.internal("gfx/goal2.png"));
+	
+	public static final void dispose() {
+		COOL_DUDE.dispose();
+		PLAYER.dispose();
+		ENEMY.dispose();
+		WALL.dispose();
+		LASER.dispose();
+		DEVIL_HEAD.dispose();
+		DOOR.dispose();
+		SPLITTER.dispose();
+		
+		UP_ARROW.dispose();
+		DOWN_ARROW.dispose();
+		LEFT_ARROW.dispose();
+		RIGHT_ARROW.dispose();
+		
+		BACKGROUND.dispose();
+		B_BACKGROUND.dispose();
+		D_BACKGROUND.dispose();
+		
+		PORTAL1.dispose();
+		PORTAL2.dispose();
+		
+		PAUSE.dispose();
+		PLAY.dispose();
+		
+		BUTTON_ON.dispose();
+		BUTTON_OFF.dispose();
+		
+		LEVER_ON.dispose();
+		LEVER_OFF.dispose();
+		
+		GOAL1.dispose();
+		GOAL2.dispose();
+	}
 }

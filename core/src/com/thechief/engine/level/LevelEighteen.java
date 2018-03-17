@@ -9,28 +9,33 @@ import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
 
-public class LevelZero extends Level {
+public class LevelEighteen extends Level {
 
-	public LevelZero(OrthographicCamera camera) {
-		super("It Begins.", camera, 0);
+	public LevelEighteen(OrthographicCamera camera) {
+		super("Altogether Now! 2", camera, 18);
+		useLevers = false;
+		splitterUses = 1;
 	}
 
 	@Override
 	public void create() {
-		data =  "                  " +
-				"                  " +
-				"                  " +
-				"                  " +
-				"                  " +
-				"    ☺       ◘     " +
-				"                  " +
-				"                  " +
-				"                  " +
-				"                  ";
-		
+		data =  "            •••••      •••••••" +
+				"            •  3•      •erstu•" +
+				"            •q  •      •••••••" +
+				"      •••••••••••             " + 
+				"      •q•       •••••         " +
+				"•••••••!•       •   ••••••••••" +
+				" ☺       1 2 ♦  # ♦ $ erstu  ◘" +
+				"•••••••@•       •   ••••••••••" + 
+				"      •w•       •••••         " + 
+				"      •••••••••••             " + 
+				"            •  4•             " + 
+				"            •w  •             " +
+				"            •••••             ";
+
 		dhc = new DevilHeadChecker(em, -1);
 
-		grid = new MapGrid(data, 18, 10, em, camera, dhc);
+		grid = new MapGrid(data, 30, 13, em, camera, dhc);
 		sr = new ShapeRenderer();
 		pp = new PausePlay(new Vector2(30, 30), grid);
 	}
@@ -57,7 +62,6 @@ public class LevelZero extends Level {
 	@Override
 	public void reset() {
 		LevelRenderer.defaultResetSequence(this);
-	}
-
+ 	}
 
 }

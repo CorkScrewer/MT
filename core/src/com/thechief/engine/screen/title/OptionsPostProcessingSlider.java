@@ -5,11 +5,11 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.thechief.engine.Main;
 
-public class OptionsPostProcessingSlider extends TitleScreenComponent<OptionsScreen> {
+public class OptionsPostProcessingSlider extends TitleScreenComponent<GraphicsOptionsScreen> {
 
 	boolean selection = Main.POST_PROCESSING;
 	
-	public OptionsPostProcessingSlider(float y, OptionsScreen title) {
+	public OptionsPostProcessingSlider(float y, GraphicsOptionsScreen title) {
 		super("Post Processing", Color.RED, Color.YELLOW, TitleScreenComponentType.Slider, y, TitleScreenComponentAlignment.Center, title);
 		sliderExtra = (selection) ? "On" : "Off";
 	}

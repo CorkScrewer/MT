@@ -5,18 +5,18 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.thechief.engine.Main;
 
-public class OptionsResolutionSlider extends TitleScreenComponent<OptionsScreen> {
+public class OptionsResolutionSlider extends TitleScreenComponent<GraphicsOptionsScreen> {
 
 	private int[][] resolutions;
 	private int selection = 2;
-	private int max = 3;
+	private int max = 4;
 	
 	public int[] resolution;
 	
-	public OptionsResolutionSlider(float y, OptionsScreen title) {
+	public OptionsResolutionSlider(float y, GraphicsOptionsScreen title) {
 		super("Resolution", Color.RED, Color.YELLOW, TitleScreenComponentType.Slider, y, TitleScreenComponentAlignment.Center, title);
 	
-		resolutions = new int[5][2];
+		resolutions = new int[6][2];
 		
 		resolution = new int[2];
 		
@@ -30,13 +30,16 @@ public class OptionsResolutionSlider extends TitleScreenComponent<OptionsScreen>
 		resolutions[2][0] = 1280;
 		resolutions[2][1] = 720;
 
-		resolutions[3][0] = 1920;
-		resolutions[3][1] = 1080;
+		resolutions[3][0] = 1366;
+		resolutions[3][1] = 768;
+		
+		resolutions[4][0] = 1920;
+		resolutions[4][1] = 1080;
 
-		resolutions[4][0] = Main.WIDTH;
-		resolutions[4][1] = Main.HEIGHT;
+		resolutions[5][0] = Main.WIDTH;
+		resolutions[5][1] = Main.HEIGHT;
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 5; i++) {
 			if (Main.WIDTH == resolutions[i][0]) {
 				selection = i;
 			}
@@ -46,7 +49,7 @@ public class OptionsResolutionSlider extends TitleScreenComponent<OptionsScreen>
 		resolution[1] = resolutions[selection][1];
 		
 		if (checkForRes()) {
-			selection = 4;
+			selection = 5;
 		}
 	}
 
@@ -76,17 +79,17 @@ public class OptionsResolutionSlider extends TitleScreenComponent<OptionsScreen>
 
 	private boolean checkForRes() {
 		boolean go = true;
-		for (int i = 0; i < 3; i++) {
-			if (resolutions[4][0] == resolutions[i][0]) {
+		for (int i = 0; i < 5; i++) {
+			if (resolutions[5][0] == resolutions[i][0]) {
 				go = false;
 			}
 		}
 		if (go) {
-			resolutions[4][0] = Main.WIDTH;
-			resolutions[4][1] = Main.HEIGHT;
-			max = 4;
+			resolutions[5][0] = Main.WIDTH;
+			resolutions[5][1] = Main.HEIGHT;
+			max = 5;
 		} else {
-			max = 3;
+			max = 4;
 		}
 		return go;
 	}

@@ -5,8 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.Entity;
 import com.thechief.engine.entity.EntityManager;
 import com.thechief.engine.entity.grid.MapGrid;
+import com.thechief.engine.sfx.SoundManager;
 
-// hax
 public class DevilHeadChecker extends Entity {
 
 	private EntityManager em;

@@ -10,7 +10,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.thechief.engine.Main;
 import com.thechief.engine.MiscFuncs;
 import com.thechief.engine.entity.Entity;
+import com.thechief.engine.entity.tile.Direction;
 import com.thechief.engine.entity.tile.PortalTile;
+import com.thechief.engine.entity.tile.Tile;
 import com.thechief.engine.entity.tile.puzzle.Button;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.textures.TextureManager;
@@ -76,15 +78,17 @@ public class LevelRenderer {
 		if (!GameScreen.PLAYING) {
 			l.shouldFocusOnPlayer = false;
 		}
+		
+		if (Gdx.input.isKeyJustPressed(Keys.E)) {
+			for (int i = 0; i < l.grid.tiles.length; i++) {
+				Tile t = l.grid.tiles[i];
+				t.setTileDirection(Direction.Null);
+			}
+		}
 
-		if (!GameScreen.PLAYING || l.shouldFocusOnPlayer) {
+		if (l.grid.getHeight() > 10) {
 			l.camera.position.lerp(new Vector3(l.em.getPlayer().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.1f);
 			l.camera.position.set(MiscFuncs.clamp(new Vector3(l.camera.position.x, l.camera.position.y, 0), new Vector3(Main.WIDTH / 2, Main.HEIGHT / 2, 0), new Vector3(l.grid.getWidth() * GameScreen.CELL_SIZE - l.camera.viewportWidth / 2, l.grid.getHeight() * GameScreen.CELL_SIZE - l.camera.viewportHeight / 2, 0)));
-		} else {
-			if (l.em.devilHeadSize() > 0) {
-				l.camera.position.lerp(new Vector3(l.em.getDevilHead().getPosition(), 0).scl(GameScreen.CELL_SIZE), 0.1f);
-				l.camera.position.set(MiscFuncs.clamp(new Vector3(l.camera.position.x, l.camera.position.y, 0), new Vector3(Main.WIDTH / 2, Main.HEIGHT / 2, 0), new Vector3(l.grid.getWidth() * GameScreen.CELL_SIZE - l.camera.viewportWidth / 2, l.grid.getHeight() * GameScreen.CELL_SIZE - l.camera.viewportHeight / 2, 0)));
-			}
 		}
 	}
 	
