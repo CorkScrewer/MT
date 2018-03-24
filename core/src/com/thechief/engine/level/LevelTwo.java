@@ -1,5 +1,6 @@
 package com.thechief.engine.level;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -7,12 +8,15 @@ import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.PausePlay;
 import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
-import com.thechief.engine.screen.GameScreen;
+import com.thechief.engine.story.ColorString;
+import com.thechief.engine.story.TextboxBatch;
 
 public class LevelTwo extends Level {
 
+	private TextboxBatch textboxes;
+	
 	public LevelTwo(OrthographicCamera camera) {
-		super("Obstacles 2", camera, 2);
+		super("Obstacles", camera, 1);
 	}
 
 	@Override
@@ -33,11 +37,15 @@ public class LevelTwo extends Level {
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();
 		pp = new PausePlay(new Vector2(30, 30), grid);
+	
+		ColorString[] texts = {new ColorString(Color.YELLOW, "Oh, I didn't think you would make it...")};
+		textboxes = new TextboxBatch(texts, grid);
 	}
 
 	@Override
 	public void update() {
 		LevelRenderer.defaultUpdateSequence(this);
+		textboxes.update();
 	}
 
 	/**
@@ -46,6 +54,7 @@ public class LevelTwo extends Level {
 	@Override
 	public void render(SpriteBatch sb) {
 		LevelRenderer.defualtRenderSequence(sb, this);
+		textboxes.render(sr, sb);
 	}
 
 	@Override

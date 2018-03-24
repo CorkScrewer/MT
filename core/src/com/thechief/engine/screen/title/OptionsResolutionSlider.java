@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.thechief.engine.Main;
+import com.thechief.engine.sfx.SoundManager;
 
 public class OptionsResolutionSlider extends TitleScreenComponent<GraphicsOptionsScreen> {
 
@@ -62,9 +63,11 @@ public class OptionsResolutionSlider extends TitleScreenComponent<GraphicsOption
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.D)) {
 				selection++;
+				SoundManager.click.play(0.7f);
 			}
 			if (Gdx.input.isKeyJustPressed(Keys.LEFT) || Gdx.input.isKeyJustPressed(Keys.A)) {
 				selection--;
+				SoundManager.click.play(0.7f);
 			}
 
 			if (selection > max) selection = 0;

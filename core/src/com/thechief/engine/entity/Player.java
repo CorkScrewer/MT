@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.thechief.engine.Main;
 import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.Direction;
 import com.thechief.engine.screen.GameScreen;
@@ -15,6 +14,7 @@ import com.thechief.engine.textures.TextureManager;
 public class Player extends Entity {
 
 	private float sx, sy;
+	public boolean play = true;
 	
 	public Player(Vector2 pos, MapGrid grid) {
 		super(TextureManager.PLAYER, pos, grid);
@@ -31,6 +31,8 @@ public class Player extends Entity {
 
 	@Override
 	public void update() {
+		if (!play) return;
+		
 		// Moving + Collision Detection
 		if (Gdx.input.isKeyJustPressed(Keys.D)) {
 			if (pos.x < grid.getWidth() - 1) {

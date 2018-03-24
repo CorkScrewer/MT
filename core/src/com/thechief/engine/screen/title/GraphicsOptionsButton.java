@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.thechief.engine.screen.ScreenManager;
+import com.thechief.engine.sfx.SoundManager;
 
 public class GraphicsOptionsButton extends TitleScreenComponent<OptionsScreen> {
 
@@ -18,6 +19,7 @@ public class GraphicsOptionsButton extends TitleScreenComponent<OptionsScreen> {
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
 				ScreenManager.setCurrentScreen(new GraphicsOptionsScreen());
+				SoundManager.click.play(0.7f);
 			}
 		}
 	}

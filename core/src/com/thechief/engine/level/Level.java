@@ -16,6 +16,11 @@ public abstract class Level {
 
 	protected EntityManager em;
 	protected OrthographicCamera camera;
+	
+	public OrthographicCamera getCamera() {
+		return camera;
+	}
+	
 	protected DevilHeadChecker dhc;
 
 	public DevilHeadChecker getDevilHeadChecker() {
@@ -61,7 +66,7 @@ public abstract class Level {
 		if (nametime < 4) {
 			nametime += Gdx.graphics.getDeltaTime();
 			FontManager.SILKSCREENB.setColor(1, 1, 1, (4 - nametime) / 4);
-			Text.drawText(sb, FontManager.SILKSCREENB, "Level " + levelNumber + ": " + name, camera.position.x, (camera.position.y - Main.HEIGHT / 2) + 60, true);
+			Text.drawText(sb, FontManager.SILKSCREENB, name, camera.position.x, (camera.position.y - Main.HEIGHT / 2) + 60, true);
 			FontManager.SILKSCREENB.setColor(1, 1, 1, 1);
 		}
 	}

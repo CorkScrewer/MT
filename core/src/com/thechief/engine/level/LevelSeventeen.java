@@ -20,12 +20,12 @@ public class LevelSeventeen extends Level {
 	@Override
 	public void create() {
 		data =  "            •••••      •••••••" +
-				"            •  3•      •erstu•" +
+				"            •  3•      •ertyu•" +
 				"            •q  •      •••••••" +
 				"      •••••••••••             " + 
 				"      •q•       •••••         " +
 				"•••••••!•       •   ••••••••••" +
-				" ☺       1 2 ♦  # ♦ $ erstu  ◘" +
+				"• ☺      1 2 ♦  # ♦ $ ertyu ◘•" +
 				"•••••••@•       •   ••••••••••" + 
 				"      •w•       •••••         " + 
 				"      •••••••••••             " + 

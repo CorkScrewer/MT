@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.thechief.engine.Main;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.ScreenManager;
+import com.thechief.engine.sfx.SoundManager;
 
 public class OptionsExitButton extends TitleScreenComponent<GraphicsOptionsScreen> {
 
@@ -20,6 +21,7 @@ public class OptionsExitButton extends TitleScreenComponent<GraphicsOptionsScree
 		selected = title.selected == this;
 
 		if (Gdx.input.isKeyJustPressed(Keys.ENTER) && selected) {
+			SoundManager.click.play(0.7f);
 			if (title.fullSlider.fullscreen) {
 				Monitor currMonitor = Gdx.graphics.getMonitor();
 				DisplayMode displayMode = Gdx.graphics.getDisplayMode(currMonitor);
@@ -37,6 +39,14 @@ public class OptionsExitButton extends TitleScreenComponent<GraphicsOptionsScree
 			}
 			GameScreen.CELL_SIZE = Main.HEIGHT / 10;
 
+			if (title.textSlider.options == 1) {
+				GameScreen.TEXT_SPEED = GameScreen.TEXT_FAST;
+			} else if (title.textSlider.options == 2) {
+				GameScreen.TEXT_SPEED = GameScreen.TEXT_NORMAL; 
+			} else if (title.textSlider.options == 3) {
+				GameScreen.TEXT_SPEED = GameScreen.TEXT_SLOW; 
+			}
+			
 			Main.POST_PROCESSING = title.postSlider.selection;
 
 			ScreenManager.setCurrentScreen(new TitleScreen());

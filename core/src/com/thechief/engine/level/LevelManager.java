@@ -24,7 +24,7 @@ public class LevelManager {
 		GameScreen.CURRENT_LEVEL = GameScreen.levels.indexOf(LevelManager.getCurrentLevel(), false);
 		GameScreen.PLAYING = false;
 		
-		FileHandle file = Gdx.files.external("save.mt");
+		FileHandle file = Gdx.files.local("data/save.mt");
 		file.writeString(Integer.toString(GameScreen.CURRENT_LEVEL) + " " + Main.VERSION, false);
 	}
 	

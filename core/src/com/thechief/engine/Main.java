@@ -18,7 +18,7 @@ import com.thechief.engine.textures.TextureManager;
 public class Main implements ApplicationListener {
 
 	public static int WIDTH = 1280, HEIGHT = 720;
-	public static String VERSION = "0.45b";
+	public static String VERSION = "0.46b";
 	public static String TITLE = "MT v" + VERSION + ": ";
 
 	public static final String[] SUBTITLES = { "Time to Tile!", "Directional Madness!", "Mortal Portals!", "Press Spacebar To Pay Respect!", "Many Thanks!", "Aldos: Aluminium Disk Operating System", "Did Somebody Say Grid?", "Out April 27th, 2018!", "Spade: Super Powerful and Deadly Entity", "Made Using libGDX from badlogicgames! Check them out!", "Enter the Gridgeon.", "Please don't sue me.", "Ingriduluos!", "Theyrrre Grrid!", "STOP TOO MANY GRID PUNS!!!", "Threat Nullified." };

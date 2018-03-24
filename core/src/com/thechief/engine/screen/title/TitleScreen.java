@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.Main;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.Screen;
+import com.thechief.engine.sfx.SoundManager;
 import com.thechief.engine.textrendering.FontManager;
 import com.thechief.engine.textrendering.Text;
 import com.thechief.engine.textures.TextureManager;
@@ -28,7 +29,7 @@ public class TitleScreen extends Screen {
 		
 		int level = 0;
 		
-		FileHandle handle = Gdx.files.external("save.mt");
+		FileHandle handle = Gdx.files.local("data/save.mt");
 		if (handle.exists()) {
 			String text = handle.readString();
 			String[] strings = text.split(" ");
@@ -79,9 +80,11 @@ public class TitleScreen extends Screen {
 
 		if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.S)) {
 			selectedInt++;
+			SoundManager.select.play(0.7f);
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.UP) || Gdx.input.isKeyJustPressed(Keys.W)) {
 			selectedInt--;
+			SoundManager.select.play(0.7f);
 		}
 
 		if (selectedInt < 0)

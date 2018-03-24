@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.Main;
 import com.thechief.engine.level.Level;
-import com.thechief.engine.level.LevelEight;
+import com.thechief.engine.level.LevelMinusOne;
 import com.thechief.engine.level.LevelEleven;
 import com.thechief.engine.level.LevelFifteen;
 import com.thechief.engine.level.LevelFive;
@@ -17,14 +17,12 @@ import com.thechief.engine.level.LevelFour;
 import com.thechief.engine.level.LevelFourteen;
 import com.thechief.engine.level.LevelManager;
 import com.thechief.engine.level.LevelNine;
-import com.thechief.engine.level.LevelOne;
 import com.thechief.engine.level.LevelSeven;
 import com.thechief.engine.level.LevelSeventeen;
 import com.thechief.engine.level.LevelSix;
 import com.thechief.engine.level.LevelSixteen;
 import com.thechief.engine.level.LevelTen;
 import com.thechief.engine.level.LevelThirteen;
-import com.thechief.engine.level.LevelThree;
 import com.thechief.engine.level.LevelTwelve;
 import com.thechief.engine.level.LevelTwo;
 import com.thechief.engine.level.LevelZero;
@@ -35,9 +33,14 @@ public class GameScreen extends Screen {
 	public static Array<Level> levels;
 
 	public static int CELL_SIZE = Main.HEIGHT / 10;
-	public static int INTERVAL = 30;
+	public static int INTERVAL = 20;
+	
+	public static final int TEXT_FAST = 5;
+	public static final int TEXT_NORMAL = 6;
+	public static final int TEXT_SLOW = 7;
+	public static int TEXT_SPEED = TEXT_FAST;
 
-	public static int CURRENT_LEVEL = -1;
+	public static int CURRENT_LEVEL;
 
 	public static boolean PLAYING = false;
 
@@ -56,14 +59,14 @@ public class GameScreen extends Screen {
 		levels = new Array<Level>();
 
 		levels.add(new LevelZero(camera));
-		levels.add(new LevelOne(camera));
+//		levels.add(new LevelOne(camera));
 		levels.add(new LevelTwo(camera));
-		levels.add(new LevelThree(camera));
+//		levels.add(new LevelThree(camera));
 		levels.add(new LevelFour(camera));
 		levels.add(new LevelFive(camera));
 		levels.add(new LevelSix(camera));
 		levels.add(new LevelSeven(camera));
-		levels.add(new LevelEight(camera));
+//		levels.add(new LevelEight(camera));
 		levels.add(new LevelNine(camera));
 		levels.add(new LevelTen(camera));
 		levels.add(new LevelEleven(camera));
@@ -74,7 +77,7 @@ public class GameScreen extends Screen {
 		levels.add(new LevelSixteen(camera));
 		levels.add(new LevelSeventeen(camera));
 
-		FileHandle handle = Gdx.files.external("save.mt");
+		FileHandle handle = Gdx.files.local("data/save.mt");
 		if (handle.exists()) {
 			String text = handle.readString();
 			String[] strings = text.split(" ");
@@ -84,7 +87,8 @@ public class GameScreen extends Screen {
 				CURRENT_LEVEL = Integer.parseInt(strings[0]);
 			}
 		}
-		CURRENT_LEVEL = MathUtils.clamp(CURRENT_LEVEL, 0, levels.size - 1);
+		if (CURRENT_LEVEL != 36)
+			CURRENT_LEVEL = MathUtils.clamp(CURRENT_LEVEL, levels.first().getLevelNumber(), levels.get(levels.size - 1).getLevelNumber());
 
 		if (newGame) {
 			LevelManager.setCurrentLevel(levels.first());
@@ -92,9 +96,11 @@ public class GameScreen extends Screen {
 
 		if (CURRENT_LEVEL == -1 || CURRENT_LEVEL == 0) {
 			LevelManager.setCurrentLevel(levels.first());
-		} else {
+		} else if (CURRENT_LEVEL != 36) {
 			LevelManager.setCurrentLevel(levels.get(CURRENT_LEVEL));
 			System.out.println(CURRENT_LEVEL);
+		} else {
+			LevelManager.setCurrentLevel(new LevelMinusOne(camera));
 		}
 	}
 

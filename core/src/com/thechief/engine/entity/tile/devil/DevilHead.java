@@ -9,11 +9,10 @@ import com.thechief.engine.entity.tile.PortalTile;
 import com.thechief.engine.entity.tile.SplitterTile;
 import com.thechief.engine.entity.tile.TileType;
 import com.thechief.engine.entity.tile.puzzle.Button;
+import com.thechief.engine.level.LevelMinusOne;
 import com.thechief.engine.level.LevelManager;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.sfx.SoundManager;
-import com.thechief.engine.textrendering.FontManager;
-import com.thechief.engine.textrendering.Text;
 import com.thechief.engine.textures.TextureManager;
 
 public class DevilHead extends Entity {
@@ -53,7 +52,7 @@ public class DevilHead extends Entity {
 			time++;
 			if (time % GameScreen.INTERVAL == 0) {
 				isPlaying = false;
-				
+
 				if (grid.getTile((int) pos.x, (int) pos.y).getTileDirection() == Direction.Up) {
 					if (pos.y > 0 && !grid.shouldCollide((int) pos.x, (int) pos.y - 1)) {
 						pos.y--;
@@ -89,7 +88,8 @@ public class DevilHead extends Entity {
 					// go to next level
 					if (LevelManager.getCurrentLevel().getLevelNumber() >= GameScreen.levels.get(GameScreen.levels.size - 1).getLevelNumber()) {
 						// If we are not going to the next level.
-						LevelManager.getCurrentLevel().reset();
+						// LevelManager.getCurrentLevel().reset();
+						LevelManager.setCurrentLevel(new LevelMinusOne(LevelManager.getCurrentLevel().getCamera()));
 						lifePoints = totalLifePoints;
 					} else {
 						LevelManager.getCurrentLevel().next();
@@ -99,11 +99,15 @@ public class DevilHead extends Entity {
 				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Splitter) {
 					SplitterTile sp = (SplitterTile) grid.getTile((int) pos.x, (int) pos.y);
 					sp.split(this);
+					SoundManager.move.stop();
+					SoundManager.split.play(0.7f);
 				}
 				if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Portal) {
 					PortalTile p = (PortalTile) grid.getTile((int) pos.x, (int) pos.y);
 					pos.x = p.getOther().getPosition().x;
 					pos.y = p.getOther().getPosition().y;
+					SoundManager.move.stop();
+					SoundManager.portal.play(0.7f);
 				}
 				{ // button
 					if (grid.getTile((int) pos.x, (int) pos.y).getType() == TileType.Button) {
@@ -113,8 +117,7 @@ public class DevilHead extends Entity {
 							buttonPrev = b;
 							SoundManager.levertoggle.play();
 						}
-					}
-					else if (buttonPrev != null && grid.getTile((int) pos.x, (int) pos.y) != buttonPrev) {
+					} else if (buttonPrev != null && grid.getTile((int) pos.x, (int) pos.y) != buttonPrev) {
 						if (!buttonPrev.isLever) {
 							buttonPrev.setOn(false);
 						}

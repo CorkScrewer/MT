@@ -7,29 +7,29 @@ import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.PausePlay;
 import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
-import com.thechief.engine.screen.GameScreen;
+import com.thechief.engine.level.Level;
+import com.thechief.engine.level.LevelRenderer;
 
-public class LevelFour extends Level {
+public class LevelMinusOne extends Level {
 
-	public LevelFour(OrthographicCamera camera) {
-		super("Leverage 1", camera, 2);
-		useLevers = true;
+	public LevelMinusOne(OrthographicCamera camera) {
+		super("Level -1", camera, 36);
 	}
 
 	@Override
 	public void create() {
-		data =  "     •   •        " + 
-				"     •            " + 
-				"     •  1         " +
-				"     •••••        " + 
-				"               •••" +
-				"        ☺      !◘•" +
-				"               •••" + 
+		data =  "                  " + 
+				"                  " + 
+				"                  " +
+				"                  " + 
+				"         ☺        " +
+				"                  " +
+				"                  " + 
 				"                  " + 
 				"                  " + 
 				"                  ";
 
-		dhc = new DevilHeadChecker(em, 25);
+		dhc = new DevilHeadChecker(em, 28);
 
 		grid = new MapGrid(data, 18, 10, em, camera, dhc);
 		sr = new ShapeRenderer();

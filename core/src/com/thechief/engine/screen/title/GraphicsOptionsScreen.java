@@ -2,11 +2,13 @@ package com.thechief.engine.screen.title;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.Main;
 import com.thechief.engine.screen.Screen;
+import com.thechief.engine.sfx.SoundManager;
 import com.thechief.engine.textures.TextureManager;
 
 public class GraphicsOptionsScreen extends Screen {
@@ -18,6 +20,8 @@ public class GraphicsOptionsScreen extends Screen {
 	public OptionsResolutionSlider resolutionSlider;
 	public OptionsPostProcessingSlider postSlider;
 	public OptionsFullscreenSlider fullSlider;
+	public OptionsTextSpeedSlider textSlider;
+	
 	@Override
 	public void create() {
 		camera = new OrthographicCamera(Main.WIDTH, Main.HEIGHT);
@@ -27,7 +31,8 @@ public class GraphicsOptionsScreen extends Screen {
 		components.add(resolutionSlider = new OptionsResolutionSlider(Main.HEIGHT / 4, this));
 		components.add(postSlider = new OptionsPostProcessingSlider(resolutionSlider.y + 100, this));
 		components.add(fullSlider = new OptionsFullscreenSlider(postSlider.y + 100, this));
-		components.add(new OptionsExitButton(Main.HEIGHT - Main.HEIGHT / 4, this));
+		components.add(textSlider = new OptionsTextSpeedSlider(fullSlider.y + 100, this));
+		components.add(new OptionsExitButton(Main.HEIGHT - Main.HEIGHT / 10, this));
 		
 		selected = components.first();
 	}
@@ -52,9 +57,11 @@ public class GraphicsOptionsScreen extends Screen {
 		
 		if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.S)) {
 			selectedInt++;
+			SoundManager.select.play(0.7f);
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.UP) || Gdx.input.isKeyJustPressed(Keys.W)) {
 			selectedInt--;
+			SoundManager.select.play(0.7f);
 		}
 		
 		if (selectedInt < 0) selectedInt = components.size - 1;

@@ -2,9 +2,11 @@ package com.thechief.engine.screen.title;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.thechief.engine.screen.GameScreen;
 import com.thechief.engine.screen.ScreenManager;
+import com.thechief.engine.sfx.SoundManager;
 
 public class PlayButton extends TitleScreenComponent<TitleScreen> {
 
@@ -24,6 +26,7 @@ public class PlayButton extends TitleScreenComponent<TitleScreen> {
 		
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+				SoundManager.click.play(0.7f);
 				ScreenManager.setCurrentScreen(new GameScreen(newGame));
 			}
 		}

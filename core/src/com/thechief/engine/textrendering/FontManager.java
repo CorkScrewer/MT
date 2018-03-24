@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 
 public class FontManager {
 
-	public static BitmapFont SILKSCREEN, SILKSCREENS, SILKSCREENB, ARCADE, GLITCH, GOODTIMES, HEMI;
+	public static BitmapFont SILKSCREEN, SILKSCREENS, SILKSCREENB, ARCADE, GLITCH, GOODTIMES, PRESSSTART;
 
 	public static FreeTypeFontParameter[] parameter = new FreeTypeFontParameter[7];
 	
@@ -25,7 +25,7 @@ public class FontManager {
 		parameter[1].flip = true;
 		SILKSCREENS = generator2.generateFont(parameter[1]);
 		generator2.dispose(); // don't forget to dispose to avoid memory leaks!
-
+		
 		FreeTypeFontGenerator generator3 = new FreeTypeFontGenerator(Gdx.files.internal("fonts/silkscreen.ttf"));
 		parameter[2] = new FreeTypeFontParameter();
 		parameter[2].size = 50;
@@ -54,11 +54,11 @@ public class FontManager {
 		GOODTIMES = generator6.generateFont(parameter[5]);
 		generator6.dispose(); // don't forget to dispose to avoid memory leaks!
 	
-		FreeTypeFontGenerator generator7 = new FreeTypeFontGenerator(Gdx.files.internal("fonts/hemi.ttf"));
+		FreeTypeFontGenerator generator7 = new FreeTypeFontGenerator(Gdx.files.internal("fonts/pressstart2p.ttf"));
 		parameter[6] = new FreeTypeFontParameter();
 		parameter[6].size = 30;
 		parameter[6].flip = true;
-		HEMI = generator7.generateFont(parameter[6]);
+		PRESSSTART = generator7.generateFont(parameter[6]);
 		generator7.dispose(); // don't forget to dispose to avoid memory leaks!
 
 		FontManager.GLITCH.setColor(0.8f, 0.1f, 0.51f, 1);

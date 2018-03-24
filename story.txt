@@ -1,0 +1,140 @@
+STORY
+
+Overarching plot:
+	Characters: - Called 'Doctor' (Player)
+				- Aldos (Big Bad / Is the Phone Guy)
+				- Blank (Mysterious G Man sort of character)
+	Plot:
+		You are plopped into mega tile.
+		Phone guy tells you something is wrong.
+		Since he is the first person you meet, you trust him a bit.
+		He is trying to get on your good side, and helping you out on where to go.
+		At the beginning of some of the levels, a mysterious sprite appears and fades away quickly.
+		Phone guy hints at a mysterious person.
+		Phone guy reveals to be trying to trap you inside of the game.
+		You find this out by, when you finish all of the levels, you meet his lair.
+		Where, he attempts to trap you. He fails.
+		He tries again. Fails.
+		He instigates the boss battle.
+		You trap him in an infinite loop, to be driven insane.
+		He threatens you that if you don't let him escape, he will never let you know what this place is or how you got here.
+		You walk away.
+
+		DIALOGUE FOR ALDOS AKA PHONE GUY:
+		
+		Each blank new line indicates a level or a set of levels has been completed.
+		
+		> Audio Entry #54487.
+		> If you are hearing this, it means that something has gone wrong.
+		> You need to get out of there.
+		> I will guide you through this, Doctor.
+		
+		> Compression Waves Status: Crippled.
+		> Motherboard Status: Operational.
+		> ROM Status: Damaged.
+		> RAM Status: Operational.
+		> I've gathered the least levels in a collection that will lead you to the END.
+		> Now go, Doctor. For your own sake.
+		
+		> Compression Waves Status: Crippled.
+		> Motherboard status: Damaged (Soul Unit Crippled).
+		> ROM Status: Crippled (Switch to backup.)
+		> RAM Status: Deactivated by _____.
+		
+		> Sorry for the inconvenience, but,
+		> This next level is extremely difficult.
+		> Make yourself comfy, we may be here a while.
+		
+		> Wow, you beat the level in record time.
+		> Not so amazing once you realize you are the only one who did that level.
+		> ha. ha.
+		> Proceed.
+		
+		> aaaaaa&&&SNFydhfo(P@YD{D})fpgd[][][][\|||||||]
+		> MEMORY ERROR-------
+		> *ptr = $55002&sfthco\\n
+		> sjiOIYbDl&a*nFk()wasDoctor?SIhOeDrFe*)dfd
+		> SDJ(U)*&*@# # Doctor.>?sieee
+		> SOEIUYN(&^H(*&TOBODNYPD only one :"{IPI#I({#U(})
+		> Can leave at once.EOPFY*&GR*&Y#*&#Y*(Y#{)E}FME<I#
+		> CPU ERROR-------
+		> \br
+		
+		(Finish all of the levels.)
+		(You enter an empty level.)
+		(If you make an infinite loop, phone guy starts talking) 
+		
+		> Doctor!
+		> Finally you've made it!
+		> I can't speak for long, but if you want to escape, enter this!
+		
+		(A portal appears.)
+		(When you enter it, text appears)
+		
+		> MEMORY CORRUPTED. MISSING DATA.
+		
+		Phone Guy:
+		
+		> What?
+		> Um... What?
+		> I did all of this for nothing?
+		> YEARS OF WORK FOR NOTHING???
+		> Only one can leave, Doctor, and I'm going to leave first.
+		> TIME TO DIE.
+		
+		A sprite of aldos aka phone guy drops down from the top of the screen.
+		As he lands, screen shakes.
+		
+		> GET READY TO DIE.
+		
+		DO BOSS FIGHT.
+		You trap him in an infinite loop after surviving his attacks.
+		
+		> *gasp* *gasp*
+		> Get me out of here.
+		> Doctor?
+		> Doc?
+		> *gasp* *gaaaaaaasp*
+		> I--i-if you don't let me go, you won't ever know who I am!!
+		> Doc?
+		
+		There is a button that appears.
+		You press it.
+		Screen turns white.
+		
+		> NOOOOOOOOO!! COME BACK HERE!!
+		> NOWWWW
+
+		- You escaped mega tile in x minutes and x seconds -
+		ROLL CREDITS.
+
+		After credits:
+
+		> _____: Oh, such disarray!
+		> You do realize that we have to clean this up later?
+		> Either way, Doctor,
+		> I am impressed...
+		> I kept an eye on you,
+		> Tediously taking notes along the way of course.
+		> Hmmm...
+		> Solved puzzles, and defeated Aldos?
+		> It seems as though you may be of use for me elsewhere.
+		> Will you accept my offer?
+		> YES - NO
+		If yes:
+		> Ah, a wise decision made, my friend.
+		> *Ahem* Well then,
+		> I shall be off.
+		> Don't worry, I shall be back, Doctor, when you are of use.
+		If no:
+		> Ah, of course.
+		> But, some things are to be kept confidential.
+		> I'm afraid some information of me can perhaps be omitted.
+		> So, you have left me with no choice.
+		Screen turns white and fades back down.
+		You hear a thud.
+		> When I need you, Doctor...
+		
+		-MEGA TILE-
+		
+		END GAME.

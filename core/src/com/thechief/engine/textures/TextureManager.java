@@ -39,6 +39,8 @@ public class TextureManager {
 	public static final Texture GOAL1		= new Texture(Gdx.files.internal("gfx/goal1.png"));
 	public static final Texture GOAL2		= new Texture(Gdx.files.internal("gfx/goal2.png"));
 	
+	public static final Texture TUTORIAL1	= new Texture(Gdx.files.internal("gfx/tutorial1.png"));
+	
 	public static final void dispose() {
 		COOL_DUDE.dispose();
 		PLAYER.dispose();
