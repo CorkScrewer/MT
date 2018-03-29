@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.thechief.engine.story.ColorString;
 
 /**
  * This text will actually draw Text onto the screen.
@@ -38,20 +37,11 @@ public class Text {
      * @param text The Text you want to show.
      * @param pos The Coordinates on the screen that the text will be drawn to.
      */
-    public Text(BitmapFont font, ColorString text, Vector2 pos) {
+    public Text(BitmapFont font, String text, Vector2 pos) {
         this.font = font;
-        this.text = text.string;
-        this.color = text.color;
+        this.text = text;
         this.pos = pos;
         layout = new GlyphLayout(this.font, this.text);
-    }
-
-    public Text(BitmapFont font, String text, Vector2 pos) {
-    	this.font = font;
-    	this.text = text;
-    	this.color = Color.BLACK;
-    	this.pos = pos;
-    	layout = new GlyphLayout(this.font, this.text);
     }
     
     /**
@@ -114,9 +104,8 @@ public class Text {
     	return text;
     }
     
-    public void setText(ColorString text) {
-    	this.text = text.string;
-    	this.color = text.color;
+    public void setText(String text) {
+    	this.text = text;
     	layout.setText(font, this.text);
     }
     

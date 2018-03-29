@@ -56,7 +56,7 @@ public class FontManager {
 	
 		FreeTypeFontGenerator generator7 = new FreeTypeFontGenerator(Gdx.files.internal("fonts/pressstart2p.ttf"));
 		parameter[6] = new FreeTypeFontParameter();
-		parameter[6].size = 30;
+		parameter[6].size = 23;
 		parameter[6].flip = true;
 		PRESSSTART = generator7.generateFont(parameter[6]);
 		generator7.dispose(); // don't forget to dispose to avoid memory leaks!

@@ -10,28 +10,29 @@ import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.level.Level;
 import com.thechief.engine.level.LevelRenderer;
 
-public class LevelMinusOne extends Level {
+public class LevelAldos extends Level {
 
-	public LevelMinusOne(OrthographicCamera camera) {
+	public LevelAldos(OrthographicCamera camera) {
 		super("Level -1", camera, 36);
 	}
 
 	@Override
 	public void create() {
-		data =  "                  " + 
-				"                  " + 
-				"                  " +
-				"                  " + 
-				"         ☺        " +
-				"                  " +
-				"                  " + 
-				"                  " + 
-				"                  " + 
-				"                  ";
+		data =  "•••••••••••••••••••" + 
+				"•                 •" + 
+				"•                 •" +
+				"•                 •" + 
+				"•                 •" +
+				"•        ☺        •" +
+				"•                 •" + 
+				"•                 •" + 
+				"•                 •" + 
+				"•                 •" + 
+				"•••••••••••••••••••";
 
 		dhc = new DevilHeadChecker(em, 28);
 
-		grid = new MapGrid(data, 18, 10, em, camera, dhc);
+		grid = new MapGrid(data, 19, 11, em, camera, dhc);
 		sr = new ShapeRenderer();
 		pp = new PausePlay(new Vector2(30, 30), grid);
 	}

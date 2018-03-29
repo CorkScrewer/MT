@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.PausePlay;
 import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
-import com.thechief.engine.screen.GameScreen;
 
 public class LevelFour extends Level {
 

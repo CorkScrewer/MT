@@ -1,6 +1,5 @@
 package com.thechief.engine.entity;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.thechief.engine.entity.grid.MapGrid;
@@ -22,7 +21,9 @@ public class Tutorial1 extends Entity {
 	public void render(SpriteBatch sb) {
 		sb.begin();
 		if (activated)
+			sb.setColor(1, 1, 1, 0.15f);
 			sb.draw(texture, pos.x, pos.y, width, -height);
+			sb.setColor(1, 1, 1, 1);
 		sb.end();
 	}
 

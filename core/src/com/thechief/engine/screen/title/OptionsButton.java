@@ -22,7 +22,7 @@ public class OptionsButton extends TitleScreenComponent<TitleScreen> {
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
 				ScreenManager.setCurrentScreen(new OptionsScreen());
-				SoundManager.click.play(0.7f);
+				SoundManager.click.play(0.15f);
 			}
 		}
 	}

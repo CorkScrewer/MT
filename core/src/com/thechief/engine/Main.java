@@ -56,6 +56,10 @@ public class Main implements ApplicationListener {
 		
 		System.out.println(Gdx.graphics.getDisplayMode().width);
 		Gdx.gl.glClearColor((8 / 255f), 6 / 255f, 54 / 255f, 1);
+		
+		SoundManager.titlescreen.setLooping(true);
+		SoundManager.titlescreen.play();
+		SoundManager.titlescreen.setVolume(0.6f);
 	}
 
 	@Override

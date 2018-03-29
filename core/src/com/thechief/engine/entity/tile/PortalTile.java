@@ -1,6 +1,7 @@
 package com.thechief.engine.entity.tile;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,7 +23,7 @@ public class PortalTile extends Tile {
 		super(TextureManager.PORTAL1, TileType.Portal, false, false, gridPos, grid, Direction.Null, true);
 		this.type = type;
 		Texture[] texs = { TextureManager.PORTAL1, TextureManager.PORTAL2 };
-		animation = new Animation<Texture>(0.3f, texs);
+		animation = new Animation<Texture>(0.15f, texs);
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class PortalTile extends Tile {
 	public void reset() {
 
 	}
-
+	
 	public void setOther(PortalTile pt) {
 		other = pt;
 	}

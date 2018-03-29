@@ -42,12 +42,12 @@ public class LevelRenderer {
 		
 		l.sr.begin(ShapeType.Line);
 
-		l.sr.setColor(Color.RED);
 		for (Entity e : l.em.entities) {
 			if (e instanceof Button) {
 				if (((Button) e).getOther() != null) {
 					Vector2 first = new Vector2(e.getPosition()).scl(GameScreen.CELL_SIZE).add(GameScreen.CELL_SIZE / 2, GameScreen.CELL_SIZE / 2);
 					Vector2 second = new Vector2(((Button) e).getOther().getPosition()).scl(GameScreen.CELL_SIZE).add(GameScreen.CELL_SIZE / 2, GameScreen.CELL_SIZE / 2);
+					l.sr.setColor(Color.RED);
 					l.sr.rectLine(first, second, 2);
 				}
 			}

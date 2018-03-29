@@ -57,11 +57,11 @@ public class GraphicsOptionsScreen extends Screen {
 		
 		if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.S)) {
 			selectedInt++;
-			SoundManager.select.play(0.7f);
+			SoundManager.select.play(0.15f);
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.UP) || Gdx.input.isKeyJustPressed(Keys.W)) {
 			selectedInt--;
-			SoundManager.select.play(0.7f);
+			SoundManager.select.play(0.15f);
 		}
 		
 		if (selectedInt < 0) selectedInt = components.size - 1;

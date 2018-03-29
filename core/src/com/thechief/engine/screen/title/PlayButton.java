@@ -26,7 +26,7 @@ public class PlayButton extends TitleScreenComponent<TitleScreen> {
 		
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
-				SoundManager.click.play(0.7f);
+				SoundManager.click.play(0.15f);
 				ScreenManager.setCurrentScreen(new GameScreen(newGame));
 			}
 		}

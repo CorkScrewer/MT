@@ -9,9 +9,9 @@ import com.thechief.engine.entity.grid.MapGrid;
 import com.thechief.engine.entity.tile.devil.DevilHeadChecker;
 import com.thechief.engine.screen.GameScreen;
 
-public class LevelEighteen extends Level {
+public class LevelNineteen extends Level {
 
-	public LevelEighteen(OrthographicCamera camera) {
+	public LevelNineteen(OrthographicCamera camera) {
 		super("Altogether Now! 2", camera, 18);
 		useLevers = false;
 		splitterUses = 1;

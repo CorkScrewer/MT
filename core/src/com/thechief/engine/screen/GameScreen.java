@@ -9,13 +9,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.thechief.engine.Main;
 import com.thechief.engine.level.Level;
-import com.thechief.engine.level.LevelMinusOne;
+import com.thechief.engine.level.LevelEighteen;
 import com.thechief.engine.level.LevelEleven;
 import com.thechief.engine.level.LevelFifteen;
 import com.thechief.engine.level.LevelFive;
 import com.thechief.engine.level.LevelFour;
 import com.thechief.engine.level.LevelFourteen;
 import com.thechief.engine.level.LevelManager;
+import com.thechief.engine.level.LevelAldos;
 import com.thechief.engine.level.LevelNine;
 import com.thechief.engine.level.LevelSeven;
 import com.thechief.engine.level.LevelSeventeen;
@@ -27,6 +28,7 @@ import com.thechief.engine.level.LevelTwelve;
 import com.thechief.engine.level.LevelTwo;
 import com.thechief.engine.level.LevelZero;
 import com.thechief.engine.screen.title.TitleScreen;
+import com.thechief.engine.sfx.SoundManager;
 
 public class GameScreen extends Screen {
 
@@ -52,6 +54,11 @@ public class GameScreen extends Screen {
 
 	@Override
 	public void create() {
+		SoundManager.titlescreen.stop();
+		SoundManager.main.setLooping(true);
+		SoundManager.main.setVolume(0.25f);
+		SoundManager.main.play();
+		
 		camera = new OrthographicCamera(Main.WIDTH, Main.HEIGHT);
 		camera.setToOrtho(true, Main.WIDTH, Main.HEIGHT);
 		camera.position.set(Main.WIDTH / 2, Main.HEIGHT / 2, 0);
@@ -76,6 +83,7 @@ public class GameScreen extends Screen {
 		levels.add(new LevelFifteen(camera));
 		levels.add(new LevelSixteen(camera));
 		levels.add(new LevelSeventeen(camera));
+		levels.add(new LevelEighteen(camera));
 
 		FileHandle handle = Gdx.files.local("data/save.mt");
 		if (handle.exists()) {
@@ -100,7 +108,7 @@ public class GameScreen extends Screen {
 			LevelManager.setCurrentLevel(levels.get(CURRENT_LEVEL));
 			System.out.println(CURRENT_LEVEL);
 		} else {
-			LevelManager.setCurrentLevel(new LevelMinusOne(camera));
+			LevelManager.setCurrentLevel(new LevelAldos(camera));
 		}
 	}
 

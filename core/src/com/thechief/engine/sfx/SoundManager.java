@@ -1,6 +1,7 @@
 package com.thechief.engine.sfx;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 public class SoundManager {
@@ -14,6 +15,11 @@ public class SoundManager {
 	public static final Sound click = Gdx.audio.newSound(Gdx.files.internal("sfx/click.wav"));
 	public static final Sound split = Gdx.audio.newSound(Gdx.files.internal("sfx/split.wav"));
 	
+	public static final Music titlescreen = Gdx.audio.newMusic(Gdx.files.internal("music/titlescreen.ogg"));
+	public static final Music rain = Gdx.audio.newMusic(Gdx.files.internal("music/rain.mp3"));
+	public static final Music main = Gdx.audio.newMusic(Gdx.files.internal("music/main.ogg"));
+	public static final Music credits = Gdx.audio.newMusic(Gdx.files.internal("music/credits.ogg"));
+	
 	public static final void dispose() {
 		move.dispose();
 		textmove.dispose();
@@ -23,6 +29,10 @@ public class SoundManager {
 		select.dispose();
 		click.dispose();
 		split.dispose();
+		
+		titlescreen.dispose();
+		rain.dispose();
+		credits.dispose();
 	}
 	
 }

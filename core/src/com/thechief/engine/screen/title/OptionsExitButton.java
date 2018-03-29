@@ -21,7 +21,7 @@ public class OptionsExitButton extends TitleScreenComponent<GraphicsOptionsScree
 		selected = title.selected == this;
 
 		if (Gdx.input.isKeyJustPressed(Keys.ENTER) && selected) {
-			SoundManager.click.play(0.7f);
+			SoundManager.click.play(0.15f);
 			if (title.fullSlider.fullscreen) {
 				Monitor currMonitor = Gdx.graphics.getMonitor();
 				DisplayMode displayMode = Gdx.graphics.getDisplayMode(currMonitor);

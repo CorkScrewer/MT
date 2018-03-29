@@ -29,11 +29,11 @@ public class OptionsTextSpeedSlider extends TitleScreenComponent<GraphicsOptions
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.D)) {
 				options++;
-				SoundManager.click.play(0.7f);
+				SoundManager.click.play(0.15f);
 			}
 			if (Gdx.input.isKeyJustPressed(Keys.LEFT) || Gdx.input.isKeyJustPressed(Keys.A)) {
 				options--;
-				SoundManager.click.play(0.7f);
+				SoundManager.click.play(0.15f);
 			}
 			
 			if (options > sizeOptions) options = 0;

@@ -22,7 +22,7 @@ public class OptionsPostProcessingSlider extends TitleScreenComponent<GraphicsOp
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.D) || Gdx.input.isKeyJustPressed(Keys.LEFT) || Gdx.input.isKeyJustPressed(Keys.A)) {
 				selection = !selection;
-				SoundManager.click.play(0.7f);
+				SoundManager.click.play(0.15f);
 			}
 			
 			sliderExtra = (selection) ? "On" : "Off";

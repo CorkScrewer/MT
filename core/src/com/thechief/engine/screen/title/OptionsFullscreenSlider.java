@@ -21,7 +21,7 @@ public class OptionsFullscreenSlider extends TitleScreenComponent<GraphicsOption
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.D) || Gdx.input.isKeyJustPressed(Keys.LEFT) || Gdx.input.isKeyJustPressed(Keys.A)) {
 				fullscreen = !fullscreen;
-				SoundManager.click.play(0.7f);
+				SoundManager.click.play(0.15f);
 			}
 		}
 

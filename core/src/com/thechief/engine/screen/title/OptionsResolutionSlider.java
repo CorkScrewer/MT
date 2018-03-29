@@ -63,11 +63,11 @@ public class OptionsResolutionSlider extends TitleScreenComponent<GraphicsOption
 		if (selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.D)) {
 				selection++;
-				SoundManager.click.play(0.7f);
+				SoundManager.click.play(0.15f);
 			}
 			if (Gdx.input.isKeyJustPressed(Keys.LEFT) || Gdx.input.isKeyJustPressed(Keys.A)) {
 				selection--;
-				SoundManager.click.play(0.7f);
+				SoundManager.click.play(0.15f);
 			}
 
 			if (selection > max) selection = 0;
