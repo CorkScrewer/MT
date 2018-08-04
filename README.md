@@ -6,9 +6,8 @@ MT is a game made in java and libGDX. Right now, it is in the early stage of dev
 It is made for desktop (Windows, macOS, Linux, Solaris). I don't think that I would build for android.
 But, no promises.
 
-### Distribution
-Mega Tile would be distributed in about 4-6 months on https://itch.io and https://gamejolt.com and MAYBE Steam.
-maybe... *cough* *cough* Steam Direct *cough* *cough*
+### This project now
+Yeah, it ded. Im currently working on an rpg which you can find on my github, but im not committing. simply because i have the project files distributed among the editor, the game, and the engine. So, I'm still working on it, just not committing :)
 
 ### END OF README
 
